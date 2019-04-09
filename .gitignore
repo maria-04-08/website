@@ -1,0 +1,6 @@
+.project
+node_modules/
+vconsole.min.js
+dev/
+rev/
+/index.html
