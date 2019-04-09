@@ -80,10 +80,11 @@ header{
 	background:url('../../img/home/bg1.jpg') no-repeat;
 	// background-position:50%;
 	background-size:100%;
-	&>img{
-		display: block;
-		height:auto;
-		width:100%;
+	.title-img{
+		position:absolute;
+		top:42%;
+		left:60%;
+		transform: translate(-50%,0);
 	}
 	.qrcode-img{
 		position:absolute;
@@ -131,11 +132,14 @@ header{
 	display: flex;
 	flex-direction:column;
 	align-items:center;
-	padding:210px 0px 73px;
+	padding:150px 0px 73px;
 	h3{
 		font-size:50px;
 		padding-bottom:50px;
 		color:#fff;
+	}
+	img{
+		margin-bottom:50px;
 	}
 	p{
 		font-size:20px;
