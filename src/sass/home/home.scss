@@ -318,27 +318,62 @@ footer{
 	background:#333;
 	box-sizing:border-box;
 	display:flex;
+	justify-content: space-between;
 	.left{
 		// width:314px;
-		div{
+		&>div{
 			display:flex;
+			margin-bottom:35px;
 			align-items:center;
 		}
 		img{
 			width:48px;
 			height:48px;
-			margin:0px;
+			margin:0px 20px 0px;
 		}
 		p{
-			height:48px;
-			display: flex;
-			flex-direction:column;
-			justify-content: space-between;
-		}
-		span{
 			color:#fff;
 			display: block;
 		}
-		
+		.first-span{
+			margin-bottom:10px;
+		}
+	}
+	.right{
+		padding-right:298px;
+		img{
+			width:145px;
+			height:145px;
+			margin-bottom:26px;
+		}
+		span{
+			text-align: center;
+			display: block;
+			color:#fff;
+			font-size:16px;
+		}
+	}
+}
+//回到顶部悬浮
+.back-to-top{
+	width:60px;
+	height:147px;
+	position:fixed;
+	bottom:100px;
+	right:25px;
+	div{
+		width:60px;
+		height:60px;
+		background:#fff;
+		text-align: center;
+		line-height:60px;
+		margin-bottom:18px;
+		&:hover{
+			cursor: pointer;
+		}
+	}
+	img{
+		width:42px;
+		height:42px;
 	}
 }

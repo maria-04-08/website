@@ -116,13 +116,28 @@
 						<div class="left">
 							<div v-for="item in contact">
 								<img :src="item.img"/>
-								<p>
-									<span>{{item.title}}<span>
-									<span>{{item.text}}</span>
-								</p>
+								<div>
+									<p class="first-span">{{item.title}}<p>
+									<p>{{item.text}}</p>
+								</div>
 							</div>
 						</div>
+						<div class="right">
+							<img src="../../img/home/icon/qr-code.png"/>
+							<span>小二帮微信公众号</span>
+						</div>
 					</footer>
+					
+					<!-- 回到顶部悬浮栏 -->
+					<div class="back-to-top">
+						<div>
+							<img src="../../img/home/icon/to-top.png"/>
+						</div>
+						<div>
+							<img src="../../img/home/icon/qr-logo.png"/>
+						</div>
+					</div>
+					
 				</div>
 			</main>
 		</div>
