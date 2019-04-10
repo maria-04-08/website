@@ -1,9 +1,4 @@
 //swiperInit()
-var bankListBrand = '';
-var bankListStore = '';
-var timer02 = ''; //合作品牌
-var timer03 = ''; //合作门店
-var timer04 = ''; //关于我们
 var vm = new Vue({
 	el:"#home",
 	data:{
@@ -28,71 +23,103 @@ var vm = new Vue({
 		contact:[
 			{img:'../../img/home/icon/email-logo.png', title:'电子邮箱', text:'magic-zhong@qq.com'},
 			{img:'../../img/home/icon/phone.png', title:'咨询电话', text:'0898-66236818'},
-		]
+		],
+		onHove: false,
+		showMiniCode:false,
+		startTime:0, //翻屏起始时间  
+		endTime:0,  
+		now:0
 	},
 	methods:{
 		changeIndex(idx){
 			this.titleIndex = idx;
-		}		
+		},
+		toPage(now){
+			this.startTime = 0; //翻屏起始时间  
+			this.endTime = 0;
+			this.now = 0;
+			$("#main").animate({top:(now+'px')},1000);
+		},
+		pageScroll(){
+			var VUE = this;
+			var wrap = document.getElementById("wrap");
+			var main = document.getElementById("main");
+			var hei = document.body.clientHeight;
+			wrap.style.height = hei + "px";
+			var obj = document.getElementsByTagName("div");
+			for(var i=0;i<obj.length;i++){
+				if(obj[i].className == 'page'){
+					 obj[i].style.height = hei + "px";
+				}
+			}
+			//如果不加时间控制，滚动会过度灵敏，一次翻好几屏
+// 			var startTime = 0, //翻屏起始时间  
+// 				endTime = 0,  
+// 				now = 0;     
+			//浏览器兼容      
+			if ((navigator.userAgent.toLowerCase().indexOf("firefox")!=-1)){   
+				document.addEventListener("DOMMouseScroll",scrollFun,false);        
+			}  
+			else if (document.addEventListener) {  
+				document.addEventListener("mousewheel",scrollFun,false);  
+			}  
+			else if (document.attachEvent) {  
+				document.attachEvent("onmousewheel",scrollFun);   
+			}  
+			else{  
+				document.onmousewheel = scrollFun;  
+			}  
+			
+			//滚动事件处理函数
+			function scrollFun(event){
+				VUE.startTime = new Date().getTime();  
+				var delta = event.detail || (-event.wheelDelta);  
+				if (Math.abs(main.offsetTop)> 200) {
+					//底部icon进场
+				    $(".back-to-top").addClass('bottom_right_cur');
+				    //hide: 二维码一进来停留3秒，且一进来不要退场的效果
+				    if($(".bottom_right").hasClass('hide')){	
+				    	$('.codeFix').addClass('codeFixCur');
+				    	var timer01 = setTimeout(function(){
+				    		$('.codeFix').removeClass('codeFixCur');
+				    	},3000)
+				    	$(".bottom_right").removeClass('hide');
+				    }
+				} else {	
+					console.log(222);
+					//底部icon退场
+				    $(".back-to-top").addClass('hide');
+				    $(".back-to-top").removeClass('bottom_right_cur');
+				}
+				
+				//mousewheel事件中的 “event.wheelDelta” 属性值：返回的如果是正值说明滚轮是向上滚动
+				//DOMMouseScroll事件中的 “event.detail” 属性值：返回的如果是负值说明滚轮是向上滚动
+				if ((VUE.endTime - VUE.startTime) < -1000){
+					if(delta>0 && parseInt(main.offsetTop) > -(hei*3)){
+						//向下滚动
+						VUE.now = VUE.now - hei;
+						toPage(VUE.now);
+				} 
+					if(delta<0 && parseInt(main.offsetTop) < 0){
+						//向上滚动
+							VUE.now = VUE.now + hei;
+							toPage(VUE.now);
+					}
+					 VUE.endTime = new Date().getTime();  
+				}
+				else{  
+					event.preventDefault();    
+				}    
+			}
+			 function toPage(now){        
+				 $("#main").animate({top:(now+'px')},1000);     //jquery实现动画效果
+				 //setTimeout("main.style.top = now + 'px'",1000);     javascript 实现动画效果
+			}   
+		}
 	},
 	mounted: function() {
 		var VUE = this;
-// 		var wrap = document.getElementById("wrap");
-// 		var main = document.getElementById("main");
-// 		var hei = document.body.clientHeight;
-// 		wrap.style.height = hei + "px";
-// 		var obj = document.getElementsByTagName("div");
-// 		for(var i=0;i<obj.length;i++){
-// 			if(obj[i].className == 'page'){
-// 				 obj[i].style.height = hei + "px";
-// 			}
-// 		}
-// 		//如果不加时间控制，滚动会过度灵敏，一次翻好几屏
-// 		var startTime = 0, //翻屏起始时间  
-// 			endTime = 0,  
-// 			now = 0;     
-// 		//浏览器兼容      
-// 		if ((navigator.userAgent.toLowerCase().indexOf("firefox")!=-1)){   
-// 			document.addEventListener("DOMMouseScroll",scrollFun,false);        
-// 		}  
-// 		else if (document.addEventListener) {  
-// 			document.addEventListener("mousewheel",scrollFun,false);  
-// 		}  
-// 		else if (document.attachEvent) {  
-// 			document.attachEvent("onmousewheel",scrollFun);   
-// 		}  
-// 		else{  
-// 			document.onmousewheel = scrollFun;  
-// 		}  
-// 		
-// 		//滚动事件处理函数
-// 		function scrollFun(event){
-// 			startTime = new Date().getTime();  
-// 			var delta = event.detail || (-event.wheelDelta);  
-// 			//mousewheel事件中的 “event.wheelDelta” 属性值：返回的如果是正值说明滚轮是向上滚动
-// 			//DOMMouseScroll事件中的 “event.detail” 属性值：返回的如果是负值说明滚轮是向上滚动
-// 			if ((endTime - startTime) < -1000){
-// 				if(delta>0 && parseInt(main.offsetTop) > -(hei*3)){
-// 					//向下滚动
-// 					now = now - hei;
-// 					toPage(now);
-// 			} 
-// 				if(delta<0 && parseInt(main.offsetTop) < 0){
-// 					//向上滚动
-// 						now = now + hei;
-// 						toPage(now);
-// 				}
-// 				 endTime = new Date().getTime();  
-// 			}
-// 			   else{  
-// 					event.preventDefault();    
-// 				}    
-// 		}
-// 		 function toPage(now){        
-// 			 $("#main").animate({top:(now+'px')},1000);     //jquery实现动画效果
-// 			 //setTimeout("main.style.top = now + 'px'",1000);     javascript 实现动画效果
-// 		}   
-		
+		VUE.pageScroll();
 		
 		$('#indicatorContainer1').radialIndicator({
 			barColor: '#90CAF9',
@@ -134,26 +161,6 @@ var vm = new Vue({
         radialObj1.animate(95);
 		radialObj2.animate(90);
 		radialObj3.animate(75);
-// 		// 设置参数
-// 		 var data = {
-// 			labels: [
-// 			],
-// 			datasets: [
-// 				{
-// 					data: [90],
-// 					backgroundColor: [
-// 						"#36A2EB",
-// 					],
-// 					weight:10
-// 				}]
-// 		};
-//         var ctx = document.getElementById("myChart").getContext("2d");
-//         var myBarChart = new Chart(ctx, {
-// 				type: 'doughnut',
-// 				data: data,
-// 				// options: options
-// 		});
-		
 	},
 	created: function(){
 		

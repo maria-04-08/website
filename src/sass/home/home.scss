@@ -78,37 +78,48 @@ header{
 	height:100%;
 	width:100%;
 	background:url('../../img/home/bg1.jpg') no-repeat;
-	// background-position:50%;
 	background-size:100%;
 	.title-img{
 		position:absolute;
-		top:42%;
-		left:60%;
+		top:43%;
+		left:33%;
 		transform: translate(-50%,0);
+		-webkit-animation: codeBot .8s .5s ease-in-out both;
 	}
 	.qrcode-img{
 		position:absolute;
-		left:20%;
-		bottom:4%;
+		bottom:5%;
+		left:0px;
+		width:100%;
 		display: flex;
+		justify-content: center;
 	}
 	.left-qr{
+		display: none;
+		position:absolute;
+		bottom:0px;
+		left:25%;
 		img{
 			width:255px;
 			height:255px;
 		}
+	}
+	.showCode{
+	   display: block;
+	   -webkit-animation: codeLeft 0.8s .1s ease both;
 	}
 	.right-qr{
 		width:352px;
 		height:100px;
 		border-radius:50px;
 		background:rgba(0,0,0,0.4);
-		position:absolute;
-		bottom:10px;
-		left:293px;
 		display: flex;
 		justify-content: center;
 		align-items:center;
+		-webkit-animation: codeBot 1s .9s ease-in-out both;
+		&:hover{
+			cursor:pointer;
+		}
 		img{
 			width:46px;
 			height:46px;
@@ -222,7 +233,6 @@ header{
 }
 //核心服务部分
 .core-services-part{
-	margin-top:-2px;
 	position:relative;
 	height:100%;
 	width:100%;
@@ -266,6 +276,7 @@ header{
 	background:#fff;
 	background-size:100%;
 	.features-text{
+		padding-top:100px;
 		h3{
 			color:#333;
 		}
@@ -278,23 +289,19 @@ header{
 	}
 }
 #indicatorContainer1, #indicatorContainer2, #indicatorContainer3, #indicatorContainer4{
-	width:218px;
 	width:33%;
+	height:380px;
 	display: flex;
 	justify-content: center;
-	// height:218px;
 	position:relative;
 	canvas{
 		width:218px !important;
 		height:218px !important;
 	}
-	.rad-cntnt{
-		color:#333 !important;
-	}
 	span{
 		display: block;
 		position:absolute;
-		top:63%;
+		top:36%;
 		left:50%;
 		font-size:20px;
 		transform:translate(-50%,-50%);
@@ -303,28 +310,30 @@ header{
 		width:60%;
 		position:absolute;
 		left:50%;
-		bottom:-40%;
+		bottom:18%;
 		font-size:18px;
 		line-height:30px;
 		transform:translate(-50%,0);
 		text-align:center;
 	}
 }
-.features-list{
+.target-list{
+	padding-top:0px;
 	display: flex;
 	justify-content: center;
 }
 //底部
 footer{
-	padding:100px 0px 0px 200px;
+	padding:60px 0px 0px 200px;
 	width:100%;
-	height:350px;
+	// height:350px;
+	height:250px;
+	box-sizing:border-box;
 	background:#333;
 	box-sizing:border-box;
 	display:flex;
 	justify-content: space-between;
 	.left{
-		// width:314px;
 		&>div{
 			display:flex;
 			margin-bottom:35px;
@@ -348,7 +357,7 @@ footer{
 		img{
 			width:145px;
 			height:145px;
-			margin-bottom:26px;
+			margin-bottom:10px;
 		}
 		span{
 			text-align: center;
@@ -361,11 +370,22 @@ footer{
 //回到顶部悬浮
 .back-to-top{
 	width:60px;
-	height:147px;
+	height:154px;
 	position:fixed;
-	bottom:100px;
+	bottom:40px;
 	right:25px;
-	div{
+	&.hide{
+	    display: none;
+	}
+	&.bottom_right_cur{
+	    display: block;
+	    -webkit-animation: codeBot 0.8s .1s ease both;
+	}
+	&.codeFixCur{
+	    display: block;
+	    -webkit-animation: codeLeft 0.8s .1s ease both;
+	}
+	.img-div{
 		width:60px;
 		height:60px;
 		background:#fff;
@@ -376,8 +396,67 @@ footer{
 			cursor: pointer;
 		}
 	}
+	.mini-img{
+		position:absolute;
+		right:80px;
+		top:-22.4%;
+		display: flex;
+		flex-direction:column;
+		z-index:99;
+		display: none;
+		img{
+			height:150px;
+			width:135px;
+		}
+		span{
+			display: block;
+			height:26px;
+			line-height:26px;
+			width:137px;
+			background:#1D1D1D;
+			color:#fff;
+			text-align:center;
+		}
+	}
+	.mini-code{
+		display: block;
+		-webkit-animation: miniCodeLeft 0.8s .1s ease both;
+	}
 	img{
 		width:42px;
 		height:42px;
 	}
+}
+
+@-webkit-keyframes codeBot {
+    0%{
+        opacity: 0;
+        -webkit-transform: translateY(97px);
+    }
+    100%{
+        opacity: 1;
+        -webkit-transform: translateY(0px);
+    }
+}
+
+@-webkit-keyframes codeLeft {
+    0%{
+        opacity: 0;
+        -webkit-transform: translateX(50px);
+    }
+    100%{
+        opacity: 1;
+        -webkit-transform: translateX(0px);
+    }
+}
+
+@-webkit-keyframes miniCodeLeft {
+    0%{
+        opacity: 0;
+        -webkit-transform: translateX(20px);
+    }
+    100%{
+        opacity: 1;
+        -webkit-transform: translateX(0px);
+    }
 }

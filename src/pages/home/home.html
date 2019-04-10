@@ -21,9 +21,10 @@
 		#wrap{
 			overflow: hidden;
 			width:100%;
+			height:100%;
 		}
 		#main{
-			height:2944px;
+			height:100%;
 			top:0;
 			position: relative;
 		}
@@ -31,6 +32,11 @@
 			width:100%;
 			margin:0;
 		}
+		/* #page1{
+			background:#E4E6CE;
+		} */
+
+	
 		</style>
 	</head>
 	<body>
@@ -47,25 +53,16 @@
 			</header>
 			<!-- 头部结束 -->
 			
-		<!-- 	<div id="wrap">
-				<div id="main">
-					<div id="page1" class="page"></div>
-					<div id="page2" class="page"></div>
-					<div id="page3" class="page"></div>
-					<div id="page4" class="page"></div>
-				</div>
-			</div> -->
-			
-			<main class="home-content" ref="viewBox" id="main">
-				<div id="container">
+			<div id="wrap">
+				<div id="main" >
 					<!-- 首页部分开始 -->
-					<div class="index-part page" id="page1">
+					<div class="index-part page" id="page1" ref="viewBox">
 						<img src="../../img/home/icon/text-img01.png" class="title-img"/>
-						<div class="qrcode-img">
-							<div class="left-qr">
+						<div class="qrcode-img" >
+							<div :class="['left-qr',onHove?'showCode':'']">
 								<img src="../../img/home/icon/qr-public.png"/>
 							</div>
-							<div class="right-qr">
+							<div class="right-qr" @mousemove="onHove=true" @mouseleave="onHove=false">
 								<img src="../../img/home/icon/qr-white.png"/>
 								<span>下载APP</span>
 							</div>
@@ -95,6 +92,7 @@
 						</ul>
 					</div>
 					<!-- 功能特点部分结束 -->
+					
 					<!-- 核心服务开始 -->
 					<div class="core-services-part page" id="page3">
 						<div class="features-text">
@@ -120,7 +118,7 @@
 								空地变硕果 · 帮你轻松种植
 							</p>
 						</div>
-						<div class="features-list col-md-12 col-sm-12 col-xs-12 blete-section-header wow fadeInDown">
+						<div class="target-list features-list col-md-12 col-sm-12 col-xs-12 blete-section-header wow fadeInDown">
 							<div id="indicatorContainer1">
 								<span>农业用户</span>
 								<p>
@@ -140,36 +138,40 @@
 								</p>
 							</div>
 						</div>
-					</div>
-					<!-- 群众目标结束 -->
-					<footer>
-						<div class="left">
-							<div v-for="item in contact">
-								<img :src="item.img"/>
-								<div>
-									<p class="first-span">{{item.title}}<p>
-									<p>{{item.text}}</p>
+						<footer>
+							<div class="left">
+								<div v-for="item in contact">
+									<img :src="item.img"/>
+									<div>
+										<p class="first-span">{{item.title}}<p>
+										<p>{{item.text}}</p>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="right">
-							<img src="../../img/home/icon/qr-code.png"/>
-							<span>小二帮微信公众号</span>
-						</div>
-					</footer>
-					
+							<div class="right">
+								<img src="../../img/home/icon/qr-code.png"/>
+								<span>小二帮微信公众号</span>
+							</div>
+						</footer>
+					</div>
+					<!-- 群众目标结束 -->
 					<!-- 回到顶部悬浮栏 -->
-					<div class="back-to-top">
-						<div>
+					<div class="back-to-top hide">
+						<div class="img-div" @click="toPage(0)">
 							<img src="../../img/home/icon/to-top.png"/>
 						</div>
-						<div>
-							<img src="../../img/home/icon/qr-logo.png"/>
+						<div class="img-div">
+							<img src="../../img/home/icon/qr-logo.png" @mousemove="showMiniCode=true" @mouseleave="showMiniCode=false"/>
+						</div>
+						<div :class="['mini-img',showMiniCode?'mini-code':'']">
+							<img src="../../img/home/icon/mini-logo.png"/>
+							<span>扫码即可咨询专家</span>
 						</div>
 					</div>
-					
 				</div>
-			</main>
+			</div>
+			
+			
 		</div>
 		<!-- build:scriptComponent -->
 		<!-- endbuild -->
