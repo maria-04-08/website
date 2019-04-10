@@ -32,24 +32,29 @@
 			width:100%;
 			margin:0;
 		}
-		/* #page1{
-			background:#E4E6CE;
-		} */
-
-	
+		.container{
+			padding:0px;
+			margin:0px auto;
+		}
 		</style>
 	</head>
 	<body>
 		<div id="home" v-cloak>
 			<!-- 头部开始 -->
 			
-			<header>
+			<header v-if="!showH5">
 				<div class="logo">
 					<img src="../../img/logo.png"/>
 				</div>
 				<ul class="title">
 					<li v-for="(item,index) in title" :class="[titleIndex == index? 'active':'']" @click="changeIndex(index)">{{item}}</li>
 				</ul>
+			</header>
+			<header v-else class="h5-head">
+				<div class="h5-logo">
+					<img src="../../img/home/icon/menu-logo.png"/>
+				</div>
+				<h1>小二帮</h1>
 			</header>
 			<!-- 头部结束 -->
 			
@@ -83,13 +88,15 @@
 							<span>系统</span>
 							<p>线下·智能化通知</p>
 						</div>
-						<ul class="features-list">
-							<li v-for="(item, index) in features">
-								<img :src="item.img"/>
-								<h4>{{item.title}}</h4>
-								<p>{{item.text}}</p>
-							</li>
-						</ul>
+						<!-- <div class="container"> -->
+							<ul class="features-list">
+								<li v-for="(item, index) in features">
+									<img :src="item.img"/>
+									<h4>{{item.title}}</h4>
+									<p>{{item.text}}</p>
+								</li>
+							</ul>
+						<!-- </div> -->
 					</div>
 					<!-- 功能特点部分结束 -->
 					

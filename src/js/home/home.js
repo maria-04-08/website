@@ -28,7 +28,8 @@ var vm = new Vue({
 		showMiniCode:false,
 		startTime:0, //翻屏起始时间  
 		endTime:0,  
-		now:0
+		now:0,
+		showH5:false
 	},
 	methods:{
 		changeIndex(idx){
@@ -52,10 +53,7 @@ var vm = new Vue({
 					 obj[i].style.height = hei + "px";
 				}
 			}
-			//如果不加时间控制，滚动会过度灵敏，一次翻好几屏
-// 			var startTime = 0, //翻屏起始时间  
-// 				endTime = 0,  
-// 				now = 0;     
+			//如果不加时间控制，滚动会过度灵敏，一次翻好几屏startTime、endTime、now    
 			//浏览器兼容      
 			if ((navigator.userAgent.toLowerCase().indexOf("firefox")!=-1)){   
 				document.addEventListener("DOMMouseScroll",scrollFun,false);        
@@ -86,7 +84,6 @@ var vm = new Vue({
 				    	$(".bottom_right").removeClass('hide');
 				    }
 				} else {	
-					console.log(222);
 					//底部icon退场
 				    $(".back-to-top").addClass('hide');
 				    $(".back-to-top").removeClass('bottom_right_cur');
@@ -108,19 +105,22 @@ var vm = new Vue({
 					 VUE.endTime = new Date().getTime();  
 				}
 				else{  
-					event.preventDefault();    
+					// event.preventDefault();    
 				}    
 			}
-			 function toPage(now){        
-				 $("#main").animate({top:(now+'px')},1000);     //jquery实现动画效果
-				 //setTimeout("main.style.top = now + 'px'",1000);     javascript 实现动画效果
+			function toPage(now){        
+				 $("#main").animate({top:(now+'px')},1000);   
 			}   
 		}
 	},
 	mounted: function() {
 		var VUE = this;
 		VUE.pageScroll();
-		
+		window.screenWidth = document.body.clientWidth;
+		if(screenWidth>768){
+		}else{
+			VUE.showH5 = true;
+		}
 		$('#indicatorContainer1').radialIndicator({
 			barColor: '#90CAF9',
 			fontColor:'#333',
