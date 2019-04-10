@@ -76,7 +76,6 @@ header{
 	width:100%;
 	height:60px;
 	background:#30AFA8;
-	position:relative;
 	h1{
 		text-align: center;
 		line-height:60px;
@@ -94,8 +93,8 @@ header{
 		align-items:center;
 	}
 	img{
-		height:22px;
-		width:22px;
+		height:26px;
+		width:26px;
 	}
 }
 //首页部分
@@ -467,8 +466,66 @@ footer{
 
 /*媒体查询：注意and后面空格的添加*/
 /*iphone: w < 768px*/
+/*h5专用样式*/
 @media screen and (max-width: 768px){
-	
+	.index-part .title-img{
+		width:60% !important;
+	}
+	.index-part .right-qr{
+		width:32%;
+		height:34px;
+		img{
+			width:20px;
+			height:20px;
+			margin-right:10px;
+		}
+		span{
+			font-size:14px;
+		}
+	}
+	.features-text{
+		padding: 90px 0px 20px;
+		img{
+			width:110px;
+			height:25px;
+		}
+	}
+	.features-text p{
+		width:77%;
+		font-size:16px;
+		line-height:24px;
+	}
+	.sys-text{
+		// height:70px;
+		p{
+			width: 140px;
+			height: 32px;
+			font-size: 14px;
+		}
+		span{
+			width:70px;
+			height:70px;
+			font-size:20px;
+			line-height:64px;
+		}
+	}
+	.features-list{
+		padding:0px;
+		li{
+			h4{
+				font-size:16px;
+			}
+			img{
+				width:46px;
+				height:46px;
+			}
+			p{
+				font-size: 12px;
+				line-height: 20px;
+				width: 98%;
+			}
+		}
+	}
 }
 /*pad: w >= 768  && w< 992*/
 @media screen and (max-width: 992px) and (min-width: 768px) {

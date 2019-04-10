@@ -29,7 +29,8 @@ var vm = new Vue({
 		startTime:0, //翻屏起始时间  
 		endTime:0,  
 		now:0,
-		showH5:false
+		showH5:false,
+		screenWidth: document.body.clientWidth
 	},
 	methods:{
 		changeIndex(idx){
@@ -116,10 +117,16 @@ var vm = new Vue({
 	mounted: function() {
 		var VUE = this;
 		VUE.pageScroll();
-		window.screenWidth = document.body.clientWidth;
-		if(screenWidth>768){
+		this.screenWidth = document.body.clientWidth;
+		if(this.screenWidth>768){
 		}else{
 			VUE.showH5 = true;
+		}
+		window.onresize = () => {
+		    return (() => {
+		        window.screenWidth = document.body.clientWidth;
+		        VUE.screenWidth = window.screenWidth;
+		    })()
 		}
 		$('#indicatorContainer1').radialIndicator({
 			barColor: '#90CAF9',
@@ -169,5 +176,13 @@ var vm = new Vue({
 
 	},
 	watch:{
+		screenWidth (val) {
+			this.screenWidth = val;
+			if(val>768){
+				this.showH5 = false;
+			}else{
+				this.showH5 = true;
+			}
+		}
 	}
 })

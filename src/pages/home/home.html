@@ -63,7 +63,7 @@
 					<!-- 首页部分开始 -->
 					<div class="index-part page" id="page1" ref="viewBox">
 						<img src="../../img/home/icon/text-img01.png" class="title-img"/>
-						<div class="qrcode-img" >
+						<div class="qrcode-img" v-if='!showH5'>
 							<div :class="['left-qr',onHove?'showCode':'']">
 								<img src="../../img/home/icon/qr-public.png"/>
 							</div>
@@ -163,7 +163,7 @@
 					</div>
 					<!-- 群众目标结束 -->
 					<!-- 回到顶部悬浮栏 -->
-					<div class="back-to-top hide">
+					<div class="back-to-top hide" v-if="!showH5">
 						<div class="img-div" @click="toPage(0)">
 							<img src="../../img/home/icon/to-top.png"/>
 						</div>
