@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Chart.js入门使用</title>
+  <meta charset="utf-8">
+  <!--<script src="Chart.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+ </head>
+ <body>
+ <!--
+ 1 -- html页面中 创建一个canvas元素，给定id，也可以同时直接给定宽和高
+ 2 -- js中：2.1 用dom或者jq方法获得以上canvas
+            2.2 获取2d元素ctx
+ 3 -- js中：3.1 初始化数据data=[{},{},{}...]
+                 注：每个{}代表一份或者一个点
+                 {value://数值
+                 color:默认加载时的颜色
+                 highlight:// hover时的颜色
+                 label:鼠标移入该区域显示的内容标签
+                 }
+ 4 -- js中：基于画布对象ctx,创建Chart对象
+ 5 -- js中：基于初始化的数据data，通过Chart对象调用图表方法
+             /*
+               * 饼状图 - Pie(datas,options)
+                 * datas - 图表的数据
+                 * options - 选项
+               * 柱状图 - Bar(datas,options)
+               * 曲线图 - Line(datas,options)
+           */
+ -->
+ <!--1 -- html页面中 创建一个canvas元素，给定id，也可以同时直接给定宽和高-->
+  <canvas id="canvas" width="400" height="400"></canvas>
+  <script>
+//      2 -- js中：2.1 用dom或者jq方法获得以上canvas
+    var canvas = document.getElementById("canvas");
+//              2.2 获取2d元素ctx
+    var ctx = canvas.getContext('2d');
+//3 -- js中：3.1 初始化数据data=[{},{},{}...]
+    var data = [
+                {
+                    value: 30,
+                    color:"lightgreen",
+                    highlight: "green",
+                    label: "大白菜"
+                }
+
+            ];
+//4 -- js中：基于画布对象ctx,创建Chart对象
+    var chart = new Chart(ctx);
+//5 -- js中：基于初始化的数据data，通过Chart对象调用图表方法
+    chart.Doughnut(data);
+  </script>
+ </body>
+</html>

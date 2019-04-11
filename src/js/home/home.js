@@ -138,7 +138,6 @@ var vm = new Vue({
 				}
 				// VUE.screenHeight = document.body.clientHeight;
 		        VUE.screenWidth = window.screenWidth;
-				console.log('高度-----------'+ VUE.screenHeight);
 		    })()
 		}
 		if(this.screenWidth>768 && !status){
@@ -146,46 +145,76 @@ var vm = new Vue({
 		}else{
 			VUE.showH5 = true;
 		}
-		$('#indicatorContainer1').radialIndicator({
-			barColor: '#90CAF9',
-			fontColor:'#333',
-			fontSize:'16',
-			fontWeight:'400',
-			barWidth: 6,
-			initValue: 0,
-			roundCorner : true,
-			percentage: true
-		});
-		var radialObj1 = $('#indicatorContainer1').data('radialIndicator');
-		$('#indicatorContainer2').radialIndicator({
-			barColor: '#90CAF9',
-			fontColor:'#333',
-			fontSize:'16',
-			fontWeight:'400',
-			barWidth: 6,
-			initValue: 0,
-			roundCorner : true,
-			percentage: true
-		});
-		var radialObj2 = $('#indicatorContainer2').data('radialIndicator');
-		$('#indicatorContainer3').radialIndicator({
-			barColor: '#90CAF9',
-			fontColor:'#333',
-			fontSize:'16',
-			fontWeight:'400',
-			barWidth: 6,
-			initValue: 0,
-			roundCorner : true,
-			percentage: true
-		});
-		var radialObj3 = $('#indicatorContainer3').data('radialIndicator');
-        //现在,您可以使用实例来调用不同的方法
-        //像这样：
-		var _val = radialObj1;
-		console.log(_val);
-        radialObj1.animate(95);
-		radialObj2.animate(90);
-		radialObj3.animate(75);
+		var canvas = document.getElementById("canvas");
+		    var ctx = canvas.getContext('2d');
+		    var data = [
+				{
+					value: 1,
+					color:"#90CAF9",
+					
+					borderWidth: 100,
+					labels: {
+						boxWidth:10,
+						fontColor: 'rgb(255, 99, 132)',
+						backgroundColor:'rgb(255, 99, 132)',
+					}
+				}
+			];
+			var options= {
+				legend: {
+					
+					display: true,
+					labels: {
+						boxWidth:10,
+						fontColor: 'rgb(255, 99, 132)',
+						backgroundColor:'rgb(255, 99, 132)',
+					}
+				}
+			}
+			
+		    var chart = new Chart(ctx);
+		    chart.Doughnut(data,options);
+			
+// 		$('#indicatorContainer1').radialIndicator({
+// 			barColor: '#90CAF9',
+// 			fontColor:'#333',
+// 			fontSize:'16',
+// 			fontWeight:'400',
+// 			barWidth: 6,
+// 			initValue: 0,
+// 			roundCorner : true,
+// 			percentage: true
+// 		});
+// 		var radialObj1 = $('#indicatorContainer1').data('radialIndicator');
+// 		$('#indicatorContainer2').radialIndicator({
+// 			barColor: '#90CAF9',
+// 			fontColor:'#333',
+// 			fontSize:'16',
+// 			fontWeight:'400',
+// 			barWidth: 6,
+// 			initValue: 0,
+// 			roundCorner : true,
+// 			percentage: true
+// 		});
+// 		var radialObj2 = $('#indicatorContainer2').data('radialIndicator');
+// 		$('#indicatorContainer3').radialIndicator({
+// 			barColor: '#90CAF9',
+// 			fontColor:'#333',
+// 			fontSize:'16',
+// 			fontWeight:'400',
+// 			barWidth: 6,
+// 			initValue: 0,
+// 			roundCorner : true,
+// 			percentage: true
+// 		});
+// 		var radialObj3 = $('#indicatorContainer3').data('radialIndicator');
+//         //现在,您可以使用实例来调用不同的方法
+//         //像这样：
+// 		var _val = radialObj1;
+// 		console.log(_val);
+//         radialObj1.animate(95);
+// 		radialObj2.animate(90);
+// 		radialObj3.animate(75);
 	},
 	created: function(){
 		
