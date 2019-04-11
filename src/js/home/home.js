@@ -25,7 +25,8 @@ var vm = new Vue({
 			{img:'../../img/home/icon/phone.png', title:'咨询电话', text:'0898-66236818'},
 		],
 		h5Menu:['主 页', '个人版', '企业版', '关于团队'],
-		onHove: false,
+		onPersonalCode: false,  //个人版App二维码展示
+		onEnterpriseCode:false, //企业版App二维码展示
 		showMiniCode:false,
 		startTime:0, //翻屏起始时间  
 		endTime:0,  
@@ -61,7 +62,7 @@ var vm = new Vue({
 			}
 			//如果不加时间控制，滚动会过度灵敏，一次翻好几屏startTime、endTime、now    
 			//浏览器兼容      
-			if ((navigator.userAgent.toLowerCase().indexOf("firefox")!=-1) && !this.status){
+			if ((navigator.userAgent.toLowerCase().indexOf("firefox")!=-1)){
 				document.addEventListener("DOMMouseScroll",scrollFun,false);        
 			}  
 			else if (document.addEventListener) {  

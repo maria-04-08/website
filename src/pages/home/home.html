@@ -73,12 +73,25 @@
 					<div class="index-part page" id="page1" ref="viewBox">
 						<img src="../../img/home/icon/text-img01.png" class="title-img"/>
 						<div class="qrcode-img" v-if='!showH5'>
-							<div :class="['left-qr',onHove?'showCode':'']">
-								<img src="../../img/home/icon/qr-public.png"/>
+							<div :class="['left-qr',onPersonalCode?'showPersonCode':'']">
+								<img src="../../img/home/icon/personal-logo.png"/>
 							</div>
-							<div class="right-qr" @mousemove="onHove=true" @mouseleave="onHove=false">
+							<div :class="['left-qr left-enterprise',onEnterpriseCode?'showEnterpriseCode':'']">
+								<img src="../../img/home/icon/enterprise-logo.png"/>
+							</div>
+							<div class="right-qr" @mousemove="onPersonalCode=true" @mouseleave="onPersonalCode=false">
 								<img src="../../img/home/icon/qr-white.png"/>
-								<span>下载APP</span>
+								<p>
+									<span>企业版</span>
+									<span>立即下载</span>
+								</p>
+							</div>
+							<div class="right-qr" @mousemove="onEnterpriseCode=true" @mouseleave="onEnterpriseCode=false">
+								<img src="../../img/home/icon/qr-white.png"/>
+								<p>
+									<span>个人版</span>
+									<span>立即下载</span>
+								</p>
 							</div>
 						</div>
 					</div>

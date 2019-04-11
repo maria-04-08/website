@@ -133,12 +133,20 @@ header{
 			height:255px;
 		}
 	}
-	.showCode{
+	.left-enterprise{
+		left:38%;
+		z-index:99;
+	}
+	.showPersonCode{
 	   display: block;
-	   -webkit-animation: codeLeft 0.8s .1s ease both;
+	   -webkit-animation: codeLeft1 0.8s .1s ease both;
+	}
+	.showEnterpriseCode{
+		display: block;
+		-webkit-animation: codeLeft2 0.8s .1s ease both;
 	}
 	.right-qr{
-		width:18%;
+		width:12%;
 		height:80px;
 		border-radius:50px;
 		background:rgba(0,0,0,0.4);
@@ -146,18 +154,26 @@ header{
 		justify-content: center;
 		align-items:center;
 		-webkit-animation: codeBot 1s .9s ease-in-out both;
+		margin-left:38px;
 		&:hover{
 			cursor:pointer;
 		}
 		img{
 			width:46px;
 			height:46px;
-			margin:4px 10% 0px 0px;
+			margin:4px 6% 0px 0px;
 			// margin:4px 26px 0px 0px;
 		}
-		span{
-			font-size:40px;
-			color:#fff;
+		p{
+			span{
+				display: block;
+				font-size:16px;
+				color:#fff;
+			}
+			span:last-child{
+				font-size:18px;
+				padding-top:10px;
+			}
 		}
 	}
 }
@@ -810,7 +826,17 @@ footer{
     }
 }
 //首页第一屏二维码动画
-@-webkit-keyframes codeLeft {
+@-webkit-keyframes codeLeft1 {
+    0%{
+        opacity: 0;
+        -webkit-transform: translateX(50px);
+    }
+    100%{
+        opacity: 1;
+        -webkit-transform: translateX(0px);
+    }
+}
+@-webkit-keyframes codeLeft2 {
     0%{
         opacity: 0;
         -webkit-transform: translateX(50px);
