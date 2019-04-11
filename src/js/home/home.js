@@ -24,7 +24,7 @@ var vm = new Vue({
 			{img:'../../img/home/icon/email-logo.png', title:'电子邮箱', text:'magic-zhong@qq.com'},
 			{img:'../../img/home/icon/phone.png', title:'咨询电话', text:'0898-66236818'},
 		],
-		h5Menu:['主页', '个人版', '企业版', '关于团队'],
+		h5Menu:['主 页', '个人版', '企业版', '关于团队'],
 		onHove: false,
 		showMiniCode:false,
 		startTime:0, //翻屏起始时间  
@@ -32,7 +32,10 @@ var vm = new Vue({
 		now:0,
 		showH5:false,
 		screenWidth: document.body.clientWidth,
-		menuIndex:0
+		screenHeight: document.body.clientHeight,
+		menuIndex:0,
+		showH5Menu:false,
+		status:false
 	},
 	methods:{
 		changeIndex(idx){
@@ -58,7 +61,7 @@ var vm = new Vue({
 			}
 			//如果不加时间控制，滚动会过度灵敏，一次翻好几屏startTime、endTime、now    
 			//浏览器兼容      
-			if ((navigator.userAgent.toLowerCase().indexOf("firefox")!=-1)){   
+			if ((navigator.userAgent.toLowerCase().indexOf("firefox")!=-1) && !this.status){
 				document.addEventListener("DOMMouseScroll",scrollFun,false);        
 			}  
 			else if (document.addEventListener) {  
@@ -73,6 +76,11 @@ var vm = new Vue({
 			
 			//滚动事件处理函数
 			function scrollFun(event){
+// 				if(VUE.status){
+// 					$('#main').css('position','static');
+// 					$('#wrap').removeClass('pc-box');
+// 					return;
+// 				}
 				VUE.startTime = new Date().getTime();  
 				var delta = event.detail || (-event.wheelDelta);  
 				if (Math.abs(main.offsetTop)> 200) {
@@ -119,16 +127,23 @@ var vm = new Vue({
 	mounted: function() {
 		var VUE = this;
 		this.screenWidth = document.body.clientWidth;
-		if(this.screenWidth>768){
-			VUE.pageScroll();
-		}else{
-			VUE.showH5 = true;
-		}
+		this.screenHeight = document.body.screenHeight;
+		var status = false;
 		window.onresize = () => {
 		    return (() => {
 		        window.screenWidth = document.body.clientWidth;
+				if(VUE.screenHeight !== document.body.clientHeight){
+					VUE.status = true;
+				}
+				// VUE.screenHeight = document.body.clientHeight;
 		        VUE.screenWidth = window.screenWidth;
+				console.log('高度-----------'+ VUE.screenHeight);
 		    })()
+		}
+		if(this.screenWidth>768 && !status){
+			VUE.pageScroll();
+		}else{
+			VUE.showH5 = true;
 		}
 		$('#indicatorContainer1').radialIndicator({
 			barColor: '#90CAF9',
