@@ -199,7 +199,7 @@
 				</div>
 			</nav>
 			<!-- 移动版的菜单也=页 -->
-			<div class="h5-menu" v-if="showH5">
+			<!-- <div class="h5-menu" v-if="showH5">
 				<header class="h5-head">
 					<div class="h5-logo">
 						<img src="../../img/home/icon/close-icon.png"/>
@@ -207,12 +207,9 @@
 					<h1>小二帮</h1>
 				</header>
 				<ul>
-					<li><span>主页</span></li>
-					<li><span>个人版</span></li>
-					<li><span>企业版</span></li>
-					<li><span>关于团队</span></li>
+					<li v-for="(item, index) in h5Menu" :class="menuIndex == index?'active':''"><span>{{item}}</span></li>
 				</ul>
-			</div>
+			</div> -->
 		</div>
 		<!-- build:scriptComponent -->
 		<!-- endbuild -->

@@ -24,13 +24,15 @@ var vm = new Vue({
 			{img:'../../img/home/icon/email-logo.png', title:'电子邮箱', text:'magic-zhong@qq.com'},
 			{img:'../../img/home/icon/phone.png', title:'咨询电话', text:'0898-66236818'},
 		],
+		h5Menu:['主页', '个人版', '企业版', '关于团队'],
 		onHove: false,
 		showMiniCode:false,
 		startTime:0, //翻屏起始时间  
 		endTime:0,  
 		now:0,
 		showH5:false,
-		screenWidth: document.body.clientWidth
+		screenWidth: document.body.clientWidth,
+		menuIndex:0
 	},
 	methods:{
 		changeIndex(idx){
