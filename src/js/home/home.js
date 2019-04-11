@@ -116,9 +116,9 @@ var vm = new Vue({
 	},
 	mounted: function() {
 		var VUE = this;
-		VUE.pageScroll();
 		this.screenWidth = document.body.clientWidth;
 		if(this.screenWidth>768){
+			VUE.pageScroll();
 		}else{
 			VUE.showH5 = true;
 		}
