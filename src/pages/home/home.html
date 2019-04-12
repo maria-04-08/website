@@ -42,9 +42,22 @@
 			width:100%;
 			margin:0;
 		}
+		#page1{
+			/* -webkit-animation: codeLeft4 200ms ease-in-out; */
+		}
 		.container{
 			padding:0px;
 			margin:0px auto;
+		}
+		@-webkit-keyframes codeLeft4 {
+		    0%{
+		        opacity: 0;
+		        -webkit-transform: translateY(100px);
+		    }
+		    100%{
+		        opacity: 1;
+		        -webkit-transform: translateY(0px);
+		    }
 		}
 		</style>
 	</head>
@@ -68,7 +81,6 @@
 			<!-- 头部结束 -->
 			
 			<div id="wrap" :class="showH5?'h5-box':'pc-box'">
-				<!-- <canvas id="canvas" width="200 !important" height="200 !important" style="margin:100px auto;"></canvas> -->
 				<div id="main">
 					<!-- 首页部分开始 -->
 					<div class="index-part page" id="page1" ref="viewBox">
@@ -147,20 +159,22 @@
 							</p>
 						</div>
 						<div class="target-list features-list">
-							<div id="indicatorContainer1">
-								<span>农业用户</span>
+							<div id="chart1" style="width: 33%;height: 300px;"></div>
+							<div id="chart2" style="width: 33%;height: 300px;"></div>
+							<div id="chart3" style="width: 33%;height: 300px;"></div>
+						</div>
+						<div class="chart-box-list">
+							<div id=""  class="chart-box">
 								<p>
 									充分利用信息化手段，提高生产效率，实现生产科技化，迈向智慧农业之路
 								</p>
 							</div>
-							<div id="indicatorContainer2">
-								<span>种植户</span>
+							<div id="" class="chart-box chart2">
 								<p>
 									打通“最初一公里”和“最后一公里”，让种植户足不出户，就能得到帮助
 								</p>
 							</div>
-							<div id="indicatorContainer3">
-								<span>非农业户</span>
+							<div id="" class="chart-box chart3">
 								<p>
 									精准天气预报及预警服务，实时气象状况一手掌握，便利生活
 								</p>
@@ -230,6 +244,7 @@
 		</div>
 		<!-- build:scriptComponent -->
 		<!-- endbuild -->
+		<script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts-en.common.js" type="text/javascript" charset="utf-8"></script>
 		<script src="https://cdn.bootcss.com/radialIndicator/1.3.1/radialIndicator.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 		<script type="text/javascript" src="../../js/home/home.min.js"></script>		

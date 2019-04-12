@@ -36,7 +36,9 @@ var vm = new Vue({
 		screenHeight: document.body.clientHeight,
 		menuIndex:0,
 		showH5Menu:false,
-		status:false
+		status:false,
+		width1:'',
+		width2:''
 	},
 	methods:{
 		changeIndex(idx){
@@ -101,6 +103,16 @@ var vm = new Vue({
 				    $(".back-to-top").removeClass('bottom_right_cur');
 				}
 				
+				
+				//判断一个元素是否在滚动的可视区域内，不在就固定到可视区域的上方。
+				var windowheight = $(window).height();
+				var firstheight = $("#page1").offset().top;
+				var scrolltop = $(window).scrollTop();
+				if (firstheight >= scrolltop && firstheight < (scrolltop + windowheight)) {
+					console.log('在范围内');
+				}else{
+				}
+				
 				//mousewheel事件中的 “event.wheelDelta” 属性值：返回的如果是正值说明滚轮是向上滚动
 				//DOMMouseScroll事件中的 “event.detail” 属性值：返回的如果是负值说明滚轮是向上滚动
 				if ((VUE.endTime - VUE.startTime) < -1000){
@@ -130,50 +142,182 @@ var vm = new Vue({
 		this.screenWidth = document.body.clientWidth;
 		this.screenHeight = document.body.screenHeight;
 		var status = false;
+		VUE.width1 = '48%';
+		VUE.width2 = '57%';
+		// 基于准备好的容器(这里的容器是id为chart1的div)，初始化echarts实例
+			var chart1 = echarts.init(document.getElementById("chart1"));
+			var chart2 = echarts.init(document.getElementById("chart2"));
+			var chart3 = echarts.init(document.getElementById("chart3"));
+			// 圆环图各环节的颜色
+			var color = ['#8FC7F6', '#DADADA'];
+			// 圆环图各环节的名称和值(系列中各数据项的名称和值)
+			var data =[{  
+					name: '其它',
+					value: 586
+				},{
+					name: '休闲裤',
+					value: 30
+				}
+			];
+			// 指定图表的配置项和数据
+			var option = {
+				 graphic: [{ //环形图中间添加文字
+					type: 'text', //通过不同top值可以设置上下显示
+					left: 'center',
+					top: '42%',
+					style: {
+						text: '95%',
+						textAlign: 'center',
+						fill: '#333', //文字的颜色
+						width: 30,
+						height: 30,
+						fontSize: 40,
+						fontFamily: "Microsoft YaHei"
+					}
+				},
+				{ //环形图中间添加文字
+					type: 'text', //通过不同top值可以设置上下显示
+					left: 'center',
+					top: '57%',
+					style: {
+						text: '农户企业',
+						textAlign: 'center',
+						fill: '#333', //文字的颜色
+						width: 30,
+						height: 30,
+						fontSize: 20,
+						fontFamily: "Microsoft YaHei"
+					}
+				}
+				],
+			    // 系列列表
+			    series: [{
+			        name: '圆环图系列名称',         // 系列名称
+			        type: 'pie',                    // 系列类型 
+			        center:['50%','50%'],           // 饼图的中心（圆心）坐标，数组的第一项是横坐标，第二项是纵坐标。[ default: ['50%', '50%'] ]
+			        radius: ['60%', '68%'],         // 饼图的半径，数组的第一项是内半径，第二项是外半径。[ default: [0, '75%'] ]
+					// radius: [VUE.width1, VUE.width2],
+					
+			        hoverAnimation: false,           // 是否开启 hover 在扇区上的放大动画效果。[ default: true ]
+			        color: color,                   // 圆环图的颜色
+			        label: {                        // 饼图图形上的文本标签，可用于说明图形的一些数据信息，比如值，名称等.
+			            normal: {
+			                show: false,             // 是否显示标签[ default: false ]
+			                position: 'outside',    // 标签的位置。'outside'饼图扇区外侧，通过视觉引导线连到相应的扇区。'inside','inner' 同 'inside',饼图扇区内部。'center'在饼图中心位置。
+			                formatter: '{b} : {c}件'  // 标签内容
+			            }
+			        },
+			        labelLine: {                    // 标签的视觉引导线样式,在 label 位置 设置为'outside'的时候会显示视觉引导线。
+			            normal: {
+			                show: false,             // 是否显示视觉引导线。
+			                length: 15,             // 在 label 位置 设置为'outside'的时候会显示视觉引导线。
+			                length2: 10,            // 视觉引导项第二段的长度。
+			                lineStyle: {            // 视觉引导线的样式
+			                    //color: '#000',
+			                    //width: 1
+			                }
+			            }
+			        },
+			        data: data                      // 系列中的数据内容数组。
+			    }]
+			};
+		// 使用刚指定的配置项和数据显示图表
+		chart1.setOption(option);
+		chart2.setOption(option);
+		chart3.setOption(option);
 		window.onresize = () => {
 		    return (() => {
+				var options1 = chart1.getOption();
+				var options2 = chart2.getOption();
+				var options3 = chart3.getOption();
 		        window.screenWidth = document.body.clientWidth;
+				var width = window.screenWidth;
 				if(VUE.screenHeight !== document.body.clientHeight){
 					VUE.status = true;
 				}
+				if(width<768){
+					options1.graphic[0].elements[0].style.fontSize = 20;
+					options2.graphic[0].elements[0].style.fontSize = 20;
+					options3.graphic[0].elements[0].style.fontSize = 20;
+					options1.graphic[0].elements[1].style.fontSize = 14;
+					options2.graphic[0].elements[1].style.fontSize = 14;
+					options3.graphic[0].elements[1].style.fontSize = 14;
+					chart1.setOption(options1);
+					chart2.setOption(options2);
+					chart3.setOption(options3);
+				}else if(width>768 && width<992){
+					options1.graphic[0].elements[0].style.fontSize = 24;
+					options2.graphic[0].elements[0].style.fontSize = 24;
+					options3.graphic[0].elements[0].style.fontSize = 24;
+					options1.graphic[0].elements[1].style.fontSize = 12;
+					options2.graphic[0].elements[1].style.fontSize = 12;
+					options3.graphic[0].elements[1].style.fontSize = 12;
+					options1.graphic[0].elements[1].top = '53%';
+					options2.graphic[0].elements[1].top = '53%';
+					options3.graphic[0].elements[1].top = '53%';
+					chart1.setOption(options1);
+					chart2.setOption(options2);
+					chart3.setOption(options3);
+				}else if(width>992 && width<1200){
+					options1.graphic[0].elements[0].style.fontSize = 30;
+					options2.graphic[0].elements[0].style.fontSize = 30;
+					options3.graphic[0].elements[0].style.fontSize = 30;
+					options1.graphic[0].elements[1].style.fontSize = 18;
+					options2.graphic[0].elements[1].style.fontSize = 18;
+					options3.graphic[0].elements[1].style.fontSize = 18;
+					chart1.setOption(options1);
+					chart2.setOption(options2);
+					chart3.setOption(options3);
+				}else{
+					chart1.setOption(options1);
+					chart2.setOption(options2);
+					chart3.setOption(options3);
+				}
+				chart1.resize();//直接加这句即可
+				chart2.resize();//直接加这句即可
+				chart3.resize();//直接加这句即可
 				// VUE.screenHeight = document.body.clientHeight;
 		        VUE.screenWidth = window.screenWidth;
 		    })()
 		}
-		if(this.screenWidth>768 && !status){
+		if(this.screenWidth>768){
 			VUE.pageScroll();
 		}else{
 			VUE.showH5 = true;
 		}
-		var canvas = document.getElementById("canvas");
-		    var ctx = canvas.getContext('2d');
-		    var data = [
-				{
-					value: 1,
-					color:"#90CAF9",
-					
-					borderWidth: 100,
-					labels: {
-						boxWidth:10,
-						fontColor: 'rgb(255, 99, 132)',
-						backgroundColor:'rgb(255, 99, 132)',
-					}
-				}
-			];
-			var options= {
-				legend: {
-					
-					display: true,
-					labels: {
-						boxWidth:10,
-						fontColor: 'rgb(255, 99, 132)',
-						backgroundColor:'rgb(255, 99, 132)',
-					}
-				}
-			}
-			
-		    var chart = new Chart(ctx);
-		    chart.Doughnut(data,options);
+		
+		
+
+
+// 		var canvas = document.getElementById("canvas");
+// 		    var ctx = canvas.getContext('2d');
+// 		    var data = [
+// 				{
+// 					value: 1,
+// 					color:"#90CAF9",
+// 					
+// 					borderWidth: 100,
+// 					labels: {
+// 						boxWidth:10,
+// 						fontColor: 'rgb(255, 99, 132)',
+// 						backgroundColor:'rgb(255, 99, 132)',
+// 					}
+// 				}
+// 			];
+// 			var options= {
+// 				legend: {
+// 					
+// 					display: true,
+// 					labels: {
+// 						boxWidth:10,
+// 						fontColor: 'rgb(255, 99, 132)',
+// 						backgroundColor:'rgb(255, 99, 132)',
+// 					}
+// 				}
+// 			}
+// 			
+// 		    var chart = new Chart(ctx);
+// 		    chart.Doughnut(data,options);
 			
 // 		$('#indicatorContainer1').radialIndicator({
 // 			barColor: '#90CAF9',
@@ -182,7 +326,7 @@ var vm = new Vue({
 // 			fontWeight:'400',
 // 			barWidth: 6,
 // 			initValue: 0,
-// 			roundCorner : true,
+// 			// roundCorner : true,
 // 			percentage: true
 // 		});
 // 		var radialObj1 = $('#indicatorContainer1').data('radialIndicator');
@@ -193,7 +337,7 @@ var vm = new Vue({
 // 			fontWeight:'400',
 // 			barWidth: 6,
 // 			initValue: 0,
-// 			roundCorner : true,
+// 			// roundCorner : true,
 // 			percentage: true
 // 		});
 // 		var radialObj2 = $('#indicatorContainer2').data('radialIndicator');

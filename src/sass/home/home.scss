@@ -336,8 +336,12 @@ header{
 	width:100%;
 	background:#fff;
 	background-size:100%;
+	.target-list{
+		padding-top:80px;
+	}
 	.features-text{
 		padding-top:100px;
+		padding-bottom:0px;
 		h3{
 			color:#333;
 		}
@@ -347,6 +351,9 @@ header{
 			text-indent: 0em;
 			font-size:20px;
 		}
+	}
+	canvas{
+		top:-36px !important;
 	}
 }
 #indicatorContainer1, #indicatorContainer2, #indicatorContainer3, #indicatorContainer4{
@@ -379,9 +386,36 @@ header{
 	}
 }
 .target-list{
-	padding-top:0px;
+	padding-left:150px;
+	padding-right:150px;
 	display: flex;
 	justify-content: center;
+	posiiton:relative;
+	
+}
+.chart-box-list{
+	display:flex;
+	justify-content: center;
+	height:72px;
+	padding:0px 150px;
+	.chart-box{
+		text-align: center;
+		width:33%;
+		height:72px;
+		position:relative;
+		box-sizing: border-box;
+		display: flex;
+		flex-direction:column;
+		align-items:center;
+		p{
+			position:absolute;
+			top:-75%;
+			width:60%;
+			text-align: center;
+			font-size:16px;
+			line-height:28px;
+		}
+	}
 }
 //底部
 footer{
@@ -724,6 +758,9 @@ footer{
 				top:44%;
 			}
 		}
+		.chart-box-list .chart-box p{
+			width:80%;
+		}
 	}
 }
 /*pad: w >= 768  && w< 992*/
@@ -743,7 +780,7 @@ footer{
 		}
 	}
 	.features-list{
-		padding: 45px 10px 0px;
+		// padding: 45px 10px 0px;
 		li{
 			p{
 				width:78%;
@@ -776,6 +813,9 @@ footer{
 	.core-services-part{
 		padding-bottom:6.9%;
 	}
+	.chart-box-list .chart-box p{
+		width:80%;
+	}
 }
 /*中等屏幕   w >= 992  && w<1200*/
 @media screen and (max-width: 1200px) and (min-width: 992px) {
@@ -799,7 +839,7 @@ footer{
 		padding-bottom:2.7%;
 	}
 	.features-list{
-		padding: 45px 40px 0px;
+		// padding: 45px 40px 0px;
 	}
 	#indicatorContainer1, #indicatorContainer2, #indicatorContainer3, #indicatorContainer4{
 // 		width:25%;
