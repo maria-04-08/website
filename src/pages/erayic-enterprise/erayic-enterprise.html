@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- build:metaComponent -->
+		<!-- endbuild -->
+		<title>小二帮-企业版</title>
+		<!-- build:cssComponent -->
+		<!-- endbuild -->
+		<link rel="stylesheet" type="text/css" href="../../css/erayic-enterprise/erayic-enterprise.css"/>
+	</head>
+	<body>
+		<div id="erayic-enterprise" v-cloak>
+			<header v-if="!showH5">
+				<div class="left">
+					<img src="../../img/erayic-enterprise/logo.png"/>
+				</div>
+				<div class="right">
+					<span v-for="(item, index) in title" :class="titleIndex == index?'active':''" @click="changeIndex(index, item.url)">{{item.name}}</span>
+				</div>
+			</header>
+			<header v-else class="h5-head">
+				<div class="h5-logo" @click="showH5Menu=true;">
+					<img src="../../img/home/icon/menu-logo.png"/>
+				</div>
+				<h1>小二帮</h1>
+			</header>
+			<main :class="showH5?'h5-box':'pc-box'">
+				<div class="title-box">
+					<div>
+						<img src="../../img/erayic-enterprise/title01.png" />
+						<div class="title-descript">
+							<p>实现了移动终端上的生产管理功能</p>
+							<div><span>并添加</span><img src="../../img/erayic-enterprise/title02.png"/><span>功能，方便生产者准确实施农事工作。</span></div>
+						</div>
+					</div>
+					<div class="qr-code" v-if="!showH5">
+						<span @mousemove="onCode = true" @mouseleave="onCode = false">立即下载</span>
+						<img src="../../img/erayic-enterprise/enterprise-logo.png" :class="onCode?'show-code':''"/>
+					</div>
+				</div>
+				<div class="function-part">
+					<div class="row">
+					    <div class="col-xs-6 col-md-4" v-for="item in features">
+					    	<img :src="item.img" />
+					    	<p>
+					    		<span>{{item.title}}</span>
+					    		<span>{{item.text}}</span>
+					    	</p>
+					    </div>
+					</div>
+				</div>
+				<footer v-if="!showH5">
+					<div>
+						<div class="left">
+							<div v-for="item in contact">
+								<img :src="item.img"/>
+								<div>
+									<p class="first-span">{{item.title}}<p>
+									<p>{{item.text}}</p>
+								</div>
+							</div>
+						</div>
+						<div class="right">
+							<img src="../../img/home/icon/qr-code.png"/>
+							<span>小二帮微信公众号</span>
+						</div>
+					</div>
+					<p class="copyright">@ 2019 海南易瑞可高新技术开发有限公司.琼ICP备07500410号-2</p>
+				</footer>
+				<!-- 移动版的底部（版权信息） -->
+				<div class="h5-footer" v-if="showH5">
+					<p>@ 2019 海南易瑞可高新技术开发有限公司.琼ICP备07500410号-2</p>
+				</div>
+			</main>
+			
+			<!-- 移动版的底部下载栏 -->
+			<nav class="nav-dowmload" v-if="showH5">
+				<div class="left">
+					<img src="../../img/logo.png"/>
+					<p>
+						<span>小二帮APP</span>
+						<span>小二帮·农作物种植的好助手</span>
+					</p>
+				</div>
+				<div class="right">
+					<span>立即下载</span>
+				</div>
+			</nav>
+			<!-- 移动版的菜单页 -->
+			<div class="h5-menu" v-if="showH5Menu">
+				<header class="h5-head">
+					<div class="h5-logo" @click="showH5Menu=false;">
+						<img src="../../img/home/icon/close-icon.png"/>
+					</div>
+					<h1>小二帮</h1>
+				</header>
+				<ul>
+					<li v-for="(item, index) in h5Menu"><span :class="menuIndex == index?'active':''">{{item}}</span></li>
+				</ul>
+			</div>
+		</div>
+		<!-- build:scriptComponent -->
+		<!-- endbuild -->
+		<script src="../../js/erayic-enterprise/erayic-enterprise.min.js"></script>
+	</body>
+</html>

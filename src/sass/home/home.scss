@@ -184,9 +184,11 @@ header{
 //功能特点部分
 .features-part{
 	position:relative;
-	// height:100%;
-	padding-bottom:6.1%;
-	height:auto;
+	height:100%;
+// 	padding-bottom:5.4%;
+	overflow: hidden;
+	box-sizing:border-box;
+	// height:auto;
 	width:100%;
 	background:url('../../img/home/bg2.jpg') no-repeat;
 	background-position: center 0;
@@ -289,9 +291,11 @@ header{
 //核心服务部分
 .core-services-part{
 	position:relative;
-	padding-bottom:5.3%;
-	// height:100%;
-	height:auto;
+	// padding-bottom:5%;
+	box-sizing:border-box;
+	overflow:hidden;
+	height:100%;
+	// height:auto;
 	width:100%;
 	background:url('../../img/home/bg3.jpg') no-repeat;
 	background-position: center 0;
@@ -356,35 +360,6 @@ header{
 		top:-36px !important;
 	}
 }
-#indicatorContainer1, #indicatorContainer2, #indicatorContainer3, #indicatorContainer4{
-	width:33%;
-	height:380px;
-	display: flex;
-	justify-content: center;
-	position:relative;
-	canvas{
-		width:218px !important;
-		height:218px !important;
-	}
-	span{
-		display: block;
-		position:absolute;
-		top:43%;
-		left:50%;
-		font-size:20px;
-		transform:translate(-50%,-50%);
-	}
-	p{
-		width:79%;
-		position:absolute;
-		left:50%;
-		bottom:19%;
-		font-size:18px;
-		line-height:30px;
-		transform:translate(-50%,0);
-		text-align:center;
-	}
-}
 .target-list{
 	padding-left:150px;
 	padding-right:150px;
@@ -419,15 +394,17 @@ header{
 }
 //底部
 footer{
-	padding:60px 0px 0px 200px;
+	padding:40px 0px 0px 200px;
 	width:100%;
 	// height:350px;
-	height:250px;
+	height:260px;
 	box-sizing:border-box;
 	background:#333;
 	box-sizing:border-box;
-	display:flex;
-	justify-content: space-between;
+	&>div{
+		display:flex;
+		justify-content: space-between;
+	}
 	.left{
 		&>div{
 			display:flex;
@@ -450,8 +427,8 @@ footer{
 	.right{
 		padding-right:298px;
 		img{
-			width:145px;
-			height:145px;
+			width:120px;
+			height:120px;
 			margin-bottom:10px;
 		}
 		span{
@@ -460,6 +437,12 @@ footer{
 			color:#fff;
 			font-size:16px;
 		}
+	}
+	.copyright{
+		padding-top:8px;
+		font-size:10px;
+		color:#fff;
+		padding-left:35%;
 	}
 }
 //回到顶部悬浮
@@ -623,6 +606,14 @@ footer{
 				border-radius:8px;
 				text-align:center;
 				line-height:34px;
+				&.active{
+					background:#fff;
+					color:#333;
+					font-weight:bold;
+				}
+				&:hover{
+					cursor:pointer;
+				}
 			}
 		}
 	}
@@ -739,28 +730,12 @@ footer{
 				font-size:16px;
 			}
 		}
-		#indicatorContainer1, #indicatorContainer2, #indicatorContainer3, #indicatorContainer4{
-			width:100%;
-			height:280px;
-			margin-bottom:20px;
-			canvas{
-				width:200px !important;
-				height:200px !important;
-			}
-			p{
-				width: 80%;
-				left: 50%;
-				bottom: 10%;
-				font-size: 14px;
-				line-height: 18px;
-			}
-			span{
-				top:44%;
-			}
-		}
 		.chart-box-list .chart-box p{
 			width:80%;
 		}
+	}
+	footer .copyright{
+		padding-left:20%;
 	}
 }
 /*pad: w >= 768  && w< 992*/
@@ -790,22 +765,8 @@ footer{
 	.core-services-part .services-list li:first-child{
 		margin-bottom: 50px;
 	}
-	#indicatorContainer1, #indicatorContainer2, #indicatorContainer3, #indicatorContainer4{
-// 		width:25%;
-// 		height:110%;
-		canvas{
-			width:140px !important;
-			height:140px !important;
-		}
-		span{
-			top:26%;
-		}
-		p{
-			width:90%;
-		}
-	}
 	footer{
-		padding:60px 0px 0px 100px;
+		// padding:60px 0px 0px 100px;
 	}
 	.features-part{
 		padding-bottom:5.6%;
@@ -815,6 +776,9 @@ footer{
 	}
 	.chart-box-list .chart-box p{
 		width:80%;
+	}
+	footer .copyright{
+		padding-left:15%;
 	}
 }
 /*中等屏幕   w >= 992  && w<1200*/
@@ -841,19 +805,8 @@ footer{
 	.features-list{
 		// padding: 45px 40px 0px;
 	}
-	#indicatorContainer1, #indicatorContainer2, #indicatorContainer3, #indicatorContainer4{
-// 		width:25%;
-// 		height:110%;
-		canvas{
-			width:150px !important;
-			height:150px !important;
-		}
-		span{
-			top:26%;
-		}
-		p{
-			width:90%;
-		}
+	footer .copyright{
+		padding-left:15%;
 	}
 	
 }

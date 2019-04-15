@@ -2,7 +2,20 @@
 var vm = new Vue({
 	el:"#home",
 	data:{
-		title:['首页', '企业版', '个人版', '关于团队'],
+		title:[
+			{
+				name:'首页',
+				url:''
+			},
+			{
+				name:'企业版',
+				url:'../erayic-enterprise/erayic-enterprise.html'
+			},
+			{
+				name:'个人版',
+				url:''
+			}
+		],
 		titleIndex:0,
 		features:[
 			{title:'物联网', text:'基于物联网构建起硬件设备实施的全面性监控', img:'../../img/home/icon/features01.png'},
@@ -24,7 +37,8 @@ var vm = new Vue({
 			{img:'../../img/home/icon/email-logo.png', title:'电子邮箱', text:'magic-zhong@qq.com'},
 			{img:'../../img/home/icon/phone.png', title:'咨询电话', text:'0898-66236818'},
 		],
-		h5Menu:['主 页', '个人版', '企业版', '关于团队'],
+		menuIndex:0,
+		h5Menu:['主 页', '企业版', '个人版', '关于团队'],
 		onPersonalCode: false,  //个人版App二维码展示
 		onEnterpriseCode:false, //企业版App二维码展示
 		showMiniCode:false,
@@ -34,15 +48,15 @@ var vm = new Vue({
 		showH5:false,
 		screenWidth: document.body.clientWidth,
 		screenHeight: document.body.clientHeight,
-		menuIndex:0,
 		showH5Menu:false,
 		status:false,
 		width1:'',
 		width2:''
 	},
 	methods:{
-		changeIndex(idx){
+		changeIndex(idx, val){
 			this.titleIndex = idx;
+			window.location.href = val;
 		},
 		toPage(now){
 			this.startTime = 0; //翻屏起始时间  

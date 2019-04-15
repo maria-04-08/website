@@ -69,7 +69,7 @@
 					<img src="../../img/logo.png"/>
 				</div>
 				<ul class="title">
-					<li v-for="(item,index) in title" :class="[titleIndex == index? 'active':'']" @click="changeIndex(index)">{{item}}</li>
+					<li v-for="(item,index) in title" :class="[titleIndex == index? 'active':'']" @click="changeIndex(index, item.url)">{{item.name}}</li>
 				</ul>
 			</header>
 			<header v-else class="h5-head">
@@ -84,7 +84,7 @@
 				<div id="main">
 					<!-- 首页部分开始 -->
 					<div class="index-part page" id="page1" ref="viewBox">
-						<img src="../../img/home/icon/text-img01.png" class="title-img"/>
+						<img src="../../img/home/title-img/title01.png" class="title-img"/>
 						<div class="qrcode-img" v-if='!showH5'>
 							<div :class="['left-qr',onPersonalCode?'showPersonCode':'']">
 								<img src="../../img/home/icon/personal-logo.png"/>
@@ -113,7 +113,7 @@
 					<!-- 功能特点部分开始 -->
 					<div class="features-part page" id="page2">
 						<div class="features-text">
-							<img src="../../img/home/icon/text-img02.png" />
+							<img src="../../img/home/title-img/title02.png" />
 							<p>
 								小二帮实现了农业生产环境智能感知、智能预警、智能决策、智能分析，为农业生产者提供了农作物生长过程的全方位监督、管理与控制，为农业生产管理提供了有力的保障。
 							</p>
@@ -136,7 +136,7 @@
 					<!-- 核心服务开始 -->
 					<div class="core-services-part page" id="page3">
 						<div class="features-text">
-							<img src="../../img/home/icon/text-img03.png" />
+							<img src="../../img/home/title-img/title03.png" />
 							<p>
 								依托了多方面的数据源、多个智能决策系统，通过平台对进行控制，做到精确感知、精准操作、精细管理，全方位地为农业生产企业提供了必要的技术支撑。
 							</p>
@@ -153,7 +153,7 @@
 					<!-- 群众目标开始 -->
 					<div class="mass-target-part page" id="page4">
 						<div class="features-text">
-							<img src="../../img/home/icon/text-img04.png" />
+							<img src="../../img/home/title-img/title04.png" />
 							<p>
 								空地变硕果 · 帮你轻松种植
 							</p>
@@ -181,19 +181,22 @@
 							</div>
 						</div>
 						<footer v-if="!showH5">
-							<div class="left">
-								<div v-for="item in contact">
-									<img :src="item.img"/>
-									<div>
-										<p class="first-span">{{item.title}}<p>
-										<p>{{item.text}}</p>
+							<div>
+								<div class="left">
+									<div v-for="item in contact">
+										<img :src="item.img"/>
+										<div>
+											<p class="first-span">{{item.title}}<p>
+											<p>{{item.text}}</p>
+										</div>
 									</div>
 								</div>
+								<div class="right">
+									<img src="../../img/home/icon/qr-code.png"/>
+									<span>小二帮微信公众号</span>
+								</div>
 							</div>
-							<div class="right">
-								<img src="../../img/home/icon/qr-code.png"/>
-								<span>小二帮微信公众号</span>
-							</div>
+							<p class="copyright">@ 2019 海南易瑞可高新技术开发有限公司.琼ICP备07500410号-2</p>
 						</footer>
 					</div>
 					<!-- 群众目标结束 -->
