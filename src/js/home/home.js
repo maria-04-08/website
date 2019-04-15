@@ -50,8 +50,6 @@ var vm = new Vue({
 		screenHeight: document.body.clientHeight,
 		showH5Menu:false,
 		status:false,
-		width1:'',
-		width2:''
 	},
 	methods:{
 		changeIndex(idx, val){
@@ -154,10 +152,12 @@ var vm = new Vue({
 	mounted: function() {
 		var VUE = this;
 		this.screenWidth = document.body.clientWidth;
-		this.screenHeight = document.body.screenHeight;
+		this.screenHeight = document.body.clientHeight;
+		if(this.screenHeight<window.screen.availHeight-98){ //改变滑动效果，不用整屏滑动(会隐藏内容)
+			console.log('缩小了--------');
+		}else{
+		}
 		var status = false;
-		VUE.width1 = '48%';
-		VUE.width2 = '57%';
 		// 基于准备好的容器(这里的容器是id为chart1的div)，初始化echarts实例
 			var chart1 = echarts.init(document.getElementById("chart1"));
 			var chart2 = echarts.init(document.getElementById("chart2"));
@@ -210,7 +210,6 @@ var vm = new Vue({
 			        type: 'pie',                    // 系列类型 
 			        center:['50%','50%'],           // 饼图的中心（圆心）坐标，数组的第一项是横坐标，第二项是纵坐标。[ default: ['50%', '50%'] ]
 			        radius: ['60%', '68%'],         // 饼图的半径，数组的第一项是内半径，第二项是外半径。[ default: [0, '75%'] ]
-					// radius: [VUE.width1, VUE.width2],
 					
 			        hoverAnimation: false,           // 是否开启 hover 在扇区上的放大动画效果。[ default: true ]
 			        color: color,                   // 圆环图的颜色
@@ -287,10 +286,11 @@ var vm = new Vue({
 					chart2.setOption(options2);
 					chart3.setOption(options3);
 				}
-				chart1.resize();//直接加这句即可
-				chart2.resize();//直接加这句即可
-				chart3.resize();//直接加这句即可
-				// VUE.screenHeight = document.body.clientHeight;
+				//随浏览器大小改变
+				chart1.resize();
+				chart2.resize();
+				chart3.resize();
+				VUE.screenHeight = document.body.clientHeight;
 		        VUE.screenWidth = window.screenWidth;
 		    })()
 		}
@@ -299,80 +299,6 @@ var vm = new Vue({
 		}else{
 			VUE.showH5 = true;
 		}
-		
-		
-
-
-// 		var canvas = document.getElementById("canvas");
-// 		    var ctx = canvas.getContext('2d');
-// 		    var data = [
-// 				{
-// 					value: 1,
-// 					color:"#90CAF9",
-// 					
-// 					borderWidth: 100,
-// 					labels: {
-// 						boxWidth:10,
-// 						fontColor: 'rgb(255, 99, 132)',
-// 						backgroundColor:'rgb(255, 99, 132)',
-// 					}
-// 				}
-// 			];
-// 			var options= {
-// 				legend: {
-// 					
-// 					display: true,
-// 					labels: {
-// 						boxWidth:10,
-// 						fontColor: 'rgb(255, 99, 132)',
-// 						backgroundColor:'rgb(255, 99, 132)',
-// 					}
-// 				}
-// 			}
-// 			
-// 		    var chart = new Chart(ctx);
-// 		    chart.Doughnut(data,options);
-			
-// 		$('#indicatorContainer1').radialIndicator({
-// 			barColor: '#90CAF9',
-// 			fontColor:'#333',
-// 			fontSize:'16',
-// 			fontWeight:'400',
-// 			barWidth: 6,
-// 			initValue: 0,
-// 			// roundCorner : true,
-// 			percentage: true
-// 		});
-// 		var radialObj1 = $('#indicatorContainer1').data('radialIndicator');
-// 		$('#indicatorContainer2').radialIndicator({
-// 			barColor: '#90CAF9',
-// 			fontColor:'#333',
-// 			fontSize:'16',
-// 			fontWeight:'400',
-// 			barWidth: 6,
-// 			initValue: 0,
-// 			// roundCorner : true,
-// 			percentage: true
-// 		});
-// 		var radialObj2 = $('#indicatorContainer2').data('radialIndicator');
-// 		$('#indicatorContainer3').radialIndicator({
-// 			barColor: '#90CAF9',
-// 			fontColor:'#333',
-// 			fontSize:'16',
-// 			fontWeight:'400',
-// 			barWidth: 6,
-// 			initValue: 0,
-// 			roundCorner : true,
-// 			percentage: true
-// 		});
-// 		var radialObj3 = $('#indicatorContainer3').data('radialIndicator');
-//         //现在,您可以使用实例来调用不同的方法
-//         //像这样：
-// 		var _val = radialObj1;
-// 		console.log(_val);
-//         radialObj1.animate(95);
-// 		radialObj2.animate(90);
-// 		radialObj3.animate(75);
 	},
 	created: function(){
 		
