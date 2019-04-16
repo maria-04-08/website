@@ -89,7 +89,7 @@
 							<div :class="['left-qr',onPersonalCode?'showPersonCode':'']">
 								<img src="../../img/home/icon/personal-logo.png"/>
 							</div>
-							<div :class="['left-qr left-enterprise',onEnterpriseCode?'showEnterpriseCode':'']">
+							<div :class="['left-enterprise',onEnterpriseCode?'showEnterpriseCode':'']">
 								<img src="../../img/home/icon/enterprise-logo.png"/>
 							</div>
 							<div class="right-qr" @mousemove="onPersonalCode=true" @mouseleave="onPersonalCode=false">
@@ -99,7 +99,7 @@
 									<span>立即下载</span>
 								</p>
 							</div>
-							<div class="right-qr" @mousemove="onEnterpriseCode=true" @mouseleave="onEnterpriseCode=false">
+							<div class="right-qr right-qr2" @mousemove="onEnterpriseCode=true" @mouseleave="onEnterpriseCode=false">
 								<img src="../../img/home/icon/qr-white.png"/>
 								<p>
 									<span>个人版</span>
@@ -112,92 +112,128 @@
 					
 					<!-- 功能特点部分开始 -->
 					<div class="features-part page" id="page2">
-						<div class="features-text">
-							<img src="../../img/home/title-img/title02.png" />
-							<p>
-								小二帮实现了农业生产环境智能感知、智能预警、智能决策、智能分析，为农业生产者提供了农作物生长过程的全方位监督、管理与控制，为农业生产管理提供了有力的保障。
-							</p>
-						</div>
-						<div class="sys-text">
-							<p>线上·自动化操作</p>
-							<span>系统</span>
-							<p>线下·智能化通知</p>
-						</div>
-						<ul class="features-list">
-							<li v-for="(item, index) in features">
-								<img :src="item.img"/>
-								<h4>{{item.title}}</h4>
-								<p>{{item.text}}</p>
-							</li>
-						</ul>
+						<!-- <div class="showHidden1 showHidden"> -->
+							<div class="features-text">
+								<img src="../../img/home/title-img/title02.png" />
+								<p>
+									小二帮实现了农业生产环境智能感知、智能预警、智能决策、智能分析，为农业生产者提供了农作物生长过程的全方位监督、管理与控制，为农业生产管理提供了有力的保障。
+								</p>
+							</div>
+							<div class="sys-text">
+								<p>线上·自动化操作</p>
+								<span>系统</span>
+								<p>线下·智能化通知</p>
+							</div>
+							<ul class="features-list">
+								<li v-for="(item, index) in features">
+									<img :src="item.img"/>
+									<h4>{{item.title}}</h4>
+									<p>{{item.text}}</p>
+								</li>
+							</ul>
+						<!-- </div> -->
 					</div>
 					<!-- 功能特点部分结束 -->
 					
 					<!-- 核心服务开始 -->
 					<div class="core-services-part page" id="page3">
-						<div class="features-text">
-							<img src="../../img/home/title-img/title03.png" />
-							<p>
-								依托了多方面的数据源、多个智能决策系统，通过平台对进行控制，做到精确感知、精准操作、精细管理，全方位地为农业生产企业提供了必要的技术支撑。
-							</p>
-						</div>
-						<ul class="services-list"> 
-							<li v-for="(item,index) in services">
-								<img :src="item.img"/>
-								<p>{{item.text}}</p>
-							</li>
-						</ul>
+						<!-- <div class="showHidden2 showHidden"> -->
+							<div class="features-text">
+								<img src="../../img/home/title-img/title03.png" />
+								<p>
+									依托了多方面的数据源、多个智能决策系统，通过平台对进行控制，做到精确感知、精准操作、精细管理，全方位地为农业生产企业提供了必要的技术支撑。
+								</p>
+							</div>
+							<ul class="services-list"> 
+								<li v-for="(item,index) in services">
+									<img :src="item.img"/>
+									<p>{{item.text}}</p>
+								</li>
+							</ul>
+						<!-- </div> -->
 					</div>
 					<!-- 核心服务结束 -->
 					
 					<!-- 群众目标开始 -->
 					<div class="mass-target-part page" id="page4">
-						<div class="features-text">
-							<img src="../../img/home/title-img/title04.png" />
-							<p>
-								空地变硕果 · 帮你轻松种植
-							</p>
-						</div>
-						<div class="target-list features-list">
-							<div id="chart1" style="width: 33%;height: 300px;"></div>
-							<div id="chart2" style="width: 33%;height: 300px;"></div>
-							<div id="chart3" style="width: 33%;height: 300px;"></div>
-						</div>
-						<div class="chart-box-list">
-							<div id=""  class="chart-box">
+						<!-- <div class="showHidden3 showHidden"> -->
+							<div class="features-text">
+								<img src="../../img/home/title-img/title04.png" />
 								<p>
-									充分利用信息化手段，提高生产效率，实现生产科技化，迈向智慧农业之路
+									空地变硕果 · 帮你轻松种植
 								</p>
 							</div>
-							<div id="" class="chart-box chart2">
-								<p>
-									打通“最初一公里”和“最后一公里”，让种植户足不出户，就能得到帮助
-								</p>
-							</div>
-							<div id="" class="chart-box chart3">
-								<p>
-									精准天气预报及预警服务，实时气象状况一手掌握，便利生活
-								</p>
-							</div>
-						</div>
-						<footer v-if="!showH5">
-							<div>
-								<div class="left">
-									<div v-for="item in contact">
-										<img :src="item.img"/>
-										<div>
-											<p class="first-span">{{item.title}}<p>
-											<p>{{item.text}}</p>
-										</div>
+							<div class="target-list features-list">
+								<div style="width:33%;text-align:center;">
+									<div id="chart1" style="width: 100%;height: 230px;"></div>
+									<div id="" class="chart-box">
+										<p>
+											充分利用信息化手段，提高生产效率，实现生产科技化，迈向智慧农业之路
+										</p>
 									</div>
 								</div>
-								<div class="right">
-									<img src="../../img/home/icon/qr-code.png"/>
-									<span>小二帮微信公众号</span>
+								<div style="width:33%;text-align:center;">
+									<div id="chart2" style="width: 100%;height: 230px;"></div>
+									<div id="" class="chart-box">
+										<p>
+											打通“最初一公里”和“最后一公里”，让种植户足不出户，就能得到帮助
+										</p>
+									</div>
 								</div>
+								<div style="width:33%;text-align:center;">
+									<div id="chart3" style="width: 100%;height: 230px;"></div>
+									<div id="" class="chart-box">
+										<p>
+											精准天气预报及预警服务，实时气象状况一手掌握，便利生活
+										</p>
+									</div>
+								</div>
+							<!-- 	<div id="chart2" style="width: 33%;height: 230px;"></div>
+								<div id="chart3" style="width: 33%;height: 230px;"></div> -->
+								<!-- <div class="row">
+									<div class="col-xs-6 col-md-4">
+										<div id="chart1" style="width: 33%;height: 300px;"></div>
+										<div id="chart2" style="width: 33%;height: 300px;"></div>
+										<div id="chart3" style="width: 33%;height: 300px;"></div>
+									</div>
+								</div> -->
 							</div>
-							<p class="copyright">@ 2019 海南易瑞可高新技术开发有限公司.琼ICP备07500410号-2</p>
-						</footer>
+							<!-- <div class="chart-box-list">
+								<div id="" class="chart-box">
+									<p>
+										充分利用信息化手段，提高生产效率，实现生产科技化，迈向智慧农业之路
+									</p>
+								</div>
+								<div id="" class="chart-box chart2">
+									<p>
+										打通“最初一公里”和“最后一公里”，让种植户足不出户，就能得到帮助
+									</p>
+								</div>
+								<div id="" class="chart-box chart3">
+									<p>
+										精准天气预报及预警服务，实时气象状况一手掌握，便利生活
+									</p>
+								</div>
+							</div> -->
+							<footer v-if="!showH5">
+								<div>
+									<div class="left">
+										<div v-for="item in contact">
+											<img :src="item.img"/>
+											<div>
+												<p class="first-span">{{item.title}}<p>
+												<p>{{item.text}}</p>
+											</div>
+										</div>
+									</div>
+									<div class="right">
+										<img src="../../img/home/icon/qr-code.png"/>
+										<span>小二帮微信公众号</span>
+									</div>
+								</div>
+								<p class="copyright">@ 2019 海南易瑞可高新技术开发有限公司.琼ICP备07500410号-2</p>
+							</footer>
+						<!-- </div> -->
 					</div>
 					<!-- 群众目标结束 -->
 					<!-- 回到顶部悬浮栏 -->
