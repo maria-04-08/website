@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- build:metaComponent -->
+		<!-- endbuild -->
+		<title>小二帮-个人版</title>
+		<!-- build:cssComponent -->
+		<!-- endbuild -->
+		<link rel="stylesheet" type="text/css" href="../../css/erayic-personal/erayic-personal.css"/>
+	</head>
+	<body>
+		<div id="erayic-personal" v-cloak>
+			<div id="indexChart" class="chart-content" style="height: 200px;"></div>
+		</div>
+		<!-- build:scriptComponent -->
+		<!-- endbuild -->
+		<script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts-en.common.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/erayic-personal/erayic-personal.min.js"></script>
+		<script>
+			(function(){
+    // 路径配置
+
+
+  
+            // 基于准备好的dom，初始化echarts图表
+            var indexChart = echarts.init(document.getElementById("indexChart"));
+
+            //当前申请人员统计环形图
+            var allValue = 158;
+            //标示文字
+            var labelTop = {
+                normal : {
+                    label : {
+                        show : false,
+                        position : 'center',
+                        formatter : '{b}',
+                        textStyle: {
+                            baseline : 'bottom',  //垂直对齐方式
+                            fontSize:12,
+                            color:'#666',
+                            align : 'center'  //水平对齐方式
+                        }
+                    },
+                    color:'#de4751',
+                    labelLine : {  //标示线
+                        show : false
+                    }
+                }
+            };
+            //百分比设置
+            var labelFromatter = {
+                normal : {
+                    label : {
+                        formatter : function (params){
+                            return 100 - params.value + '/' + allValue
+                        },
+                        textStyle: {
+                            baseline : 'middle',  //垂直对齐方式
+                            fontSize:27,
+                            color:'#666',
+                            align : 'center'   //水平对齐方式
+                        }
+                    }
+                }
+            };
+            //数据位置
+            var labelBottom = {
+                normal : {
+                    color: '#ccc',
+                    label : {
+                        show : true,
+                        position : 'center'
+                    },
+                    labelLine : {
+                        show : false
+                    }
+                },
+                emphasis: {
+                    color: 'rgba(0,0,0,0)'
+                }
+            };
+            //环形图
+            option = {
+                title: {
+                    text: '待批人员/全部人员',
+                    // subtext: '申请明细 >',
+                    // sublink: 'http://e.weibo.com/1341556070/AhQXtjbqh',
+                    x: 'center',
+                    y: '60',
+                    itemGap: 50,
+                    textStyle : {
+                        color : '#666',
+                        fontSize : 12,
+                        fontWeight : 'normal'
+                    },
+                    subtextStyle : {
+                        color : '#de4751',
+                        fontSize : 12
+                    }
+                },
+                series : [
+                    {
+                        type : 'pie',
+                        center : ['50%', '50%'],
+                        radius: ['78%', '85%'],
+                        // x: '0%', // for funnel
+                        itemStyle : labelFromatter,
+                        data : [
+                            {name:'other', value:30, itemStyle : labelBottom},
+                            {name:'人员', value:70,itemStyle : labelTop}
+                        ]
+                    }
+                ]
+            };
+
+
+            // 为echarts对象加载数据
+            indexChart.setOption(option);
+
+
+            // 自适应echarts
+            setTimeout(function (){
+                $(window).resize(function () {
+                    indexChart.resize();
+                });
+            },200);
+        
+    
+})();
+		</script>
+	</body>
+</html>

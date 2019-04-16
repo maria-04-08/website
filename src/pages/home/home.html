@@ -13,53 +13,6 @@
 		<link rel="stylesheet" type="text/css" href="../../css/home/home.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/home-list/brand_list_component.css"/>
 		<link rel="stylesheet" type="text/css" href="../../css/home-list/store_list_component.css"/>
-		<style type="text/css">
-		html,body{
-			height:100%;
-		}
-		body,ul,li,a,p,div{padding:0px; margin:0px; font-size:14px;}
-		#wrap{
-			width:100%;
-			height:100%;
-		}
-		.h5-box{
-			overflow-x: hidden !important;
-			margin-bottom:80px;
-			box-sizing:border-box;
-		}
-		.pc-box{
-			overflow: hidden !important;
-		}
-		#main{
-			height:100%;
-			top:0;
-			position: relative;
-		}
-		.h5-box #main{
-			position:static;
-		}
- 		.page{
-			width:100%;
-			margin:0;
-		}
-		#page1{
-			/* -webkit-animation: codeLeft4 200ms ease-in-out; */
-		}
-		.container{
-			padding:0px;
-			margin:0px auto;
-		}
-		@-webkit-keyframes codeLeft4 {
-		    0%{
-		        opacity: 0;
-		        -webkit-transform: translateY(100px);
-		    }
-		    100%{
-		        opacity: 1;
-		        -webkit-transform: translateY(0px);
-		    }
-		}
-		</style>
 	</head>
 	<body>
 		<div id="home" v-cloak>
@@ -166,6 +119,10 @@
 							<div class="target-list features-list">
 								<div style="width:33%;text-align:center;">
 									<div id="chart1" style="width: 100%;height: 230px;"></div>
+									<div class="process">
+										<span>{{proccess1}}%</span>
+										<span>农户企业</span>
+									</div>
 									<div id="" class="chart-box">
 										<p>
 											充分利用信息化手段，提高生产效率，实现生产科技化，迈向智慧农业之路
@@ -174,6 +131,10 @@
 								</div>
 								<div style="width:33%;text-align:center;">
 									<div id="chart2" style="width: 100%;height: 230px;"></div>
+									<div class="process">
+										<span>{{proccess2}}%</span>
+										<span>种植户</span>
+									</div>
 									<div id="" class="chart-box">
 										<p>
 											打通“最初一公里”和“最后一公里”，让种植户足不出户，就能得到帮助
@@ -182,39 +143,17 @@
 								</div>
 								<div style="width:33%;text-align:center;">
 									<div id="chart3" style="width: 100%;height: 230px;"></div>
+									<div class="process">
+										<span>{{proccess3}}%</span>
+										<span>非农用户</span>
+									</div>
 									<div id="" class="chart-box">
 										<p>
 											精准天气预报及预警服务，实时气象状况一手掌握，便利生活
 										</p>
 									</div>
 								</div>
-							<!-- 	<div id="chart2" style="width: 33%;height: 230px;"></div>
-								<div id="chart3" style="width: 33%;height: 230px;"></div> -->
-								<!-- <div class="row">
-									<div class="col-xs-6 col-md-4">
-										<div id="chart1" style="width: 33%;height: 300px;"></div>
-										<div id="chart2" style="width: 33%;height: 300px;"></div>
-										<div id="chart3" style="width: 33%;height: 300px;"></div>
-									</div>
-								</div> -->
 							</div>
-							<!-- <div class="chart-box-list">
-								<div id="" class="chart-box">
-									<p>
-										充分利用信息化手段，提高生产效率，实现生产科技化，迈向智慧农业之路
-									</p>
-								</div>
-								<div id="" class="chart-box chart2">
-									<p>
-										打通“最初一公里”和“最后一公里”，让种植户足不出户，就能得到帮助
-									</p>
-								</div>
-								<div id="" class="chart-box chart3">
-									<p>
-										精准天气预报及预警服务，实时气象状况一手掌握，便利生活
-									</p>
-								</div>
-							</div> -->
 							<footer v-if="!showH5">
 								<div>
 									<div class="left">
@@ -233,6 +172,10 @@
 								</div>
 								<p class="copyright">@ 2019 海南易瑞可高新技术开发有限公司.琼ICP备07500410号-2</p>
 							</footer>
+							<!-- 移动版的底部（版权信息） -->
+							<div class="h5-footer" v-if="showH5">
+								<p>@ 2019 海南易瑞可高新技术开发有限公司.琼ICP备07500410号-2</p>
+							</div>
 						<!-- </div> -->
 					</div>
 					<!-- 群众目标结束 -->
@@ -248,10 +191,6 @@
 							<img src="../../img/home/icon/mini-logo.png"/>
 							<span>扫码即可咨询专家</span>
 						</div>
-					</div>
-					<!-- 移动版的底部（版权信息） -->
-					<div class="h5-footer" v-if="showH5">
-						<p>@ 2019 海南易瑞可高新技术开发有限公司.琼ICP备07500410号-2</p>
 					</div>
 				</div>
 			</div>

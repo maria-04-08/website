@@ -13,7 +13,7 @@ var vm = new Vue({
 			},
 			{
 				name:'个人版',
-				url:''
+				url:'../erayic-personal/erayic-personal.html'
 			}
 		],
 		titleIndex:0,
@@ -53,6 +53,9 @@ var vm = new Vue({
 		chart1:'',
 		chart2:'',
 		chart3:'',
+		proccess1:0,
+		proccess2:0,
+		proccess3:0,
 		setStatus:false
 	},
 	methods:{
@@ -95,21 +98,10 @@ var vm = new Vue({
 			
 			//滚动事件处理函数
 			function scrollFun(event){
-				if(VUE.status){
-					$('#main').css('position','static');
-					$('#wrap').removeClass('pc-box');
-					$('.features-part').css('height','auto');
-					$('.core-services-part').css('height','auto');
-					return;
-				}else{
-					$('#main').css('position','relative');
-					$('#wrap').addClass('pc-box');
-					$('.features-part').css('height','100%');
-					$('.core-services-part').css('height','100%');
-				}
+				VUE.changeStyle(VUE.status);
 				VUE.startTime = new Date().getTime();  
 				var delta = event.detail || (-event.wheelDelta);  
-				if (Math.abs(main.offsetTop)> 200) {
+				if (Math.abs(main.offsetTop)> $("#page1").offset().top) {
 					//底部icon进场
 				    $(".back-to-top").addClass('bottom_right_cur');
 				    //hide: 二维码一进来停留3秒，且一进来不要退场的效果
@@ -128,14 +120,36 @@ var vm = new Vue({
 				
 				//判断一个元素是否在滚动的可视区域内，不在就固定到可视区域的上方。
 				var windowheight = $(window).height();
-				var firstheight = $("#page4").offset().top;
+				var firstheight2 = $("#page4").offset().top;
 				var scrolltop = $(window).scrollTop();
-				if (firstheight >= scrolltop && firstheight < (scrolltop + windowheight)) {
+				if (firstheight2 >= scrolltop && firstheight2 < (scrolltop + windowheight)) {
 					if(!VUE.setStatus){
 						VUE.setStatus = true;
 						setTimeout(function(){
 							VUE.initChart();
-						},500)
+							var num1 = 0 , num2 = 0, num3 = 0;
+							var t1 = setInterval(function(){
+							   num1++;
+							   VUE.proccess1 = num1;
+								if(num1 == 95){
+									clearInterval(t1);
+								}       
+							},10);
+							var t2 = setInterval(function(){
+							   num2++;
+							   VUE.proccess2 = num2;
+								if(num2 == 90){
+									clearInterval(t2);
+								}       
+							},10);
+							var t3 = setInterval(function(){
+							   num3++;
+							   VUE.proccess3 = num3;
+								if(num3 == 75){
+									clearInterval(t3);
+								}       
+							},10);
+						},400)
 					}
 				}
 				//mousewheel事件中的 “event.wheelDelta” 属性值：返回的如果是正值说明滚轮是向上滚动
@@ -178,34 +192,7 @@ var vm = new Vue({
 			];
 			// 指定图表的配置项和数据
 			var option = {
-				 graphic: [{ //环形图中间添加文字
-					type: 'text', //通过不同top值可以设置上下显示
-					left: 'center',
-					top: '39%',
-					style: {
-						text: '95%',
-						textAlign: 'center',
-						fill: '#333', //文字的颜色
-						width: 30,
-						height: 30,
-						fontSize: 40,
-						fontFamily: "Microsoft YaHei"
-					}
-				},
-				{ //环形图中间添加文字
-					type: 'text', //通过不同top值可以设置上下显示
-					left: 'center',
-					top: '61%',
-					style: {
-						text: '农户企业',
-						textAlign: 'center',
-						fill: '#333', //文字的颜色
-						width: 30,
-						height: 30,
-						fontSize: 20,
-						fontFamily: "Microsoft YaHei"
-					}
-				}
+				graphic: [
 				],
 				// 系列列表
 				series: [{
@@ -213,7 +200,6 @@ var vm = new Vue({
 					type: 'pie',                    // 系列类型 
 					center:['50%','50%'],           // 饼图的中心（圆心）坐标，数组的第一项是横坐标，第二项是纵坐标。[ default: ['50%', '50%'] ]
 					radius: ['78%', '88%'],         // 饼图的半径，数组的第一项是内半径，第二项是外半径。[ default: [0, '75%'] ]
-					
 					hoverAnimation: false,           // 是否开启 hover 在扇区上的放大动画效果。[ default: true ]
 					color: color,                   // 圆环图的颜色
 					label: {                        // 饼图图形上的文本标签，可用于说明图形的一些数据信息，比如值，名称等.
@@ -241,13 +227,30 @@ var vm = new Vue({
 			this.chart1.setOption(option);
 			this.chart2.setOption(option);
 			this.chart3.setOption(option);
+		},
+		changeStyle(status){
+			if(status){
+				console.log('缩小--');
+				$('#main').css('position','static');
+				$('#wrap').removeClass('pc-box');
+				$('.features-part').css('height','auto');
+				$('.features-part').css('padding-bottom','30px');
+				$('.core-services-part').css('height','auto');
+				$('.core-services-part').css('padding-bottom','30px');
+				$('.mass-target-part').css('height','auto');
+				return;
+			}else{
+				$('#main').css('position','relative');
+				$('#wrap').addClass('pc-box');
+				$('.features-part').css('height','100%');
+				$('.core-services-part').css('height','100%');
+			}
 		}
 	},
 	mounted: function() {
 		var VUE = this;
 		this.screenWidth = document.body.clientWidth;
 		this.screenHeight = document.body.clientHeight;
-		
 		if(this.screenWidth>768){
 			VUE.pageScroll();
 		}else{
@@ -258,19 +261,7 @@ var vm = new Vue({
 		}else{
 			VUE.status = false;
 		}
-		if(VUE.status){
-			$('#main').css('position','static');
-			$('#wrap').removeClass('pc-box');
-			$('.features-part').css('height','auto');
-			$('.core-services-part').css('height','auto');
-			return;
-		}else{
-			$('#main').css('position','relative');
-			$('#wrap').addClass('pc-box');
-			$('.features-part').css('height','100%');
-			$('.core-services-part').css('height','100%');
-		}
-		var status = false;
+		VUE.changeStyle(VUE.status);
 		
 		window.onresize = () => {
 		    return (() => {
@@ -278,70 +269,24 @@ var vm = new Vue({
 				var chart2 = this.chart2;
 				var chart3 = this.chart3;
 				
-				var options1 = chart1.getOption();
-				var options2 = chart2.getOption();
-				var options3 = chart3.getOption();
-				
-				var set1 = chart1.getOption();
-				var set2 = chart2.getOption();
-				var set3 = chart3.getOption();
 		        window.screenWidth = document.body.clientWidth;
 				var width = window.screenWidth;
 				VUE.screenHeight = document.body.clientHeight;
 				VUE.screenWidth = window.screenWidth;
+				if(width>768){
+					VUE.showH5 = false;
+					VUE.status = false;
+					VUE.changeStyle(VUE.status);
+				}else{
+					VUE.showH5 = true;
+					VUE.status = true;
+					VUE.changeStyle(VUE.status);
+				}
 				//随浏览器大小改变
-				chart1.resize();
-				chart2.resize();
-				chart3.resize();
-				if(width<768){
-					options1.graphic[0].elements[0].style.fontSize = 28;
-					options2.graphic[0].elements[0].style.fontSize = 28;
-					options3.graphic[0].elements[0].style.fontSize = 28;
-					options1.graphic[0].elements[1].style.fontSize = 18;
-					options2.graphic[0].elements[1].style.fontSize = 18;
-					options3.graphic[0].elements[1].style.fontSize = 18;
-					chart1.setOption(options1);
-					chart2.setOption(options2);
-					chart3.setOption(options3);
-				}else if(width>768 && width<992){
-					options1.graphic[0].elements[0].style.fontSize = 28;
-					options2.graphic[0].elements[0].style.fontSize = 28;
-					options3.graphic[0].elements[0].style.fontSize = 28;
-					options1.graphic[0].elements[1].style.fontSize = 18;
-					options2.graphic[0].elements[1].style.fontSize = 18;
-					options3.graphic[0].elements[1].style.fontSize = 18;
-					options1.graphic[0].elements[1].top = '56%';
-					options2.graphic[0].elements[1].top = '56%';
-					options3.graphic[0].elements[1].top = '56%';
-					chart1.setOption(options1);
-					chart2.setOption(options2);
-					chart3.setOption(options3);
-				}else if(width>992 && width<1200){
-					options1.graphic[0].elements[0].style.fontSize = 28;
-					options2.graphic[0].elements[0].style.fontSize = 28;
-					options3.graphic[0].elements[0].style.fontSize = 28;
-					options1.graphic[0].elements[1].style.fontSize = 18;
-					options2.graphic[0].elements[1].style.fontSize = 18;
-					options3.graphic[0].elements[1].style.fontSize = 18;
-					options1.graphic[0].elements[1].top = '56%';
-					options2.graphic[0].elements[1].top = '56%';
-					options3.graphic[0].elements[1].top = '56%';
-					chart1.setOption(options1);
-					chart2.setOption(options2);
-					chart3.setOption(options3);
-				}else if(width>1200){
-					options1.graphic[0].elements[0].style.fontSize = 40;
-					options2.graphic[0].elements[0].style.fontSize = 40;
-					options3.graphic[0].elements[0].style.fontSize = 40;
-					options1.graphic[0].elements[1].style.fontSize = 20;
-					options2.graphic[0].elements[1].style.fontSize = 20;
-					options3.graphic[0].elements[1].style.fontSize = 20;
-					options1.graphic[0].elements[1].top = '61%';
-					options2.graphic[0].elements[1].top = '61%';
-					options3.graphic[0].elements[1].top = '61%';
-					chart1.setOption(options1);
-					chart2.setOption(options2);
-					chart3.setOption(options3);
+				if(chart1){
+					chart1.resize();
+					chart2.resize();
+					chart3.resize();
 				}
 		    })()
 		}
@@ -370,8 +315,10 @@ var vm = new Vue({
 				$('#main').css('position','static');
 				$('#wrap').removeClass('pc-box');
 				$('.features-part').css('height','auto');
+				$('.features-part').css('padding-bottom','30px');
 				$('.core-services-part').css('height','auto');
-				return;
+				$('.core-services-part').css('padding-bottom','30px');
+				$('.mass-target-part').css('height','auto');
 				
 			}else{
 				this.status = false;

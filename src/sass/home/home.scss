@@ -33,6 +33,30 @@ html,body{
 	height:100%;
 	width:100%;
 }
+.h5-box{
+	overflow-x: hidden !important;
+	margin-bottom:80px;
+	box-sizing:border-box;
+}
+.pc-box{
+	overflow: hidden !important;
+}
+#main{
+	height:100%;
+	top:0;
+	position: relative;
+}
+.h5-box #main{
+	position:static;
+}
+.page{
+	width:100%;
+	margin:0;
+}
+.container{
+	padding:0px;
+	margin:0px auto;
+}
 //头部
 header{
 	height:80px;
@@ -354,6 +378,23 @@ header{
 		padding-top:40px;
 		margin-bottom:26px;
 		&>div{
+			position:relative;
+			.process{
+				position:absolute;
+				left:50%;
+				top:25%;
+				transform:translateX(-50%);
+				span{
+					display: block;
+					&:first-child{
+						font-size:40px;
+					}
+					&:last-child{
+						padding-top:10px;
+						font-size:20px;
+					}
+				}
+			}
 			p{
 				margin:0px auto;
 				width:60%;
@@ -766,6 +807,17 @@ footer{
 				width:100%;
 				margin-bottom:20px;
 			}
+			.process{
+				span{
+					display: block;
+					&:first-child{
+						font-size:28px;
+					}
+					&:last-child{
+						font-size:18px;
+					}
+				}
+			}
 		}
 	}
 }
@@ -821,6 +873,26 @@ footer{
 	}
 	.index-part .left-enterprise{
 		left:26%;
+	}
+	.mass-target-part .target-list{
+		&>div{
+			p{
+				margin:0px auto;
+				width:100%;
+				margin-bottom:20px;
+			}
+			.process{
+				span{
+					display: block;
+					&:first-child{
+						font-size:28px;
+					}
+					&:last-child{
+						font-size:18px;
+					}
+				}
+			}
+		}
 	}
 }
 /*中等屏幕   w >= 992  && w<1200*/
