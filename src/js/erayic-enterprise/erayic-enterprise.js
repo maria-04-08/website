@@ -33,7 +33,6 @@ var vm = new Vue({
 		showH5:false,
 		showH5Menu:false,
 		menuIndex:1,
-		h5Menu:['主 页', '企业版', '个人版', '关于团队'],
 		contact:[
 			{img:'../../img/home/icon/email-logo.png', title:'电子邮箱', text:'magic-zhong@qq.com'},
 			{img:'../../img/home/icon/phone.png', title:'咨询电话', text:'0898-66236818'},
@@ -43,7 +42,13 @@ var vm = new Vue({
 		changeIndex(idx, val){
 			this.titleIndex = idx;
 			window.location.href = val;
-		}
+		},
+		toHref(val){ //页面跳转
+			if(val == 'download'){
+				val = 'https://sj.qq.com/myapp/detail.htm?apkName=com.erayic.agr2s';
+			}
+			window.location.href = val;
+		},
 	},
 	mounted: function() {
 		var VUE = this;

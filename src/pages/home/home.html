@@ -18,12 +18,12 @@
 		<div id="home" v-cloak>
 			<!-- 头部开始 -->
 			<header v-if="!showH5">
-				<div class="logo">
-					<img src="../../img/logo.png"/>
+				<div class="left">
+					<img src="../../img/erayic-enterprise/logo.png"/>
 				</div>
-				<ul class="title">
-					<li v-for="(item,index) in title" :class="[titleIndex == index? 'active':'']" @click="changeIndex(index, item.url)">{{item.name}}</li>
-				</ul>
+				<div class="right">
+					<span v-for="(item, index) in title" :class="titleIndex == index?'active':''" @click="changeIndex(index, item.url)">{{item.name}}</span>
+				</div>
 			</header>
 			<header v-else class="h5-head">
 				<div class="h5-logo" @click="showH5Menu=true;">
@@ -37,6 +37,7 @@
 				<div id="main">
 					<!-- 首页部分开始 -->
 					<div class="index-part page" id="page1" ref="viewBox">
+						<div id="msg_end" style="height:1px; overflow:hidden;background:#f5f5f5;"></div>
 						<img src="../../img/home/title-img/title01.png" class="title-img"/>
 						<div class="qrcode-img" v-if='!showH5'>
 							<div :class="['left-qr',onPersonalCode?'showPersonCode':'']">
@@ -117,7 +118,7 @@
 								</p>
 							</div>
 							<div class="target-list features-list">
-								<div style="width:33%;text-align:center;">
+								<div :style="{width:(showH5?'50%':'50%')}">
 									<div id="chart1" style="width: 100%;height: 230px;"></div>
 									<div class="process">
 										<span>{{proccess1}}%</span>
@@ -129,7 +130,7 @@
 										</p>
 									</div>
 								</div>
-								<div style="width:33%;text-align:center;">
+								<div :style="{width:(showH5?'50%':'50%')}">
 									<div id="chart2" style="width: 100%;height: 230px;"></div>
 									<div class="process">
 										<span>{{proccess2}}%</span>
@@ -141,7 +142,7 @@
 										</p>
 									</div>
 								</div>
-								<div style="width:33%;text-align:center;">
+								<div :style="{width:(showH5?'50%':'50%')}">
 									<div id="chart3" style="width: 100%;height: 230px;"></div>
 									<div class="process">
 										<span>{{proccess3}}%</span>
@@ -204,7 +205,7 @@
 					</p>
 				</div>
 				<div class="right">
-					<span>立即下载</span>
+					<span @click="toHref('download')">立即下载</span>
 				</div>
 			</nav>
 			<!-- 移动版的菜单页 -->
@@ -216,7 +217,7 @@
 					<h1>小二帮</h1>
 				</header>
 				<ul>
-					<li v-for="(item, index) in h5Menu"><span :class="menuIndex == index?'active':''">{{item}}</span></li>
+					<li v-for="(item, index) in title"><span :class="menuIndex == index?'active':''" @click="toHref(item.url)">{{item.name}}</span></li>
 				</ul>
 			</div>
 		</div>

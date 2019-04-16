@@ -108,22 +108,22 @@ main {
 		transform:translateX(-50%);
         span{
             display: block;
-            height:38px;
-            width:120px;
+            height:66px;
+            width:228px;
             border-radius:50px;
             background:#30AFA8;
             text-align:center;
             color:#fff;
-            font-size:14p;
-            line-height:38px;
-			&:hover{
-				cursor: pointer;
-			}
+            font-size:20px;
+            line-height:66px;
+        	&:hover{
+        		cursor: pointer;
+        	}
         }
         img{
            display: none;
-           width:130px;
-           height:130px; 
+           width:255px;
+           height:255px; 
 		   position:absolute;
 		   bottom:-113%;
 		   left:117%;

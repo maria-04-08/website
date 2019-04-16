@@ -80,7 +80,7 @@
 					</p>
 				</div>
 				<div class="right">
-					<span>立即下载</span>
+					<span @click="toHref('download')">立即下载</span>
 				</div>
 			</nav>
 			<!-- 移动版的菜单页 -->
@@ -92,7 +92,7 @@
 					<h1>小二帮</h1>
 				</header>
 				<ul>
-					<li v-for="(item, index) in h5Menu"><span :class="menuIndex == index?'active':''">{{item}}</span></li>
+					<li v-for="(item, index) in title"><span :class="menuIndex == index?'active':''" @click="toHref(item.url)">{{item.name}}</span></li>
 				</ul>
 			</div>
 		</div>

@@ -38,7 +38,6 @@ var vm = new Vue({
 			{img:'../../img/home/icon/phone.png', title:'咨询电话', text:'0898-66236818'},
 		],
 		menuIndex:0,
-		h5Menu:['主 页', '企业版', '个人版', '关于团队'],
 		onPersonalCode: false,  //个人版App二维码展示
 		onEnterpriseCode:false, //企业版App二维码展示
 		showMiniCode:false,
@@ -63,13 +62,23 @@ var vm = new Vue({
 			this.titleIndex = idx;
 			window.location.href = val;
 		},
-		toPage(now){
+		toPage(now){ //翻屏方法
 			this.startTime = 0; //翻屏起始时间  
 			this.endTime = 0;
 			this.now = 0;
-			$("#main").animate({top:(now+'px')},1000);
+			if(this.status && now == 0){
+				document.getElementById('msg_end').scrollIntoView(false); //初始化滚动条
+			}else{
+				$("#main").animate({top:(now+'px')},1000);
+			}
 		},
-		pageScroll(){
+		toHref(val){ //页面跳转
+			if(val == 'download'){
+				val = 'https://sj.qq.com/myapp/detail.htm?apkName=com.erayic.agr2s';
+			}
+			window.location.href = val;
+		},
+		pageScroll(){ //页面滑动的处理
 			var VUE = this;
 			var wrap = document.getElementById("wrap");
 			var main = document.getElementById("main");
@@ -175,68 +184,69 @@ var vm = new Vue({
 				 $("#main").animate({top:(now+'px')},1000);   
 			}   
 		},
+		//进度条动态数字
+		getProccess(name, type, max){
+			var _name = name;
+			var num = 0;
+			var VUE = this;
+			_name = setInterval(function(){
+			    num++;
+			    if(type == 1){
+					console.log(num);
+					VUE.proccess1 = num;
+				}else if(type == 2){
+					VUE.proccess2 = num;
+				}else{
+					VUE.proccess3 = num;
+				}
+				if(num == max){
+					clearInterval(_name);
+				}       
+			},10);
+		},
 		initChart(){
 			this.chart1 = echarts.init(document.getElementById("chart1"));
 			this.chart2 = echarts.init(document.getElementById("chart2"));
 			this.chart3 = echarts.init(document.getElementById("chart3"));
-			// 圆环图各环节的颜色
-			var color = ['#8FC7F6', '#DADADA'];
-			// 圆环图各环节的名称和值(系列中各数据项的名称和值)
-			var data =[{  
-					name: '',
-					value: 586
-				},{
-					name: '',
-					value: 30
-				}
-			];
-			// 指定图表的配置项和数据
+			var data =[{  name: '',value: 586},{name: '',value: 30}];
 			var option = {
 				graphic: [
 				],
-				// 系列列表
 				series: [{
-					name: '圆环图系列名称',         // 系列名称
+					name: '',       
 					type: 'pie',                    // 系列类型 
-					center:['50%','50%'],           // 饼图的中心（圆心）坐标，数组的第一项是横坐标，第二项是纵坐标。[ default: ['50%', '50%'] ]
-					radius: ['78%', '88%'],         // 饼图的半径，数组的第一项是内半径，第二项是外半径。[ default: [0, '75%'] ]
-					hoverAnimation: false,           // 是否开启 hover 在扇区上的放大动画效果。[ default: true ]
-					color: color,                   // 圆环图的颜色
+					center:['50%','50%'],           // 饼图的中心（圆心）坐标
+					radius: ['78%', '88%'],         // 饼图的半径，数组的第一项是内半径，第二项是外半径
+					hoverAnimation: false,          // 是否开启 hover 在扇区上的放大动画效果
+					color: ['#8FC7F6', '#DADADA'],  // 圆环图的颜色
 					label: {                        // 饼图图形上的文本标签，可用于说明图形的一些数据信息，比如值，名称等.
 						normal: {
-							show: false,             // 是否显示标签[ default: false ]
-							position: 'outside',    // 标签的位置。'outside'饼图扇区外侧，通过视觉引导线连到相应的扇区。'inside','inner' 同 'inside',饼图扇区内部。'center'在饼图中心位置。
-							formatter: '{b} : {c}件'  // 标签内容
+							show: false             // 是否显示标签[ default: false ]
 						}
 					},
 					labelLine: {                    // 标签的视觉引导线样式,在 label 位置 设置为'outside'的时候会显示视觉引导线。
 						normal: {
-							show: false,             // 是否显示视觉引导线。
-							length: 15,             // 在 label 位置 设置为'outside'的时候会显示视觉引导线。
-							length2: 10,            // 视觉引导项第二段的长度。
-							lineStyle: {            // 视觉引导线的样式
-								//color: '#000',
-								//width: 1
-							}
+							show: false             // 是否显示视觉引导线。
 						}
 					},
-					data: data                      // 系列中的数据内容数组。
+					data: data
 				}]
 			};
+			var option2 = option;
+			option2.data = [{  name: '',value: 586},{name: '',value: 20}];
 			// 使用刚指定的配置项和数据显示图表
 			this.chart1.setOption(option);
-			this.chart2.setOption(option);
+			this.chart2.setOption(option2);
 			this.chart3.setOption(option);
 		},
-		changeStyle(status){
+		changeStyle(status){  //当前页面不是占满整屏时，不整屏滑动
 			if(status){
-				console.log('缩小--');
 				$('#main').css('position','static');
 				$('#wrap').removeClass('pc-box');
 				$('.features-part').css('height','auto');
-				$('.features-part').css('padding-bottom','30px');
+				// $('.features-part').css('padding-bottom','30px');
 				$('.core-services-part').css('height','auto');
-				$('.core-services-part').css('padding-bottom','30px');
+				// $('.core-services-part').css('padding-bottom','30px');
 				$('.mass-target-part').css('height','auto');
 				return;
 			}else{
@@ -245,16 +255,62 @@ var vm = new Vue({
 				$('.features-part').css('height','100%');
 				$('.core-services-part').css('height','100%');
 			}
+		},
+		isScrollOnEle(){
+			
+		},
+		scrollFunH5(){ //针对手机端的滑动监听
+			var top1 = $("#chart1").offset().top;
+			var top2 = $("#chart2").offset().top;
+			var windowheight = $(window).height();
+			var scrolltop = $(window).scrollTop();
+			if (top1 >= scrolltop && top1 < (scrolltop + windowheight)) {
+				if(this.proccess1 == 95){
+				}else{
+					this.getProccess('t1', 1,  95);
+					if(this.chart1){
+					}else{
+						this.initChart();
+					}
+					this.getProccess('t2', 2,  90);
+					if(this.chart2){
+					}else{
+						this.initChart();
+					}
+					this.getProccess('t3', 3,  75);
+					if(this.chart3){
+					}else{
+						this.initChart();
+					}
+				}
+				
+			}
+
 		}
 	},
 	mounted: function() {
 		var VUE = this;
 		this.screenWidth = document.body.clientWidth;
 		this.screenHeight = document.body.clientHeight;
-		if(this.screenWidth>768){
+		var chart1 = this.chart1, chart2 = this.chart2, chart3 = this.chart3;
+		if(this.screenWidth>768){ 
 			VUE.pageScroll();
 		}else{
 			VUE.showH5 = true;
+			
+			//浏览器兼容      
+			if ((navigator.userAgent.toLowerCase().indexOf("firefox")!=-1)){
+				document.addEventListener("DOMMouseScroll",VUE.scrollFunH5,false);        
+			}  
+			else if (document.addEventListener) {  
+				document.addEventListener("mousewheel",VUE.scrollFunH5,false);  
+			}  
+			else if (document.attachEvent) {  
+				document.attachEvent("onmousewheel",VUE.scrollFunH5);   
+			}  
+			else{  
+				document.onmousewheel = scrollFun;  
+			}  
 		}
 		if(this.screenHeight < window.screen.availHeight-98 || VUE.showH5){ //改变滑动效果，不用整屏滑动(会隐藏内容)
 			VUE.status = true;
@@ -262,32 +318,28 @@ var vm = new Vue({
 			VUE.status = false;
 		}
 		VUE.changeStyle(VUE.status);
-		
 		window.onresize = () => {
 		    return (() => {
-				var chart1 = this.chart1;
-				var chart2 = this.chart2;
-				var chart3 = this.chart3;
 				
+				//随浏览器大小改变图表大小
+				if(this.chart1){
+					this.chart1.resize();
+					this.chart2.resize();
+					this.chart3.resize();
+				}
 		        window.screenWidth = document.body.clientWidth;
-				var width = window.screenWidth;
 				VUE.screenHeight = document.body.clientHeight;
-				VUE.screenWidth = window.screenWidth;
+				var width = VUE.screenWidth = window.screenWidth;
 				if(width>768){
 					VUE.showH5 = false;
 					VUE.status = false;
-					VUE.changeStyle(VUE.status);
+					VUE.changeStyle(false);
 				}else{
 					VUE.showH5 = true;
 					VUE.status = true;
-					VUE.changeStyle(VUE.status);
+					VUE.changeStyle(true);
 				}
-				//随浏览器大小改变
-				if(chart1){
-					chart1.resize();
-					chart2.resize();
-					chart3.resize();
-				}
+				
 		    })()
 		}
 		
@@ -305,6 +357,11 @@ var vm = new Vue({
 				this.showH5 = false;
 				this.status = false;
 			}else{
+				if(this.chart1){
+					
+				}else{
+					this.initChart();
+				}
 				this.showH5 = true;
 				this.status = true;
 			}
@@ -312,20 +369,10 @@ var vm = new Vue({
 		screenHeight(val){
 			if(val < window.screen.availHeight-98 || this.showH5){
 				this.status = true;
-				$('#main').css('position','static');
-				$('#wrap').removeClass('pc-box');
-				$('.features-part').css('height','auto');
-				$('.features-part').css('padding-bottom','30px');
-				$('.core-services-part').css('height','auto');
-				$('.core-services-part').css('padding-bottom','30px');
-				$('.mass-target-part').css('height','auto');
-				
+				this.changeStyle(true);
 			}else{
 				this.status = false;
-				$('#main').css('position','relative');
-				$('#wrap').addClass('pc-box');
-				$('.features-part').css('height','100%');
-				$('.core-services-part').css('height','100%');
+				this.changeStyle(false);
 			}
 		}
 	}
