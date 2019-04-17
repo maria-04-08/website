@@ -207,7 +207,7 @@ var vm = new Vue({
 				if(num == max){
 					clearInterval(_name);
 				}       
-			},8);
+			},2);
 		},
 		initChart(){
 			this.chart1 = echarts.init(document.getElementById("chart1"));
