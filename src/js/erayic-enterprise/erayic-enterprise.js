@@ -23,7 +23,7 @@ var vm = new Vue({
 			{img:'../../img/erayic-enterprise/logo03.png', title:'多维传感器监测', text:'对生产者进行系统化的管理并做出合理的农事安排'},
 			{img:'../../img/erayic-enterprise/logo04.png', title:'强大的专家团队', text:'在线、离线状态下均支持与专家问答'},
 			{img:'../../img/erayic-enterprise/logo05.png', title:'精细化气象预报预警', text:'气象预报预警精准到周边一公里的范围'},
-			{img:'../../img/erayic-enterprise/logo06.png', title:'病毒害监测预警', text:'提前预知农事生产者可能会爆发的病虫害'}
+			{img:'../../img/erayic-enterprise/logo06.png', title:'病虫害监测预警', text:'提前预知农事生产者可能会爆发的病虫害'}
 		],
 		featuresPoint:[
 			{img:''}
@@ -45,7 +45,7 @@ var vm = new Vue({
 		},
 		toHref(val){ //页面跳转
 			if(val == 'download'){
-				val = 'https://sj.qq.com/myapp/detail.htm?apkName=com.erayic.agr2s';
+				val = 'https://a.app.qq.com/o/simple.jsp?pkgname=com.erayic.agr';
 			}
 			utils.openUrl(val);
 		},
