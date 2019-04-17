@@ -377,34 +377,60 @@ var vm = new Vue({
 				VUE.status = true;
 				
 				var box = VUE.$refs.viewBox; // 首先通过$refs获取dom元素
+				
+				var top1 = $("#chart1").offset().top;
+				var top2 = $("#chart2").offset().top;
+				var windowheight = $(window).height();
+				var scrolltop = $(window).scrollTop();
 				box.addEventListener('scroll', (evt) => { // 监听scroll事件
-					var top1 = $("#chart1").offset().top;
-					var top2 = $("#chart2").offset().top;
-					var windowheight = $(window).height();
-					var scrolltop = $(window).scrollTop();
-					if (top1 >= scrolltop && top1 < (scrolltop + windowheight)) {
-						console.log('监听滚动');
-						if(this.proccess1 == 95){
+// 					var top1 = $("#chart1").offset().top;
+// 					var top2 = $("#chart2").offset().top;
+// 					var windowheight = $(window).height();
+// 					var scrolltop = $(window).scrollTop();
+					if(VUE.$refs.viewBox.scrollTop > top1){
+					// if (top1 >= scrolltop && top1 < (scrolltop + windowheight)) {
+						console.log('到底');
+						if(VUE.proccess1 == 95) return;
+						VUE.getProccess('t1', 1,  95);
+						if(VUE.chart1){
 						}else{
-							this.getProccess('t1', 1,  95);
-							if(this.chart1){
-							}else{
-								this.initChart();
-							}
-							this.getProccess('t2', 2,  90);
-							if(this.chart2){
-							}else{
-								this.initChart();
-							}
-							this.getProccess('t3', 3,  75);
-							if(this.chart3){
-							}else{
-								this.initChart();
-							}
+							VUE.initChart();
 						}
-						
+						VUE.getProccess('t2', 2,  90);
+						if(VUE.chart2){
+						}else{
+							VUE.initChart();
+						}
+						VUE.getProccess('t3', 3,  75);
+						if(VUE.chart3){
+						}else{
+							VUE.initChart();
+						}
 					}
-				})
+// 					if (top1 >= scrolltop && top1 < (scrolltop + windowheight)) {
+// 						console.log('监听滚动');
+// 						if(this.proccess1 == 95){
+// 						}else{
+// 							this.getProccess('t1', 1,  95);
+// 							if(this.chart1){
+// 							}else{
+// 								this.initChart();
+// 							}
+// 							this.getProccess('t2', 2,  90);
+// 							if(this.chart2){
+// 							}else{
+// 								this.initChart();
+// 							}
+// 							this.getProccess('t3', 3,  75);
+// 							if(this.chart3){
+// 							}else{
+// 								this.initChart();
+// 							}
+// 						}
+// 						
+// 					}
+				}, false);
+				
 				//浏览器兼容      
 // 				if ((navigator.userAgent.toLowerCase().indexOf("firefox")!=-1)){
 // 					document.addEventListener("DOMMouseScroll",VUE.scrollFunH5,false);        
