@@ -29,7 +29,7 @@
 			</header>
 			<!-- 头部结束 -->
 			
-			<div id="wrap" :class="showH5?'h5-box':'pc-box'" ref="viewBox">
+			<main id="wrap" :class="showH5?'h5-box':'pc-box'" ref="viewBox">
 				<div id="main">
 					<!-- 首页部分开始 -->
 					<div class="index-part page" id="page1" ref="viewBox">
@@ -190,7 +190,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</main>
 			<!-- 移动版的底部下载栏 -->
 			<nav class="nav-dowmload" v-if="showH5">
 				<div class="left">
@@ -224,7 +224,6 @@
 		<!-- build:scriptComponent -->
 		<!-- endbuild -->
 		<script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts-en.common.js" type="text/javascript" charset="utf-8"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 		<script type="text/javascript" src="../../js/home/home.min.js"></script>		
 	</body>
 </html>

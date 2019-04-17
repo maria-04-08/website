@@ -23,7 +23,7 @@ var vm = new Vue({
 			{img:'../../img/erayic-personal/icon/icon03.png', title:'农技专家支持', text:'24小时接收用户的在线、离线信息，并及时做出回馈'},
 			{img:'../../img/erayic-personal/icon/icon04.png', title:'作物价格动态', text:'全国的平均价格趋势，及当前所在地的主要市场价格'},
 			{img:'../../img/erayic-personal/icon/icon05.png', title:'作物生产履历', text:'作物生产过程中的所有农事操作的全记录'},
-			{img:'../../img/erayic-personal/icon/icon06.png', title:'作物生长日志', text:'记录作物生长过程的状态，支持图片、文字、语音编辑'},
+			{img:'../../img/erayic-personal/icon/icon06.png', title:'作物生长日志', text:'记录作物生长过程的状态，支持图片、文字'},
 			{img:'../../img/erayic-personal/icon/icon07.png', title:'病虫害预警', text:'根据当前温度，提前给出的病虫害预警，谨防大量亏损'},
 			{img:'../../img/erayic-personal/icon/icon08.png', title:'气象灾害预警', text:'与当前市区官方气象台所发布的灾害预警内容一致'},
 			{img:'../../img/erayic-personal/icon/icon09.png', title:'台风实时路径', text:'实时台风路径走向，并且合理的给出对当前位置的影响'}
