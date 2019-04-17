@@ -386,7 +386,7 @@ var vm = new Vue({
 // 					var top2 = $("#chart2").offset().top;
 // 					var windowheight = $(window).height();
 // 					var scrolltop = $(window).scrollTop();
-					if(VUE.$refs.viewBox.scrollTop > (top1 - 150)){
+					if(VUE.$refs.viewBox.scrollTop > (top1 - 120)){
 					// if (top1 >= scrolltop && top1 < (scrolltop + windowheight)) {
 						console.log('到底');
 						if(VUE.proccess1 == 95) return;
