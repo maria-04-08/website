@@ -41,13 +41,13 @@ var vm = new Vue({
 	methods:{
 		changeIndex(idx, val){
 			this.titleIndex = idx;
-			window.location.href = val;
+			utils.openUrl(val);
 		},
 		toHref(val){ //页面跳转
 			if(val == 'download'){
 				val = 'https://sj.qq.com/myapp/detail.htm?apkName=com.erayic.agr2s';
 			}
-			window.location.href = val;
+			utils.openUrl(val);
 		},
 	},
 	mounted: function() {

@@ -60,7 +60,7 @@ var vm = new Vue({
 	methods:{
 		changeIndex(idx, val){
 			this.titleIndex = idx;
-			window.location.href = val;
+			utils.openUrl(val);
 		},
 		toPage(now){ //翻屏方法
 			this.startTime = 0; //翻屏起始时间  
@@ -76,7 +76,7 @@ var vm = new Vue({
 			if(val == 'download'){
 				val = 'https://sj.qq.com/myapp/detail.htm?apkName=com.erayic.agr2s';
 			}
-			window.location.href = val;
+			utils.openUrl(val);
 		},
 		pageScroll(){ //页面滑动的处理
 			if(this.status){
@@ -207,7 +207,7 @@ var vm = new Vue({
 				if(num == max){
 					clearInterval(_name);
 				}       
-			},20);
+			},16);
 		},
 		initChart(){
 			this.chart1 = echarts.init(document.getElementById("chart1"));
@@ -388,9 +388,8 @@ var vm = new Vue({
 // 					var scrolltop = $(window).scrollTop();
 					if(VUE.$refs.viewBox.scrollTop > (top1 - 120)){
 					// if (top1 >= scrolltop && top1 < (scrolltop + windowheight)) {
-						console.log('到底');
+						// console.log('到底');
 						if(VUE.proccess1 == 95) return;
-						console.log('打印---');
 						VUE.getProccess('t1', 1,  95);
 						if(VUE.chart1){
 						}else{

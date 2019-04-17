@@ -391,15 +391,17 @@ footer{
 		}
 	}
 	footer{
-		padding:20px 2% 80px 30%;
-		.row{
-		    &>div{
-		        padding-top:60px;
-			}
-		}
+		padding:60px 0px 0px 100px;
+	}
+	footer .copyright{
+		padding-left:15%;
 	}
 }
-
+@media screen and (max-width: 1200px) and (min-width: 992px) {
+	footer .copyright{
+		padding-left:15%;
+	}
+}
 
 //展示二维码动画
 @-webkit-keyframes codeRight {

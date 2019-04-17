@@ -53,7 +53,7 @@ function buildJs(_from, _to) {
   return gulp.src(_from)
     .pipe(babel(opts))
     .pipe(removeUseStrict())
-    // .pipe(stripDebug())
+    .pipe(stripDebug())
     .pipe(uglify())
     .pipe(rename({
       suffix: ".min"
