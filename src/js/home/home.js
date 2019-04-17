@@ -196,7 +196,7 @@ var vm = new Vue({
 			var num = 0;
 			var VUE = this;
 			_name = setInterval(function(){
-			    num++;
+			    num = num +5;
 			    if(type == 1){
 					VUE.proccess1 = num;
 				}else if(type == 2){
@@ -207,7 +207,7 @@ var vm = new Vue({
 				if(num == max){
 					clearInterval(_name);
 				}       
-			},2);
+			},20);
 		},
 		initChart(){
 			this.chart1 = echarts.init(document.getElementById("chart1"));
