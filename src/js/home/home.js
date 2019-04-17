@@ -319,6 +319,7 @@ var vm = new Vue({
 			
 		},
 		scrollFunH5(){ //针对手机端的滑动监听
+			console.log('滚动----');
 			var top1 = $("#chart1").offset().top;
 			var top2 = $("#chart2").offset().top;
 			var windowheight = $(window).height();
