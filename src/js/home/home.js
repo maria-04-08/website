@@ -375,19 +375,24 @@ var vm = new Vue({
 			}else{
 				VUE.showH5 = true;
 				VUE.status = true;
+				
+				var box = VUE.$refs.viewBox; // 首先通过$refs获取dom元素
+				box.addEventListener('scroll', (evt) => { // 监听scroll事件
+					console.log('监听滚动');
+				})
 				//浏览器兼容      
-				if ((navigator.userAgent.toLowerCase().indexOf("firefox")!=-1)){
-					document.addEventListener("DOMMouseScroll",VUE.scrollFunH5,false);        
-				}  
-				else if (document.addEventListener) {  
-					document.addEventListener("mousewheel",VUE.scrollFunH5,false);  
-				}  
-				else if (document.attachEvent) {  
-					document.attachEvent("onmousewheel",VUE.scrollFunH5);   
-				}  
-				else{  
-					document.onmousewheel = VUE.scrollFunH5;  
-				}  
+// 				if ((navigator.userAgent.toLowerCase().indexOf("firefox")!=-1)){
+// 					document.addEventListener("DOMMouseScroll",VUE.scrollFunH5,false);        
+// 				}  
+// 				else if (document.addEventListener) {  
+// 					document.addEventListener("mousewheel",VUE.scrollFunH5,false);  
+// 				}  
+// 				else if (document.attachEvent) {  
+// 					document.attachEvent("onmousewheel",VUE.scrollFunH5);   
+// 				}  
+// 				else{  
+// 					document.onmousewheel = VUE.scrollFunH5;  
+// 				}  
 			}
 			VUE.changeStyle(VUE.status);
 			window.onresize = () => {
