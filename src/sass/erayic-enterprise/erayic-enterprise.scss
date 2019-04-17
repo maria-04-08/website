@@ -4,6 +4,9 @@ html, body{
 	background:#F1F1F1;
 	overflow-x:hidden;
 }
+::-webkit-scrollbar{
+	width:0px;
+}
 [v-cloak]{
 	display: none;
 }
