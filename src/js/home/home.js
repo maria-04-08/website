@@ -379,6 +379,31 @@ var vm = new Vue({
 				var box = VUE.$refs.viewBox; // 首先通过$refs获取dom元素
 				box.addEventListener('scroll', (evt) => { // 监听scroll事件
 					console.log('监听滚动');
+					var top1 = $("#chart1").offset().top;
+					var top2 = $("#chart2").offset().top;
+					var windowheight = $(window).height();
+					var scrolltop = $(window).scrollTop();
+					if (top1 >= scrolltop && top1 < (scrolltop + windowheight)) {
+						if(this.proccess1 == 95){
+						}else{
+							this.getProccess('t1', 1,  95);
+							if(this.chart1){
+							}else{
+								this.initChart();
+							}
+							this.getProccess('t2', 2,  90);
+							if(this.chart2){
+							}else{
+								this.initChart();
+							}
+							this.getProccess('t3', 3,  75);
+							if(this.chart3){
+							}else{
+								this.initChart();
+							}
+						}
+						
+					}
 				})
 				//浏览器兼容      
 // 				if ((navigator.userAgent.toLowerCase().indexOf("firefox")!=-1)){
