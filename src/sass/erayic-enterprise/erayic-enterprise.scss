@@ -3,6 +3,7 @@ html, body{
 	width:100%;
 	background:#F1F1F1;
 	overflow-x:hidden;
+	-webkit-overflow-scrolling: touch;
 }
 ::-webkit-scrollbar{
 	width:0px;
@@ -12,7 +13,9 @@ html, body{
 }
 #erayic-enterprise {
 	width:100%;
+	height:100%;
 	position:relative;
+	-webkit-overflow-scrolling: touch;
 }
 header{
     width:100%;
@@ -95,15 +98,30 @@ main {
 			height:auto;
 		}
 	}
-    p{
-        font-size:16px;
-        color:#fff;
-		padding-top:35px;
-        padding-bottom:14px;
-    }
-    .title-descript>div{
-        display: flex;
-        align-items:center;
+    
+    .title-descript{
+		&>p{
+		    font-size:16px;
+		    color:#fff;
+			padding-top:35px;
+		    padding-bottom:14px;
+			
+		}
+		&>div{
+			display: flex;
+			align-items:center;
+			font-size:16px;
+			color:#fff;
+			padding-right:20px;
+			p{
+				line-height:24px;
+			}
+			span{
+				color:#E4E100;
+				font-size:30px;
+			}
+		}
+		
     }
     .title-descript img{
 		width:18%;
@@ -157,11 +175,15 @@ main {
             padding-top:78px;
             display: flex;
             // align-items:center;
-            img{
-                width:4rem;
-                height:4rem;
-                border-radius:50%;
+            .img-box{
+                width:56px;
+                height:56px;
 				margin:0px;
+				img{
+					width:56px;
+					height:56px;
+					border-radius:50%;
+				}
             }
             p{
                 padding-left:18px;
@@ -361,12 +383,18 @@ footer{
 				width:76%;
 			}
 			span{
-				font-size:14px;
+				font-size:18px;
+				font-weight:bold;
+				display: inline-block;
+				padding:0px 3px;
 			}
 		}
 	}
 	.function-part{
 	    padding:0px 14% 90px 16%;
+	}
+	.function-part .row > div p span:last-child{
+		width:100%;
 	}
 }
 /*pad: w >= 768  && w< 992*/

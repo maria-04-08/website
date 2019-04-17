@@ -30,7 +30,8 @@
 						<img src="../../img/erayic-enterprise/title01.png" />
 						<div class="title-descript">
 							<p>实现了移动终端上的生产管理功能</p>
-							<div><span>并添加</span><img src="../../img/erayic-enterprise/title02.png"/><span>功能，方便生产者准确实施农事工作。</span></div>
+							<!-- <div>并添加<img src="../../img/erayic-enterprise/title02.png"/>功能，方便生产者准确实施农事工作。</div> -->
+							<div><p>并添加<span>预设功能</span>功能，方便生产者准确实施农事工作。</p></div>
 						</div>
 					</div>
 					<div class="qr-code" v-if="!showH5">
@@ -41,7 +42,9 @@
 				<div class="function-part">
 					<div class="row">
 					    <div class="col-xs-6 col-md-4" v-for="item in features">
-					    	<img :src="item.img" />
+					    	<div class="img-box">
+								<img :src="item.img" />
+							</div>
 					    	<p>
 					    		<span>{{item.title}}</span>
 					    		<span>{{item.text}}</span>

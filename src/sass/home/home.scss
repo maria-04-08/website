@@ -3,6 +3,7 @@ html,body{
     width:100%;
     background:#fff;
 	overflow:hidden;
+	-webkit-overflow-scrolling: touch;
 }
 ::-webkit-scrollbar{
 	width:0px;

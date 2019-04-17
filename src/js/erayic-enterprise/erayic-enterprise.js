@@ -67,7 +67,7 @@ var vm = new Vue({
 	watch:{
 		screenWidth (val) {
 			this.screenWidth = val;
-			console.log(val);
+			// console.log(val);
 			if(val>768){
 				this.showH5 = false;
 			}else{
