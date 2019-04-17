@@ -111,6 +111,9 @@ var vm = new Vue({
 			//滚动事件处理函数
 			function scrollFun(event){
 				VUE.changeStyle(VUE.status);
+				if(VUE.showH5){
+					return;
+				}
 				VUE.startTime = new Date().getTime();  
 				var delta = event.detail || (-event.wheelDelta);  
 				if (Math.abs(main.offsetTop)> $("#page1").offset().top) {
@@ -160,7 +163,7 @@ var vm = new Vue({
 								if(num3 == 75){
 									clearInterval(t3);
 								}       
-							},10);
+							},8);
 						},400)
 					}
 				}
@@ -204,42 +207,94 @@ var vm = new Vue({
 				if(num == max){
 					clearInterval(_name);
 				}       
-			},10);
+			},8);
 		},
 		initChart(){
 			this.chart1 = echarts.init(document.getElementById("chart1"));
 			this.chart2 = echarts.init(document.getElementById("chart2"));
 			this.chart3 = echarts.init(document.getElementById("chart3"));
-			var data =[{  name: '',value: 586},{name: '',value: 30}];
-			var option = {
+			var data =[{  name: '',value: 586},{name: '',value: 42}];
+			let option1 = {
 				graphic: [
 				],
-				series: [{
-					name: '',       
-					type: 'pie',                    // 系列类型 
-					center:['50%','50%'],           // 饼图的中心（圆心）坐标
-					radius: ['78%', '88%'],         // 饼图的半径，数组的第一项是内半径，第二项是外半径
-					hoverAnimation: false,          // 是否开启 hover 在扇区上的放大动画效果
-					color: ['#8FC7F6', '#DADADA'],  // 圆环图的颜色
-					label: {                        // 饼图图形上的文本标签，可用于说明图形的一些数据信息，比如值，名称等.
-						normal: {
-							show: false             // 是否显示标签[ default: false ]
-						}
-					},
-					labelLine: {                    // 标签的视觉引导线样式,在 label 位置 设置为'outside'的时候会显示视觉引导线。
-						normal: {
-							show: false             // 是否显示视觉引导线。
-						}
-					},
-					data: data
-				}]
+				series: [
+					{
+						name: '',       
+						type: 'pie',                    // 系列类型 
+						center:['50%','50%'],           // 饼图的中心（圆心）坐标
+						radius: ['78%', '88%'],         // 饼图的半径，数组的第一项是内半径，第二项是外半径
+						hoverAnimation: false,          // 是否开启 hover 在扇区上的放大动画效果
+						color: ['#8FC7F6', '#DADADA'],  // 圆环图的颜色
+						label: {                        // 饼图图形上的文本标签，可用于说明图形的一些数据信息，比如值，名称等.
+							normal: {
+								show: false             // 是否显示标签[ default: false ]
+							}
+						},
+						labelLine: {                    // 标签的视觉引导线样式,在 label 位置 设置为'outside'的时候会显示视觉引导线。
+							normal: {
+								show: false             // 是否显示视觉引导线。
+							}
+						},
+						data: data
+					}
+				]
 			};
-			var option2 = option;
-			option2.data = [{  name: '',value: 586},{name: '',value: 20}];
+			let option2 = {
+				graphic: [
+				],
+				series: [
+					{
+						name: '',       
+						type: 'pie',                    // 系列类型 
+						center:['50%','50%'],           // 饼图的中心（圆心）坐标
+						radius: ['78%', '88%'],         // 饼图的半径，数组的第一项是内半径，第二项是外半径
+						hoverAnimation: false,          // 是否开启 hover 在扇区上的放大动画效果
+						color: ['#8FC7F6', '#DADADA'],  // 圆环图的颜色
+						label: {                        // 饼图图形上的文本标签，可用于说明图形的一些数据信息，比如值，名称等.
+							normal: {
+								show: false             // 是否显示标签[ default: false ]
+							}
+						},
+						labelLine: {                    // 标签的视觉引导线样式,在 label 位置 设置为'outside'的时候会显示视觉引导线。
+							normal: {
+								show: false             // 是否显示视觉引导线。
+							}
+						},
+						data: [{  name: '',value: 586},{name: '',value: 68}]
+					}
+				]
+			};
+			let option3 = {
+				graphic: [
+				],
+				series: [
+					{
+						name: '',       
+						type: 'pie',                    // 系列类型 
+						center:['50%','50%'],           // 饼图的中心（圆心）坐标
+						radius: ['78%', '88%'],         // 饼图的半径，数组的第一项是内半径，第二项是外半径
+						hoverAnimation: false,          // 是否开启 hover 在扇区上的放大动画效果
+						color: ['#8FC7F6', '#DADADA'],  // 圆环图的颜色
+						label: {                        // 饼图图形上的文本标签，可用于说明图形的一些数据信息，比如值，名称等.
+							normal: {
+								show: false             // 是否显示标签[ default: false ]
+							}
+						},
+						labelLine: {                    // 标签的视觉引导线样式,在 label 位置 设置为'outside'的时候会显示视觉引导线。
+							normal: {
+								show: false             // 是否显示视觉引导线。
+							}
+						},
+						data: [{  name: '',value: 586},{name: '',value: 180}]
+					}
+				]
+			};
+			
+
 			// 使用刚指定的配置项和数据显示图表
-			this.chart1.setOption(option);
+			this.chart1.setOption(option1);
 			this.chart2.setOption(option2);
-			this.chart3.setOption(option);
+			this.chart3.setOption(option3);
 		},
 		changeStyle(status){  //当前页面不是占满整屏时，不整屏滑动
 			if(status){
@@ -290,15 +345,34 @@ var vm = new Vue({
 				
 			}
 
-		}
-	},
-	mounted: function() {
-		var VUE = this;
-		this.screenWidth = document.body.clientWidth;
-		this.screenHeight = document.body.clientHeight;
-		var chart1 = this.chart1, chart2 = this.chart2, chart3 = this.chart3;
-		if(this.screenWidth>768){ 
-			if(this.screenHeight < window.screen.availHeight-98 || VUE.showH5){ //改变滑动效果，不用整屏滑动(会隐藏内容)
+		},
+		refresh(){
+			var VUE = this;
+			this.screenWidth = document.body.clientWidth;
+			this.screenHeight = document.body.clientHeight;
+			var chart1 = this.chart1, chart2 = this.chart2, chart3 = this.chart3;
+			if(this.screenWidth>768){ 
+				if(this.screenHeight < window.screen.availHeight-98 || VUE.showH5){ //改变滑动效果，不用整屏滑动(会隐藏内容)
+					VUE.status = true;
+					//浏览器兼容      
+					if ((navigator.userAgent.toLowerCase().indexOf("firefox")!=-1)){
+						document.addEventListener("DOMMouseScroll",VUE.scrollFunH5,false);        
+					}  
+					else if (document.addEventListener) {  
+						document.addEventListener("mousewheel",VUE.scrollFunH5,false);  
+					}  
+					else if (document.attachEvent) {  
+						document.attachEvent("onmousewheel",VUE.scrollFunH5);   
+					}  
+					else{  
+						document.onmousewheel = VUE.scrollFunH5;  
+					}  
+				}else{
+					VUE.pageScroll();
+					VUE.status = false;
+				}
+			}else{
+				VUE.showH5 = true;
 				VUE.status = true;
 				//浏览器兼容      
 				if ((navigator.userAgent.toLowerCase().indexOf("firefox")!=-1)){
@@ -313,101 +387,49 @@ var vm = new Vue({
 				else{  
 					document.onmousewheel = VUE.scrollFunH5;  
 				}  
-			}else{
-				VUE.pageScroll();
-				VUE.status = false;
 			}
-		}else{
-			VUE.showH5 = true;
-			
-			//浏览器兼容      
-			if ((navigator.userAgent.toLowerCase().indexOf("firefox")!=-1)){
-				document.addEventListener("DOMMouseScroll",VUE.scrollFunH5,false);        
-			}  
-			else if (document.addEventListener) {  
-				document.addEventListener("mousewheel",VUE.scrollFunH5,false);  
-			}  
-			else if (document.attachEvent) {  
-				document.attachEvent("onmousewheel",VUE.scrollFunH5);   
-			}  
-			else{  
-				document.onmousewheel = VUE.scrollFunH5;  
-			}  
-		}
-		VUE.changeStyle(VUE.status);
-		window.onresize = () => {
-		    return (() => {
-				
-				//随浏览器大小改变图表大小
-				if(this.chart1){
-					this.chart1.resize();
-					this.chart2.resize();
-					this.chart3.resize();
-				}
-		        window.screenWidth = document.body.clientWidth;
-				window.screenHeight = document.body.clientHeight;
-				VUE.screenHeight = window.screenHeight;
-				var width = VUE.screenWidth = window.screenWidth;
-				if(width>768){
-					VUE.showH5 = false;
-					VUE.status = false;
-					if(VUE.screenHeight < window.screen.availHeight-98){ //改变滑动效果，不用整屏滑动(会隐藏内容)
-						VUE.changeStyle(true);
-						VUE.status = true;
-					}else{
-						VUE.changeStyle(true);
+			VUE.changeStyle(VUE.status);
+			window.onresize = () => {
+			    return (() => {
+			        window.screenWidth = document.body.clientWidth;
+					window.screenHeight = document.body.clientHeight;
+					VUE.screenHeight = window.screenHeight;
+					var width = VUE.screenWidth = window.screenWidth;
+					if(width>768){
+						VUE.showH5 = false;
 						VUE.status = false;
-						VUE.startTime = 0; //翻屏起始时间  
-						VUE.endTime = 0;
-						VUE.now = 0;
-						// $("#main").animate({top:'969px'},1000);
-						console.log('--------------------------------');
-						$("#main").animate({top:'0px'},1000);
-						
-						document.getElementById('msg_end').scrollIntoView(false); //初始化滚动条
-					}
-				}else{
-					if(VUE.chart1){
-						
+						//随浏览器大小改变图表大小
+						if(this.chart1){
+							this.chart1.resize();
+							this.chart2.resize();
+							this.chart3.resize();
+						}
+						if(VUE.screenHeight < window.screen.availHeight-98){ //改变滑动效果，不用整屏滑动(会隐藏内容)
+							VUE.changeStyle(true);
+							VUE.status = true;
+						}else{
+							VUE.changeStyle(false);
+							VUE.status = false;
+							VUE.startTime = 0; //翻屏起始时间  
+							VUE.endTime = 0;
+							VUE.now = 0;
+							$("#main").animate({top:'0px'},0);
+							document.getElementById('msg_end').scrollIntoView(false); //初始化滚动条
+							VUE.pageScroll();
+						}
 					}else{
-						VUE.initChart();
+						VUE.showH5 = true;
+						VUE.status = true;
+						VUE.changeStyle(true);
+						window.location.reload();
 					}
-					VUE.showH5 = true;
-					VUE.status = true;
-				}
-// 				if(width>768){
-// 					VUE.showH5 = false;
-// 					
-// 					if(VUE.screenHeight < window.screen.availHeight-98 || VUE.showH5){ //改变滑动效果，不用整屏滑动(会隐藏内容)
-// 						VUE.status = true;
-// 						VUE.changeStyle(true);
-// 						//浏览器兼容      
-// 						if ((navigator.userAgent.toLowerCase().indexOf("firefox")!=-1)){
-// 							document.addEventListener("DOMMouseScroll",VUE.scrollFunH5,false);        
-// 						}  
-// 						else if (document.addEventListener) {  
-// 							document.addEventListener("mousewheel",VUE.scrollFunH5,false);  
-// 						}  
-// 						else if (document.attachEvent) {  
-// 							document.attachEvent("onmousewheel",VUE.scrollFunH5);   
-// 						}  
-// 						else{  
-// 							document.onmousewheel = VUE.scrollFunH5;  
-// 						}  
-// 					}else{
-// 						VUE.pageScroll();
-// 						VUE.status = false;
-// 						VUE.changeStyle(false);
-// 					}
-// 				}else{
-// 					VUE.showH5 = true;
-// 					VUE.status = false;
-// 					VUE.changeStyle(true);
-// 				}
-				
-		    })()
+			    })()
+			}
 		}
-		
+	},
+	mounted: function() {
+		var VUE = this;
+		VUE.refresh();
 	},
 	created: function(){
 		
@@ -416,31 +438,5 @@ var vm = new Vue({
 
 	},
 	watch:{
-		screenWidth (val) {
-// 			this.screenWidth = val;
-// 			if(val>768){
-// 				this.showH5 = false;
-// 				this.status = false;
-// 			}else{
-// 				if(this.chart1){
-// 					
-// 				}else{
-// 					this.initChart();
-// 				}
-// 				this.showH5 = true;
-// 				this.status = true;
-// 			}
-		},
-		screenHeight(val){
-// 			if(val < window.screen.availHeight-98 || this.showH5){
-// 				console.log('窗口缩小');
-// 				this.status = true;
-// 				this.changeStyle(true);
-// 			}else{
-// 				console.log('窗口没有缩小');
-// 				this.status = false;
-// 				this.changeStyle(false);
-// 			}
-		},
 	}
 })

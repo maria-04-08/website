@@ -4,6 +4,9 @@ html,body{
     background:#fff;
 	overflow:hidden;
 }
+::-webkit-scrollbar{
+	width:0px;
+}
 [v-cloak]{
     display:none;
 }
@@ -367,9 +370,9 @@ header{
 			position:relative;
 			text-align:center;
 			margin:0px auto;
-			.process{
+			.proccess{
 				position:absolute;
-				left:50%;
+				left:51%;
 				top:25%;
 				transform:translateX(-50%);
 				span{
@@ -677,7 +680,8 @@ footer{
 		height:422px;
 		margin-top:59px !important;
 		.title-img{
-			width:50% !important;
+			width:72% !important;
+			left:19%;
 		}
 	}
 	.index-part .right-qr{
@@ -796,7 +800,8 @@ footer{
 				margin-bottom:20px;
 				padding-top:0px;
 			}
-			.process{
+			.proccess{
+				top:29%;
 				span{
 					display: block;
 					&:first-child{
@@ -867,7 +872,7 @@ footer{
 				margin-bottom:20px;
 				padding-top:0px;
 			}
-			.process{
+			.proccess{
 				span{
 					display: block;
 					&:first-child{
