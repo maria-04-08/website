@@ -320,7 +320,8 @@ var vm = new Vue({
 		},
 		scrollFunH5(){ //针对手机端的滑动监听
 			console.log('滚动----');
-			var top1 = $("#features-text").offset().top;
+			var top1 = $("#chart1").offset().top;
+			var top2 = $("#chart2").offset().top;
 			var windowheight = $(window).height();
 			var scrolltop = $(window).scrollTop();
 			if (top1 >= scrolltop && top1 < (scrolltop + windowheight)) {
@@ -377,8 +378,7 @@ var vm = new Vue({
 				
 				var box = VUE.$refs.viewBox; // 首先通过$refs获取dom元素
 				
-				var top1 = $("#chart1").offset().top;
-				var top2 = $("#chart2").offset().top;
+				var top1 = $("#features-text").offset().top;
 				var windowheight = $(window).height();
 				var scrolltop = $(window).scrollTop();
 				box.addEventListener('scroll', (evt) => { // 监听scroll事件
