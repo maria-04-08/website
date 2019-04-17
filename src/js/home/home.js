@@ -79,6 +79,9 @@ var vm = new Vue({
 			window.location.href = val;
 		},
 		pageScroll(){ //页面滑动的处理
+			if(this.status){
+				return;
+			}
 			var VUE = this;
 			var wrap = document.getElementById("wrap");
 			var main = document.getElementById("main");
@@ -192,7 +195,6 @@ var vm = new Vue({
 			_name = setInterval(function(){
 			    num++;
 			    if(type == 1){
-					console.log(num);
 					VUE.proccess1 = num;
 				}else if(type == 2){
 					VUE.proccess2 = num;
@@ -243,17 +245,19 @@ var vm = new Vue({
 			if(status){
 				$('#main').css('position','static');
 				$('#wrap').removeClass('pc-box');
+				$('.index-part').css('height','100%');
 				$('.features-part').css('height','auto');
-				// $('.features-part').css('padding-bottom','30px');
+				$('.features-part').css('padding-bottom','30px');
 				$('.core-services-part').css('height','auto');
-				// $('.core-services-part').css('padding-bottom','30px');
+				$('.core-services-part').css('padding-bottom','30px');
 				$('.mass-target-part').css('height','auto');
-				return;
 			}else{
 				$('#main').css('position','relative');
 				$('#wrap').addClass('pc-box');
+				$('.index-part').css('height','100%');
 				$('.features-part').css('height','100%');
 				$('.core-services-part').css('height','100%');
+				$('.mass-target-part').css('height','100%');
 			}
 		},
 		isScrollOnEle(){
@@ -294,7 +298,25 @@ var vm = new Vue({
 		this.screenHeight = document.body.clientHeight;
 		var chart1 = this.chart1, chart2 = this.chart2, chart3 = this.chart3;
 		if(this.screenWidth>768){ 
-			VUE.pageScroll();
+			if(this.screenHeight < window.screen.availHeight-98 || VUE.showH5){ //改变滑动效果，不用整屏滑动(会隐藏内容)
+				VUE.status = true;
+				//浏览器兼容      
+				if ((navigator.userAgent.toLowerCase().indexOf("firefox")!=-1)){
+					document.addEventListener("DOMMouseScroll",VUE.scrollFunH5,false);        
+				}  
+				else if (document.addEventListener) {  
+					document.addEventListener("mousewheel",VUE.scrollFunH5,false);  
+				}  
+				else if (document.attachEvent) {  
+					document.attachEvent("onmousewheel",VUE.scrollFunH5);   
+				}  
+				else{  
+					document.onmousewheel = VUE.scrollFunH5;  
+				}  
+			}else{
+				VUE.pageScroll();
+				VUE.status = false;
+			}
 		}else{
 			VUE.showH5 = true;
 			
@@ -309,13 +331,8 @@ var vm = new Vue({
 				document.attachEvent("onmousewheel",VUE.scrollFunH5);   
 			}  
 			else{  
-				document.onmousewheel = scrollFun;  
+				document.onmousewheel = VUE.scrollFunH5;  
 			}  
-		}
-		if(this.screenHeight < window.screen.availHeight-98 || VUE.showH5){ //改变滑动效果，不用整屏滑动(会隐藏内容)
-			VUE.status = true;
-		}else{
-			VUE.status = false;
 		}
 		VUE.changeStyle(VUE.status);
 		window.onresize = () => {
@@ -328,17 +345,65 @@ var vm = new Vue({
 					this.chart3.resize();
 				}
 		        window.screenWidth = document.body.clientWidth;
-				VUE.screenHeight = document.body.clientHeight;
+				window.screenHeight = document.body.clientHeight;
+				VUE.screenHeight = window.screenHeight;
 				var width = VUE.screenWidth = window.screenWidth;
 				if(width>768){
 					VUE.showH5 = false;
 					VUE.status = false;
-					VUE.changeStyle(false);
+					if(VUE.screenHeight < window.screen.availHeight-98){ //改变滑动效果，不用整屏滑动(会隐藏内容)
+						VUE.changeStyle(true);
+						VUE.status = true;
+					}else{
+						VUE.changeStyle(true);
+						VUE.status = false;
+						VUE.startTime = 0; //翻屏起始时间  
+						VUE.endTime = 0;
+						VUE.now = 0;
+						// $("#main").animate({top:'969px'},1000);
+						console.log('--------------------------------');
+						$("#main").animate({top:'0px'},1000);
+						
+						document.getElementById('msg_end').scrollIntoView(false); //初始化滚动条
+					}
 				}else{
+					if(VUE.chart1){
+						
+					}else{
+						VUE.initChart();
+					}
 					VUE.showH5 = true;
 					VUE.status = true;
-					VUE.changeStyle(true);
 				}
+// 				if(width>768){
+// 					VUE.showH5 = false;
+// 					
+// 					if(VUE.screenHeight < window.screen.availHeight-98 || VUE.showH5){ //改变滑动效果，不用整屏滑动(会隐藏内容)
+// 						VUE.status = true;
+// 						VUE.changeStyle(true);
+// 						//浏览器兼容      
+// 						if ((navigator.userAgent.toLowerCase().indexOf("firefox")!=-1)){
+// 							document.addEventListener("DOMMouseScroll",VUE.scrollFunH5,false);        
+// 						}  
+// 						else if (document.addEventListener) {  
+// 							document.addEventListener("mousewheel",VUE.scrollFunH5,false);  
+// 						}  
+// 						else if (document.attachEvent) {  
+// 							document.attachEvent("onmousewheel",VUE.scrollFunH5);   
+// 						}  
+// 						else{  
+// 							document.onmousewheel = VUE.scrollFunH5;  
+// 						}  
+// 					}else{
+// 						VUE.pageScroll();
+// 						VUE.status = false;
+// 						VUE.changeStyle(false);
+// 					}
+// 				}else{
+// 					VUE.showH5 = true;
+// 					VUE.status = false;
+// 					VUE.changeStyle(true);
+// 				}
 				
 		    })()
 		}
@@ -352,28 +417,30 @@ var vm = new Vue({
 	},
 	watch:{
 		screenWidth (val) {
-			this.screenWidth = val;
-			if(val>768){
-				this.showH5 = false;
-				this.status = false;
-			}else{
-				if(this.chart1){
-					
-				}else{
-					this.initChart();
-				}
-				this.showH5 = true;
-				this.status = true;
-			}
+// 			this.screenWidth = val;
+// 			if(val>768){
+// 				this.showH5 = false;
+// 				this.status = false;
+// 			}else{
+// 				if(this.chart1){
+// 					
+// 				}else{
+// 					this.initChart();
+// 				}
+// 				this.showH5 = true;
+// 				this.status = true;
+// 			}
 		},
 		screenHeight(val){
-			if(val < window.screen.availHeight-98 || this.showH5){
-				this.status = true;
-				this.changeStyle(true);
-			}else{
-				this.status = false;
-				this.changeStyle(false);
-			}
-		}
+// 			if(val < window.screen.availHeight-98 || this.showH5){
+// 				console.log('窗口缩小');
+// 				this.status = true;
+// 				this.changeStyle(true);
+// 			}else{
+// 				console.log('窗口没有缩小');
+// 				this.status = false;
+// 				this.changeStyle(false);
+// 			}
+		},
 	}
 })
