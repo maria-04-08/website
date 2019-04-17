@@ -378,7 +378,7 @@ var vm = new Vue({
 				
 				var box = VUE.$refs.viewBox; // 首先通过$refs获取dom元素
 				
-				var top1 = $(".features-text").offset().top;
+				var top1 = $(".target-list").offset().top;
 				var windowheight = $(window).height();
 				var scrolltop = $(window).scrollTop();
 				box.addEventListener('scroll', (evt) => { // 监听scroll事件
@@ -386,10 +386,11 @@ var vm = new Vue({
 // 					var top2 = $("#chart2").offset().top;
 // 					var windowheight = $(window).height();
 // 					var scrolltop = $(window).scrollTop();
-					if(VUE.$refs.viewBox.scrollTop > (top1 - 100)){
+					if(VUE.$refs.viewBox.scrollTop > (top1 - 150)){
 					// if (top1 >= scrolltop && top1 < (scrolltop + windowheight)) {
 						console.log('到底');
 						if(VUE.proccess1 == 95) return;
+						console.log('打印---');
 						VUE.getProccess('t1', 1,  95);
 						if(VUE.chart1){
 						}else{
