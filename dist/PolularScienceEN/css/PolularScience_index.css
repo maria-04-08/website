@@ -1,0 +1,95 @@
+
+.PolularScience_panle_two{
+    width: 100%;
+
+    height: 200px;
+    display: flex;
+    /*justify-content:center;*/
+    align-items:center;
+
+}
+.PolularScience_panle_two{
+    padding-top: 50px;
+}
+.PolularScience_panle_two_left{
+    width: 900px;
+    float: left;
+    height: auto;
+}
+.PolularScience_panle_two_right{
+    width: 300px;
+    float: right;
+    height: auto;
+    border-left:1px solid #ccc ;
+}
+
+element.style {
+}
+button, input:not([type=radio]):not([type=checkbox]), select {
+    vertical-align: middle;
+}
+.PolularScience_panle_two .bodys .one {
+    border: #dfdfdf 2px solid;
+    border-right: none;
+}
+.PolularScience_panle_two .bodys input {
+    height: 50px;
+    line-height: 40px;
+    width: 390px;
+    padding: 0 10px;
+    /*float: left;*/
+}
+
+
+.PolularScience_panle_two .bodys button {
+    /*float: left;*/
+    border: 0;
+    height: 50px;
+    width: 100px;
+    color: #FFF;
+    line-height: 36px;
+    text-align: center;
+    overflow: hidden;
+    font-size: 16px;
+}
+.PolularScience_panle_two .bodys span {
+    float: left;
+    height: 50px;
+    width: 50px;
+    background: #ECECEC;
+    color: #9F9F9F;
+    line-height: 40px;
+    text-align: center;
+    border: #ECECEC 2px solid;
+    border-right: none;
+    word-break: break-all;
+    vertical-align: top;
+    margin-top: -1px;
+    font-size: 18px;
+}
+.form-group{
+    float: left;
+    margin-top: 40px;
+}
+.color_one{
+    background: #999;
+
+}
+.re_dt {
+    display: inline-block;
+    margin-bottom: 20px;
+}
+.re_lab {
+    font-weight: 400;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    /* color: #333333; */
+}
+
+.c_1 {
+    font-size: 15px;
+    color: #666666;
+    font-weight: 400;
+}

@@ -1,0 +1,223 @@
+
+/* 清除默认样式*/
+html,body{
+	margin:0px;
+	padding:0px;
+}
+#cloud_dt:hover{
+	cursor:pointer;
+}
+.cloud-part{
+	position:fixed;
+	top:0%;
+	left:0%;
+	width:100%;
+	height:100%;
+	display: flex;
+	justify-content: center;
+	align-items:center;	
+	margin:0 auto;
+	display: none;
+}
+#cloud-part{
+	position:absolute;
+	width:50%;
+	height:76%;
+	min-width:800px;
+	min-height:600px;
+	margin:0px auto;
+	border:5px solid #95B8E7;
+}
+.cloud-header{
+	position:absolute;
+	top:0px;
+	left:0px;
+	height:7%;
+	width:100%;
+	line-height:42px;
+	padding-left:10px;
+	box-sizing:border-box;
+	background:linear-gradient(to bottom,#EFF5FF 0,#E0ECFF 100%);
+	font-size:16px;
+	font-weight:bold;
+	position:relative;
+}
+.cloud-header>span:first-child{
+	display: block;
+	width:96%;
+}
+.cloud-header>span:first-child:hover{
+	cursor:move;
+}
+.cloud-header span:last-child{
+	position:absolute;
+	height:100%;
+	width:40px;
+	top:0px;
+	right:0px;
+	text-align: center;
+	line-height:46px;
+	font-size:15px;
+}
+.cloud-header span:last-child:hover{
+	background:#E0ECFF;
+	cursor: pointer;
+}
+.cloud-body{
+	height:88%;
+	background:#fff;
+}
+.cloud-img{
+	height:94%;
+	width:100%;
+	background:rgba(203,220,236,0.3);
+	display: flex;
+	justify-content: center;
+	align-items:center;
+}
+.cloud-img img{
+	height:88%;
+	width:82%;
+}
+.cloud-tool-bar{
+	width:100%;
+	height:12%;
+	display:flex;
+	border-top:1px solid #f4f4f4;
+	background:linear-gradient(to top,#EFF5FF 0,#E0ECFF 100%);
+}
+.play-bar-left{
+	height:100%;
+	width:20%;
+	display:flex;
+	justify-content: center;
+	align-items:center;
+	box-sizing:border-box;
+	position:relative;
+}
+.play-bar-left .pro-title{
+	width:70%;
+	height:30px;
+	padding:0px 10px;
+	box-sizing:border-box;
+	background:#fff;
+	margin:0px;
+	border:1px solid #95B8E7;
+	display: flex;
+	justify-content: space-between;
+	align-items:center;
+}
+.play-bar-left ul.ul-list{
+	width:70%;
+	left:30px;
+	bottom:60px;
+	height:128px;
+}
+.pro-title:hover{
+	cursor:pointer;
+}
+.pro-title span:last-child{
+	transform: scale(0.7);
+	margin-top:-2px;
+}
+.play-bar-left .select-box{
+	display:none;
+}
+.play-bar-left:after{
+	display: block;
+	content:'';
+	position:absolute;
+	right:0px;
+	top:14px;
+	height:60%;
+	width:1px;
+	background:#95B8E7;
+}
+.play-bar-right{
+	display: flex;
+	align-items:center;
+	width:80%;
+	box-sizing:border-box;
+	padding:0px 24px;
+	position:relative;
+}
+ul.ul-list{
+	position:absolute;
+	bottom:60px;
+	right:13px;
+	background:#fff;
+	width:180px;
+	height:320px;
+	overflow-y:auto;
+	display: none;
+}
+ul.ul-list.show{
+	display: block;
+}
+::-webkit-scrollbar {/*隐藏滚轮*/
+	display: none;
+}
+ul.ul-list li{
+	width:100%;
+	text-align:center;
+	height:32px;
+	line-height:32px;
+	border-top:1px solid #f5f5f5;
+}
+ul.ul-list li.active{
+	background:#337ab7;
+	color:#fff;
+	border-color:#337ab7;
+}
+ul.ul-list li:hover{
+	background:#E0ECFF;
+	cursor: pointer;
+}
+ul.ul-list li.active:hover{
+	background:#337ab7;
+}
+.play-title{
+	position:absolute;
+	color:#333;
+	right:13px;
+	top:50%;
+	transform: translateY(-50%);
+	width:180px;
+	height:30px;
+	padding:0px 10px 0px 20px;
+	box-sizing: border-box;
+	background:#fff;
+	font-size:14px;
+	display: flex;
+	justify-content: space-between;
+	align-items:center;
+	border:1px solid #95B8E7;
+}
+.play-title:hover{
+	cursor: pointer;
+}
+.play-title span:last-child{
+	transform: scale(0.7);
+	margin-top:-2px;
+}
+.play-not{
+	background: url('../img/cloud-icon.png') no-repeat 0px -252px;
+    width: 50px;
+    height: 50px;
+    margin: 0px 3px 0px 0px;
+}
+.play-rewind{
+	background: url('../img/cloud-icon.png') no-repeat 0px -188px;
+	width: 32px;
+	height: 32px;
+	margin: 0px 3px 0px 18px;
+}
+.play-fastForward{
+	background: url('../img/cloud-icon.png') no-repeat 0px -100px;
+	width: 32px;
+	height: 32px;
+	margin: 0px 3px 0px 3px;
+}
+.play-not:hover, .play-rewind:hover, .play-fastForward:hover{
+	cursor: pointer;
+}
