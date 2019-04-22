@@ -83,9 +83,6 @@ gulp.task("revSass", ["revApi"], () => {
       outputStyle: sassMode.compressed
     }).on("error", sass.logError))
     .pipe(autoprefixer(autoprefixerConfig))
-    .pipe(replace({
-      "(\.\.\/)*img\/cdn\/.*\/": "http://ow.pic.alasga.cn/",
-    }))
     .pipe(rev())
     .pipe(gulp.dest(`dist/web/${ output.sass }`))
     .pipe(rev.manifest())
@@ -113,9 +110,6 @@ gulp.task("revHtml", ["revSass"], () => {
       sortAttributes: true,
       sortClassName: true,
       keepClosingSlash: true
-    }))
-    .pipe(replace({
-      "(\.\.\/)*img\/cdn\/.*\/": "http://ow.pic.alasga.cn/",
     }))
     .pipe(gulp.dest(`rev/${ output.html }`));
 })

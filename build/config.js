@@ -39,13 +39,5 @@ module.exports = {
     expanded: 'expanded', // 展开输出方式 
     compact: 'compact', // 紧凑输出方式 
     compressed: 'compressed' // 压缩输出方式 
-  },
-  proxyTest: proxyMiddleware('/api', {
-    target: API,
-      changeOrigin: true
-  }),
-  proxyCoupon: proxyMiddleware('/coupon', {
-    target: 'https://test.alasga.cn/pro/coupon',
-    changeOrigin: true
-  })
+  }
 }

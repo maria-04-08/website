@@ -16,9 +16,7 @@ const {
   from,
   output,
   sassMode,
-  autoprefixerConfig,
-  proxyTest,
-  proxyCoupon
+  autoprefixerConfig
 } = require('./config.js');
 
 const {
@@ -123,22 +121,13 @@ gulp.task("devImg", () => {
     .pipe(gulp.dest(`dev/${output.img}`))
 })
 
-/* const proxyTest = proxyMiddleware('/api', {
-  target: 'https://test.alasga.cn/gateway/api',
-    changeOrigin: true
-  });
-  // 优惠券部分
-  const proxyCoupon = proxyMiddleware('/coupon', {
-    target: 'https://test.alasga.cn/pro/coupon',
-    changeOrigin: true
-  }); */
 gulp.task("jt", () => {
 
   //自动刷新浏览器
   browserSync.init({
     server: {
       baseDir: "./",
-      middleware: [proxyCoupon, proxyTest]
+      middleware: []
     },
     ui: false,
     notify: false,

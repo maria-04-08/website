@@ -9,9 +9,7 @@ const {
   from,
   output,
   sassMode,
-  autoprefixerConfig,
-  proxyTest,
-  proxyCoupon
+  autoprefixerConfig
 } = require('./config.js');
 
 const {
