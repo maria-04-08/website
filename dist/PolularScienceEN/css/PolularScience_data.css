@@ -1,0 +1,157 @@
+.data_two{
+    width: 1200px;
+    height: auto;
+    display: block;
+
+}
+/*推荐图书*/
+.data_tree{
+    width: 1200px;
+    height: auto;
+    display: block;
+    margin-bottom: 30px;
+    text-align: justify;
+}
+.data_tree:after{
+    display: inline-block;
+    width: 100%;
+    content: '';
+}
+.data_tree_item{
+    /*width: 47%;*/
+    display: inline-block;
+    /*height: 100px;*/
+    margin-top: 20px;
+    margin-bottom: 30px;
+    /*cursor: pointer;*/
+    /*margin-right: 160px;*/
+
+}
+.data_tree_item_left{
+    width: 120px;
+    height: auto;
+    display: inline-block;
+    vertical-align:top;
+}
+.data_tree_item_right{
+    width: 380px;
+    height: auto;
+
+    display: inline-block;
+
+    margin-left: 30px;
+}
+.data_tree_item_right_p1{
+    font-size: 16px;
+ color: #111111;
+}
+.data_tree_item_right_p2{
+    font-size: 14px;
+    color: #333;
+    line-height: 23px;
+}
+/*热门图书*/
+.data_four{
+    width: 1200px;
+    height: auto;
+    display: block;
+    min-height: 460px;
+
+}
+.data_four_book{
+
+    width: 800px;
+    height: auto;
+    display: inline-block;
+    /*margin-right: 36px;*/
+}
+.data_four_book_item{
+    width: 120px;
+    height: auto;
+    display: inline-block;
+    margin-right: 36px;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+.data_top{
+    width: 100%;
+    height: 50px;
+    /*border-bottom: 1px solid #cccccc;*/
+    margin-bottom: 10px;
+    text-align: left;
+}
+.data_top_span{
+    width: 8px;
+    height: 30px;
+    display: block;
+    background: #191D64;
+    float: left;
+}
+.data_top_title{
+    color: #000;
+    font-size: 20px;
+    margin-left: 5px;
+
+}
+/*资料下载*/
+.data_four_datadown{
+    width: 320px;
+    height: 600px;
+    /*display: inline-block;*/
+    /*vertical-align: top;*/
+    float: right;
+}
+.datadown_item_display_left{
+    width: 70px;
+    height: 100px;
+    float: left;
+}
+.datadown_item_display_left p{
+    margin: 0 0 0 5px;
+}
+.datadown_item{
+    width: 100%;
+    display: block;
+    float: left;
+    margin-bottom: 10px;
+}
+.datadown_item_display{
+    width: 290px;
+    height: auto;
+    display: inline-block;
+}
+.datadown_item_display_left{
+    margin-right: 10px;
+}
+.datadown_item_txt{
+    margin-left: 30px;
+    line-height: 25px;
+    font-weight: 500;
+}
+
+/*气象视频*/
+.data_video{
+    width: 1200px;
+    height: auto;
+    display: block;
+    text-align: left;
+    /*text-align:justify;*/
+
+}
+/*.data_video:after{*/
+/*width: 100%;*/
+    /*height: 0;*/
+    /*margin: 0;*/
+    /*display: inline-block;*/
+    /*overflow: hidden;*/
+
+
+/*}*/
+.data_video_item{
+    width: 260px;height: 260px;
+    display: inline-block;
+    /*margin: 0 50px;*/
+    cursor: pointer;
+    text-align: center;
+    margin-right: 36px;
+}

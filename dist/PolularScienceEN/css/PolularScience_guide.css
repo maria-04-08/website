@@ -1,0 +1,51 @@
+.PolularScience_guide_two{
+    width: 1200px;
+    height: auto;
+
+}
+.PolularScience_guide_tree{
+    width: 1200px;
+    height: auto;
+    display: block;
+
+}
+.PolularScience_guide_tree_item{
+    width: 100%;
+    height: 300px;
+    display: block;
+    margin-top: 30px;
+}
+.PolularScience_guide_tree_item_left{
+    width: 420px;
+    height: 300px;
+    float: left;
+}
+.PolularScience_guide_tree_item_right{
+   float: left;
+    width: 650px;
+    height: 300px;
+    padding: 10px;
+    position: relative;
+    margin-left: 80px;
+}
+.PolularScience_guide_tree_item_title{
+    text-align: center;
+    font-size: 25px;
+}
+.PolularScience_guide_tree_item_txt{
+    text-align: left;
+    font-size: 16px;
+    line-height: 30px;
+    margin-top: 30px;
+}
+.PolularScience_guide_tree_item_button{
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 20px;
+}
+.PolularScience_guide_tree_item_button button{
+    width: 130px;
+    height: 43px;
+    margin: 0 20px;
+}

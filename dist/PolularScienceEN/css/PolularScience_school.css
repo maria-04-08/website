@@ -1,0 +1,132 @@
+.data_two{
+    width: 1200px;
+    height: auto;
+    display: block;
+
+}
+/*推荐图书*/
+.data_tree{
+    width: 1000px;
+    height: auto;
+    display: block;
+    margin-bottom: 30px;
+}
+.data_tree_item{
+    width: 47%;
+    display: inline-block;
+    /*height: 100px;*/
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+.data_tree_item_left{
+    width: 120px;
+    height: auto;
+    display: inline-block;
+    vertical-align:top;
+}
+.data_tree_item_right{
+    width: 280px;
+    height: auto;
+
+    display: inline-block;
+
+    margin-left: 30px;
+}
+.data_tree_item_right_p1{
+    font-size: 16px;
+ color: #111111;
+}
+.data_tree_item_right_p2{
+    font-size: 14px;
+    color: #333;
+    line-height: 23px;
+}
+/*热门图书*/
+.data_four{
+    width: 1000px;
+    height: auto;
+    display: block;
+    min-height: 460px;
+}
+.data_four_book{
+
+    width: 640px;
+    height: auto;
+    display: inline-block;
+    margin-right: 36px;
+}
+.data_four_book_item{
+    width: 120px;
+    height: auto;
+    display: inline-block;
+    margin-right: 36px;
+    margin-bottom: 30px;
+}
+.data_top{
+    width: 1000px;
+    height: 50px;
+    /*border-bottom: 1px solid #cccccc;*/
+    margin-bottom: 10px;
+    text-align: left;
+}
+.data_top_span{
+    width: 8px;
+    height: 30px;
+    display: block;
+    background: #191D64;
+    float: left;
+}
+.data_top_title{
+    color: #000;
+    font-size: 20px;
+    margin-left: 5px;
+
+}
+/*资料下载*/
+.data_four_datadown{
+    width: 320px;
+    height: 600px;
+    display: inline-block;
+
+    float: right;
+}
+.datadown_item_display_left{
+    width: 70px;
+    height: 100px;
+    float: left;
+}
+.datadown_item_display_left p{
+    margin: 0 0 0 5px;
+}
+.datadown_item{
+    width: 100%;
+    display: block;
+    float: left;
+    margin-bottom: 10px;
+}
+.datadown_item_display{
+    width: 290px;
+    height: auto;
+    display: inline-block;
+}
+.datadown_item_display_left{
+    margin-right: 10px;
+}
+.datadown_item_txt{
+    margin-left: 30px;
+    line-height: 25px;
+    font-weight: 500;
+}
+
+/*气象视频*/
+.data_video{
+    width: 1200px;
+    height: auto;
+    display: block;
+    text-align: center;
+}
+.data_video_item{
+    width: 260px;height: 260px;
+    display: inline-block;
+    margin: 0 50px;
+}

@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>data</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+    <link rel="stylesheet" type="text/css" href="css/PolularScience_public.css">
+    <!--<link rel="stylesheet" type="text/css" href="css/PolularScience_schooldetails.css">-->
+    <link href="http://www.scsweather.com/Res/ol/ol.css?v=1.1" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/zzsc.css" type="text/css" />
+
+    <link rel="stylesheet" type="text/css" href="js/jquery-easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="js/jquery-easyui/themes/icon.css">
+
+    <link rel="stylesheet" type="text/css" href="css/typhoon.css">
+
+	<!-- 卫星云图引入css文件 -->
+	<link rel="stylesheet" type="text/css" href="css/cloudImgs.css">
+	
+    <style>
+        <!---->
+        body{
+            padding: 0;
+        }
+        .index_details_two{
+            width: 1200px;
+            height: auto;
+
+            margin-top: 40px;
+            display: block;
+            margin-bottom: 80px;
+
+        }
+        .index_details_tree{
+            width: 1200px;
+            margin-top: 40px;
+            display: block;
+            text-align: left;
+        }
+        .special_tree_titlebox{
+            width: 1200px;
+            height: 50px;
+
+        }
+        .special_tree_span{
+            width: 6px;
+            height: 30px;
+            display: block;
+            background: #D45431;
+            float: left;
+        }
+        .special_tree_title{
+            color: #000;
+            font-size: 18px;
+            margin-left: 5px;
+
+        }
+        .index_details_content{
+            width: 1060px;
+            height: auto;
+            margin: 0;
+
+        }
+        .typhoon_map{
+            width: 100%;
+            position: fixed;
+            top:92px;
+            bottom:1px;
+            /*background: red;*/
+            text-align: left;
+        }
+        .Hold-all{
+            position: absolute;
+            right: 280px;
+            left: 0;
+            top:0px;
+           height: 25px;
+            background-color: #fff;
+            padding-left: 20px;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            border-bottom: 1px solid #fff;
+        }
+        .Hold-all-item{
+            float: left;
+            margin: 0 5px;
+        }
+        .typhoon_map_left{
+           position: absolute;
+            right: 280px;
+            left: 0;
+            top:25px;
+            bottom: 0px;
+            float: left;
+
+
+        }
+        .typhoon_map_right{
+            width: 280px;
+            height: 100%;
+            background: #E8F3FD;
+            float: right;
+            padding: 10px;
+        }
+        .typhoon_list{
+            width: 100%;
+            height: 180px;
+            /*background: #145aaa;*/
+
+        }
+        .Route_list{
+            width: 100%;
+            height: 215px;
+            margin-top: 20px;
+        }
+        .typhoon-curr-routing-info {
+            background-color: #161F5F;
+            text-indent: 10px;
+            color: white;
+            line-height: 28px;
+            font-size: 14px;
+        }
+        .ranging_list{
+            width: 100%;
+            position:absolute;
+            top:390px;
+            bottom: 1px;
+            margin-top: 20px;
+
+        }
+        ol, ul {
+            margin-top: 0;
+             margin-bottom: 0px;
+        }
+        .ol-mouse-position{
+            display: inline-block;
+        }
+        .loading {
+            width: 160px;
+            height: 56px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            line-height: 56px;
+            color: #fff;
+            padding-left: 60px;
+            font-size: 15px;
+            background: #000 url(http://www.scsweather.com/img/waiting.gif) no-repeat 10px 50%;
+            opacity: 0.7;
+            z-index: 9999;
+            -moz-border-radius: 20px;
+            -webkit-border-radius: 20px;
+            border-radius: 20px;
+            filter: progid:DXImageTransform.Microsoft.Alpha(opacity=70);
+        }
+    </style>
+</head>
+<body>
+	
+<div id="elementValue_div" style="text-align: center; background-color: rgb(23, 32, 91); border-radius: 5px; position: relative; margin-top: -68px;z-index: 999;">
+    <span class="glyphicon glyphicon-play" style="font-size: 12px; position: absolute;left: -2px;color:#146dc3;top: 53px;">
+    </span>
+    <div style="text-align:left;">
+        <span id="elementValue" style="font-size: 28px;margin-left: 5px;color: #ffffff;">
+            2m/s
+        </span>
+        <br />
+        <span id="localPoint" style="font-size: 10px;padding: 2px;color: #ffffff;background-color:#146dc3">123.0093, 20.3334</span>
+    </div>
+</div>
+
+
+<div class="typhoon_main">
+    <!--导航-->
+    <div class="p_1">
+        <div class="p_1_menu">
+            <div id="langDiv">
+                <span style="color:#156dc3;font-weight: 500;">中文</span>
+                <span style="color:#156dc3;">|</span>
+                <a href="/WebApi/PageTransition?toLang=en-us" style="cursor:pointer;color:#156dc3;font-weight: 500;">English</a>
+            </div>
+            <div class="p_1_left"><img src="img/logo_zh.png" height="82" style="margin-top:-20px;"></div>
+            <div class="nav">
+                <ul id="ulNav">
+                    <li><a id="menu1" class="nav_a_li" href="/Home/Index"><img src="img/forecast2.png"><br><span>预报</span><br><span class="sjx"></span></a></li>
+                    <li><a id="menu2" class="nav_a_li" href="/Home/GridForecast"><img src="img/grid2.png"><br><span>精细化</span><br><span class="sjx"></span></a></li>
+                    <li><a id="menu3" class="nav_a_li" href="/Home/Observations"><img src="img/realtime2.png"><br><span>卫星云图</span><br><span class="sjx"></span></a></li>
+                    <li><a id="menu4" class="nav_a_li" href="/Home/City"><img src="img/city2.png"><br><span>城市</span><br><span class="sjx"></span></a></li>
+                    <li><a id="menu5" class="nav_a_li" href="/Home/Sights"><img src="img/scenic2.png"><br><span>景点</span><br><span class="sjx"></span></a></li>
+                    <li><a id="menu6" class="nav_a_li nav_a_li_current" href="/PopularScience"><img src="img/science2.png"><br><span style="color: rgb(22, 31, 95);">科普</span><br><span class="sjx" style="color: rgb(22, 31, 95);"></span></a></li>
+                    <li><a id="menu7" class="nav_a_li" href="/ForumFront"><img src="img/forum2.png"><br><span>论坛</span><br><span class="sjx"></span></a></li>
+                    <li><a id="menu8" class="nav_a_li" href="/Home/About"><img src="img/about2.png"><br><span>关于</span><br><span class="sjx"></span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="PolularScience_panle_one">
+        <!--<div class="PolularScience_nav">-->
+            <!--<ul style="margin-bottom: 0">-->
+                <!--<li><a href="PolularScience_index.html" class="PolularScience_lp_a">主页</a></li>-->
+                <!--<li><a href="PolularScience_guide.html">防御指南</a></li>-->
+                <!--<li><a href="PolularScience_school.html" >气象学堂</a></li>-->
+                <!--<li ><a href="PolularScience_special.html">台风专题</a></li>-->
+                <!--<li><a href="PolularScience_extreme.html">极端天气</a></li>-->
+                <!--<li><a href="PolularScience_data.html" >资料馆</a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    </div>
+    <!--地图-->
+
+
+    <div class="typhoon_map">
+        <span id="titletip" style="display: none">22</span>
+
+        <div class="Hold-all">
+            <div class="Hold-all-left">
+                <dt class="Hold-all-item" style="position: relative">
+                    <img src="img/ico_3.png">
+                    <span id="rainbtn"  onmouseenter="toolshow2(true)"  style="font-size: 12px;font-weight: 500;padding-top: 2px">Latest forecast</span>
+                    <div id="rainfall" onmouseleave="toolshow2(false)"  style="display:none;position: absolute;width: 85px;left: 20px;z-index:9999;background: white;padding-left: 10px;font-weight: 500">
+                        <input type="radio" name="day" value="1" onclick="getrain(1)">1 day<br>
+                        <input type="radio" name="day" value="2" onclick="getrain(2)">2 day<br>
+                        <input type="radio" name="day" value="3" onclick="getrain(3)">3 day<br>
+
+                    </div>
+                </dt>
+                <dt class="Hold-all-item" id="cloud_dt">
+                    <img src="img/ico_7.png">
+                    <span style="font-size: 12px;font-weight: 500;padding-top: 2px">Satellite cloud chart</span>
+                </dt>
+                <dt class="Hold-all-item">
+                    <img src="img/ico_6.png">
+                    <span id="radarbtn" data-bool=false onclick="getrader()"  style="font-size: 12px;font-weight: 500;padding-top: 2px; cursor: pointer">Weather radar</span>
+                </dt>
+                <dt class="Hold-all-item" >
+                    <img src="img/ico_2.png">
+                    <span data-bool=false  style="font-size: 12px;font-weight: 500;padding-top: 2px; cursor: pointer">Rainfall distribution</span>
+
+                </dt>
+                <!--<dt class="Hold-all-item">-->
+                    <!--<img src="img/ico_1.png">-->
+                    <!--<span style="font-size: 12px;font-weight: 500;padding-top: 2px">最新预报</span>-->
+                <!--</dt>-->
+                <!--<dt class="Hold-all-item">-->
+                    <!--<img src="img/ico_1.png">-->
+                    <!--<span style="font-size: 12px;font-weight: 500;padding-top: 2px">最新预报</span>-->
+                <!--</dt>-->
+            </div>
+            <div class="Hold-all-right">
+                <dt class="Hold-all-item" style="margin-right: 45px;" >
+                    <img  src="img/ico_5.png">
+                    <span onmouseenter="toolshow(true)"  id="tool" style="font-size: 12px;font-weight: 500;padding-top: 2px">Tool</span>
+                </dt>
+                <div onmouseleave="toolshow(false)" id="tool_show" style="position: absolute;top: 25px;z-index: 999;right: 40px;text-align: center;display: none;height: 50px;width: 100px">
+                    <span></span>
+                    <span style="width: 100px;height: 25px;text-align: center;background-color: white;display: block;cursor: pointer"><a style="font-size: 12px;line-height: 30px" onclick="is_ranging($(this))">Custom Points</a><img style="width: 12px;display: none" src="img/choose.png"></span>
+                    <span style="width: 100px;height: 25px;text-align: center;background-color: white;display: block;cursor: pointer"><a style="font-size: 12px;line-height: 25px" onclick="is_ranging_clear($(this))">Clear</a></span>
+
+                </div>
+            </div>
+        </div>
+        <!--地图-->
+        <div class="typhoon_map_left" id="p_3">
+            <div id="darbox"  style=" width: 210px;height: 40px;background-color:rgb(20, 109, 195, 0.5);position: absolute;bottom: 40px;left: 40%;z-index:999;display: none;align-items: center;padding: 0 10px">
+                <img id="dartimg" data-play="true" onclick="darplay()" src="img/zting.png" width="30">
+                <span id="dartext" style="color: white;font-size: 14px;line-height: 40px;margin-left: 30px"></span>
+            </div>
+            <h2 id="htitle" style="position: fixed;left: 37%;top: 140px;z-index: 999;display: none"></h2>
+            <div style="height: auto;position: absolute;bottom: 40px;left: 30px;z-index: 999">
+                <!--<div style="width: 200px;height: 200px;background-color: red">-->
+
+                <!--</div>-->
+                <!--<div style="width: 200px;height: 200px;background-color: red;margin-top: 10px">-->
+
+                <!--</div>-->
+                <!--大标题-->
+
+                <div style="width: 240px;height: 260px;position: relative">
+                    <div style="position: absolute;bottom: 0px;height: auto;width: 100%">
+                        <div style=" display:none;width: 100%;height: 119px;background-color: #307AB9;padding: 0 5px;" id="tf_1">
+                            <div style="width: 100%;height: 25px;display: flex;justify-content: space-between;">
+                                <span style="color: white;line-height: 25px">Typhoonlegend</span>
+                                <i onclick="tf_btn_1()" class="glyphicon glyphicon-triangle-bottom" style="font-size: 14px;line-height: 25px"></i>
+                            </div>
+                            <div style="background-color: white;width: 100%;height: 90px">
+                                <div class="tf_1_item">
+                                    <span class="tf_1_item_dian" style="background-color: #00FF03"></span>
+                                    <span>TD</span>
+                                </div>
+                                <div class="tf_1_item">
+                                    <span class="tf_1_item_dian" style="background-color: #2279FD"></span>
+                                    <span>TS</span>
+
+                                </div>
+                                <div class="tf_1_item">
+                                    <span class="tf_1_item_dian" style="background-color: #ECF332"></span>
+                                    <span>TS</span>
+
+                                </div>
+                                <div class="tf_1_item">
+                                    <span class="tf_1_item_dian" style="background-color: #ECB434"></span>
+                                    <span>STY</span>
+
+                                </div>
+                                <div class="tf_1_item">
+                                    <span class="tf_1_item_dian" style="background-color: #E286F6"></span>
+                                    <span>STY</span>
+
+                                </div>
+                                <div class="tf_1_item">
+                                    <span class="tf_1_item_dian" style="background-color: red"></span>
+                                    <span>SuperTY</span>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                        <button id="tf_btn_1" onclick="tf_1($(this))" type="button" class="btn btn-primary" style="display: block">Typhoonlegend</button>
+                        <div style=" display:none;width: 100%;height: 119px;background-color: #307AB9;padding: 0 5px;margin-top: 10px" id="tf_2">
+                            <div style="width: 100%;height: 25px;display: flex;justify-content: space-between;">
+                                <span style="color: white;line-height: 25px">mechanism</span>
+                                <i onclick="tf_btn_2()" class="glyphicon glyphicon-triangle-bottom" style="font-size: 14px;line-height: 25px"></i>
+                            </div>
+                            <div style="background-color: white;width: 100%;height: 90px">
+                                <div class="tf_1_item">
+                                    <!--<input type="checkbox">-->
+                                    <span>China<span style="color: #EE5E72;margin-left: 5px">━ ━</span></span>
+                                </div>
+                                <div class="tf_1_item" style="width: 54%">
+                                    <!--<input type="checkbox">-->
+                                    <span>Hong Kong<span style="color: #ED7CFE;margin-left: 5px">━ ━</span></span>
+
+                                </div>
+                                <div class="tf_1_item">
+                                    <!--<input type="checkbox">-->
+
+                                    <span>Japan<span style="color: #57F76E;margin-left: 5px">━ ━</span></span>
+
+                                </div>
+                                <div class="tf_1_item" style="width: 54%">
+                                    <!--<input type="checkbox">-->
+
+                                    <span>Taiwan<span style="color: #EEAB65;margin-left: 5px">━ ━</span></span>
+
+                                </div>
+                                <div class="tf_1_item">
+                                    <!--<input type="checkbox">-->
+
+                                    <span>U.S.A<span style="color: #55DBFE;margin-left: 5px">━ ━</span></span>
+
+                                </div>
+                                <div class="tf_1_item" style="width: 54%">
+                                    <!--<input type="checkbox">-->
+
+                                    <span>KOR<span style="color: #73A5AC;margin-left: 32px">━ ━</span></span>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <button id="tf_btn_2" onclick="tf_2($(this))" type="button" class="btn btn-primary" style="width:131px;display: block;margin-top: 10px" >mechanism</button>
+                    </div>
+
+                </div>
+
+                <!--<div style="position: fixed;bottom: 10px;left: 30px;text-align: left;">-->
+                    <!--<span style="line-height: 35px;display: inline-block">当前坐标：</span><span id="zb_x" style="width: 300px;height: 30px;display: inline-block;line-height: 30px;text-align: left"></span>-->
+                <!--</div>-->
+            </div>
+
+            <!--左上角信息面板-->
+            <div id="stretchcontent" style="display:none;width: 250px;height: 280px;border: 4px solid #3FA5D9;position: absolute;z-index: 999;top:10px;left:10px;background-color: white;">
+                <div style="width: 100%;height: 100%;position: relative">
+                    <div id="stretchdiv" style="width: 100%;height: 100%;position: absolute;">
+                        <div id="stretchdiv_title"  style="width: 100%;height: 30px;text-align: center;line-height: 30px;color: #0000FF"></div>
+                        <div class="stretchdiv_item">
+                            <span>Time:</span>
+                            <span id="stretchdiv_item_time"></span>
+                        </div>
+                        <div class="stretchdiv_item">
+                            <span>Strength:</span>
+                            <span id="stretchdiv_item_qiangdu"></span>
+                        </div>
+                        <div class="stretchdiv_item">
+                            <span>Central location:</span>
+                            <span id="stretchdiv_item_weizhi"></span>
+                        </div>
+                        <div class="stretchdiv_item">
+                            <span>Wind Speed:</span>
+                            <span id="stretchdiv_item_fengsu"></span>
+                        </div>
+                        <div class="stretchdiv_item">
+                            <span>Central pressure:</span>
+                            <span id="stretchdiv_item_qiya"></span>
+                        </div>
+                        <div class="stretchdiv_item">
+                            <span>Velocity shift:</span>
+                            <span id="stretchdiv_item_yixiang"></span>
+                        </div>
+                        <div class="stretchdiv_item">
+                            <span>7 stage wind coil:</span>
+                            <span id="stretchdiv_item_banjing"></span>
+                        </div>
+
+                    </div>
+                    <img id="stretch" src="img/stretchIcon.png" style="position: absolute;bottom: 0;right: 0px" onclick="onstretch()">
+                </div>
+            </div>
+            <div id="stretchcontent2" style="display:none;width: 250px;height: 230px;border: 4px solid #3FA5D9;position: absolute;z-index: 999;top:-230px;left:5px;background-color: white;">
+                <div style="width: 100%;height: 100%;position: relative">
+                    <div id="stretchdiv2" style="width: 100%;height: 100%;position: absolute;">
+                        <div id="stretchdiv_title2"  style="width: 100%;height: 30px;text-align: center;line-height: 30px;color: #0000FF"></div>
+                        <div id="mechanism" class="stretchdiv_item">
+                            <span>Mechanism:</span>
+                            <span id="mechanismname" class="dianmianban"></span>
+                        </div>
+                        <div class="stretchdiv_item">
+                            <span>StopTime:</span>
+                            <span id="stretchdiv_item_time2" class="dianmianban"></span>
+                        </div>
+
+                        <div class="stretchdiv_item">
+                            <span>Central location:</span>
+                            <span id="stretchdiv_item_weizhi2" class="dianmianban"></span>
+                        </div>
+                        <div class="stretchdiv_item">
+                            <span>Maximum winds:</span>
+                            <span id="stretchdiv_item_fengli2" class="dianmianban"></span>
+                        </div>
+                        <div class="stretchdiv_item">
+                            <span>Maximum wind speed:</span>
+                            <span id="stretchdiv_item_fengsu2" class="dianmianban"></span>
+                        </div>
+
+                        <div class="stretchdiv_item">
+                            <span>Central pressure:</span>
+                            <span id="stretchdiv_item_qiya2" class="dianmianban"></span>
+                        </div>
+                        <div class="stretchdiv_item">
+                            <span>Moving speed:</span>
+                            <span id="stretchdiv_item_yisudu2" class="dianmianban"></span>
+                        </div>
+                        <div class="stretchdiv_item">
+                            <span>movement directio:</span>
+                            <span id="stretchdiv_item_yixiang2" class="dianmianban"></span>
+                        </div>
+                        <!--<div class="stretchdiv_item">-->
+                            <!--<span>七级风圈半径:</span>-->
+                            <!--<span id="stretchdiv_item_7banjing2" class="dianmianban"></span>-->
+                        <!--</div>-->
+                        <!--<div class="stretchdiv_item">-->
+                            <!--<span>十级风圈半径:</span>-->
+                            <!--<span id="stretchdiv_item_10banjing2" class="dianmianban"></span>-->
+                        <!--</div>-->
+                        <!--<div class="stretchdiv_item">-->
+                            <!--<span>十二级风圈半径:</span>-->
+                            <!--<span id="stretchdiv_item_12banjing2" class="dianmianban"></span>-->
+                        <!--</div>-->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--侧边栏-->
+        <div class="typhoon_map_right" style="position: relative">
+
+            <!--台风信息-->
+            <div class="typhoon_list">
+                <div class="tab2" >
+                    <div class="tabList" style="padding-left: 0px">
+                        <ul>
+                            <li class="cur"  style="display: flex;padding: 5px 5px;">
+                                Year：
+                                <select id="year" name="cars" style="flex:1;height: 100%;" onchange="getselectyear($(this))">
+                                    <option value="2019">2019</option>
+                                    <option value="2018">2018</option>
+
+                                </select>
+                            </li>
+                            <!--<li onclick="qiehuan(this,1)">路劲相似</li>-->
+
+                        </ul>
+                    </div>
+                    <div id="tabCon1" class="tabCon" style="background: white">
+                        <div class="cur" id="cur1">
+                            <table id="tt"></table>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <!--路劲信息-->
+            <div class="Route_list" onmouseout="hidemianban()">
+                <!--<div class="typhoon-curr-routing-info">路径信息</div>-->
+                <div class="tab2" >
+                    <div class="tabList" style="padding-left: 0px">
+                        <ul>
+                            <li id="Route" class="curli cur" onclick="qiehuan($(this),0)" style="width: 88px">Route</li>
+                            <li id="Wind" class="curli" onclick="qiehuan($(this),1)" style="width: 88px">Wind speed and pressure</li>
+                            <li id="speed" class="curli" onclick="qiehuan($(this),2)" style="width: 87px">move speed</li>
+
+
+                        </ul>
+                    </div>
+                    <div class="tabCon" style="background: white">
+                        <div class="cur curbox" id="cur2" >
+
+                            <table id="tt2">
+
+                            </table>
+                        </div>
+                        <div class="curbox cur" style="display: none;background: url('img/noTyphoon.png') no-repeat center top">
+                            <div id="windspeed" style="width: 100%;height: 100%"></div>
+                        </div>
+                        <div class="curbox cur" style="display: none;background: url('img/noTyphoon.png') no-repeat center top">
+                            <div id="movespeed" style="width: 100%;height: 100%"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--测距-->
+            <div class="ranging_list" style="right: 10px;width: 260px">
+                <div class="tab2" style="height: 90%">
+                    <div class="tabList" style="padding-left: 0px">
+                        <ul>
+                            <!--<li class="cur" onclick="qiehuan(this,0)">影响</li>-->
+                            <li id="Influence" class="curli cur" onclick="qiehuan($(this),0)" style="width: 88px">Influence</li>
+                            <li id="ranging" class="curli" onclick="qiehuan($(this),1)" style="width: 88px">ranging</li>
+                        </ul>
+                    </div>
+                    <div id="tabCon3" class="tabCon" style="background: white;height: 100%">
+                        <div class="cur curbox" id="cur3">
+
+                            <table id="tt3">
+
+                            </table>
+                        </div>
+                        <div id="cur4" class="curbox cur" style="display: none">
+                            <table id="tt4">
+
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+	
+	<!-- 卫星云图html开始 -->
+	<div class="cloud-part">
+		<div id="cloud-part">
+			<div class="cloud-body">
+				<div class="cloud-header">
+					<span  id="cloud-header">卫星云图</span>
+					<span class="glyphicon glyphicon-remove close-cloud"></span>
+				</div>
+				<div class="cloud-img">
+					<img src="" />
+				</div>
+			</div>
+			<div class="cloud-tool-bar play-bar">
+				<div class="play-bar-left">
+					<p class="pro-title">
+						<span class="text">真彩</span><span class="glyphicon glyphicon-triangle-bottom"></span>
+					</p>
+					<ul class="select-box ul-list">
+						<li class="active" id="58378">真彩</li>
+						<li id="58379">红外</li>
+						<li id="58380">可见光</li>
+						<li id="58381">水汽</li>
+					</ul>
+				</div>
+				<div class="play-bar-right">
+					<p class="play-not"></p>
+					<p class="play-rewind"></p>
+					<p class="play-fastForward"></p>
+					<p class="play-title"><span class="text"></span><span class="glyphicon glyphicon-triangle-bottom"></span></p>
+					<ul class="ul-list">
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 卫星云图html结束 -->
+	
+</div>
+
+</body>
+
+<script src="js/jquery.min.js"></script>
+
+<script src="http://www.scsweather.com/Res/ol/ol.js?v=1.1"></script>
+<script type="text/javascript" src="js/jquery-easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="js/jquery-easyui/locale/easyui-lang-zh_CN.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/TyphoonEN/CMapDraw.js"></script>
+<script src="js/TyphoonEN/CPolyLine.js"></script>
+<script src="js/TyphoonEN/CTyphoonArea.js"></script>
+<script src="js/TyphoonEN.js"></script>
+<script src="js/InfluenceEN.js"></script>
+<script src="js/toolEN.js"></script>
+<script src="js/highchartsEN.js"></script>
+<script src="js/onclickupEN.js"></script>
+<script src="js/getyeartyphoonEN.js"></script>
+<script src="js/radar.js"></script>
+<script src="js/rainfall.js"></script>
+<script src="js/rainGridForecast.js"></script>
+
+<script src="js/jquery.rotate.min.js"></script>
+
+<!-- 卫星云图引入js文件 -->
+<script src="js/cloudImgs.js"></script>
+</html>
