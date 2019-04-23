@@ -76,8 +76,8 @@ html,body{
 	align-items:center;
 }
 .cloud-img img{
-	height:88%;
-	width:82%;
+	height:93%;
+	width:96%;
 }
 .cloud-tool-bar{
 	width:100%;
@@ -109,12 +109,16 @@ html,body{
 }
 .play-bar-left ul.ul-list{
 	width:70%;
-	left:30px;
+	left:29px;
 	bottom:60px;
 	height:128px;
 }
 .pro-title:hover{
 	cursor:pointer;
+}
+.pro-title span:first-child{
+	display: inline-block;
+	width:88%;
 }
 .pro-title span:last-child{
 	transform: scale(0.7);

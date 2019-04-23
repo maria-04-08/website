@@ -69,8 +69,7 @@ $(function(){
 	
 	//点击展示产品列表
 	$('.pro-title').click(function(){
-		$('.play-bar-left ul').toggleClass('show');
-		$(".pro-title span:last-child").toggleClass('glyphicon-triangle-top');
+		changeStyle($('.play-bar-left ul'),$(".pro-title span:last-child"));
 	})
 	//点击产品列表中的li
 	$('.play-bar-left ul').click(function(e){
@@ -96,8 +95,7 @@ $(function(){
 		}else{
 			showTimeList();
 		}
-		$('.play-bar-right ul').toggleClass('show');
-		$(".play-title span:last-child").toggleClass('glyphicon-triangle-top');
+		changeStyle($('.play-bar-right ul'),$(".play-title span:last-child"));
 	})
 	//点击展示时间列表中的li
 	$('.play-bar-right ul').click(function(e){
@@ -112,15 +110,17 @@ $(function(){
 	//点击时间列表及产品列表以外的位置关闭列表
 	$('#cloud-part').click(function(e){
 		var target = $(event.target);
+		var right_ul = $('.play-bar-right ul'), left_ul = $('.play-bar-left ul');
 		if(target.hasClass('play-title') || target.hasClass('pro-title') || target.hasClass('text')){
-		}else{
-			if($('.play-bar-right ul').hasClass('show')){
-				$('.play-bar-right ul').toggleClass('show');
-				$(".play-title span:last-child").toggleClass('glyphicon-triangle-top');
+			if(target.hasClass('play-title') && left_ul.hasClass('show')){ //关闭产品列表
+				changeStyle(left_ul, $(".pro-title span:last-child"));
 			}
-			if($('.play-bar-left ul').hasClass('show')){
-				$('.play-bar-left ul').toggleClass('show');
-				$(".pro-title span:last-child").toggleClass('glyphicon-triangle-top');
+		}else{
+			if(right_ul.hasClass('show')){
+				changeStyle(right_ul,$(".play-title span:last-child"));
+			}
+			if(left_ul.hasClass('show')){
+				changeStyle(left_ul, $(".pro-title span:last-child"));
 			}
 		}
 	})
@@ -201,6 +201,7 @@ $(function(){
 			var liStr = '';
 			// console.log('返回数据--'+JSON.stringify(data));
 			for(var i=0;i<data.length;i++){
+				data[i].ProductUrl = data[i].ProductUrl.slice(0,-4) + '_min.jpg'
 				data[i].ProductUrl = 'http://www.scsweather.com/' + data[i].ProductUrl;
 				imgArray.push(data[i].ProductUrl);
 				if(data[i].ProductTime){
@@ -246,5 +247,10 @@ $(function(){
 			$('.play-title .text').text(dataArr[index].ProductTime);
 		}
 		$(".cloud-img img").attr("src",imgArray[index]);
+	}
+	//列表显示/隐藏
+	function changeStyle(el1, el2){
+		el1.toggleClass('show');
+		el2.toggleClass('glyphicon-triangle-top');
 	}
 }); 
