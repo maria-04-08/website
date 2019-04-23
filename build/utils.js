@@ -20,7 +20,7 @@ const utils = {
   htmlModulePath(ENV) {
     return {
       meta: `src/common_page/base/meta.html`,
-      css: [`src/common_page/base/css.html`, `src/common_page/${ENV}/you-meng.html`],
+      css: [`src/common_page/base/css.html`],
       script: `src/common_page/${ENV}/script.html`,
     }
   }
